@@ -43,3 +43,5 @@ mix.copy(
     "public/webfonts"
 );
 mix.copy("resources/img", "public/img");
+
+mix.version();
