@@ -23,10 +23,6 @@ Vue.use(PortalVue);
 
 const app = document.getElementById("app");
 
-Vue.prototype.$userName = document
-    .querySelector("meta[name='user_name']")
-    .getAttribute("content");
-
 new Vue({
     render: h =>
         h(InertiaApp, {

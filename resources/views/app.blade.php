@@ -18,11 +18,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
     <script src="{{ asset(mix('js/vendor.js')) }}"></script>
     <script src="{{ asset(mix('js/app.js')) }}" defer></script>
-
-
-    @if (Auth::check())
-    <meta name="user_name" content="{{ Auth::user()->name }}" />
-    @endif
 </head>
 
 <body class="hold-transition sidebar-mini">

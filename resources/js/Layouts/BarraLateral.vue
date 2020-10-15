@@ -23,7 +23,7 @@
           />
         </div>
         <div class="info">
-          <a href="#" class="d-block" v-text="user_name"></a>
+          <a href="#" class="d-block" v-text="$page.auth.user.name"></a>
         </div>
       </div>
 
@@ -584,11 +584,6 @@ import JetNavLink from "./../Jetstream/NavLink";
 export default {
   components: {
     JetNavLink,
-  },
-  data() {
-    return {
-      user_name: this.$root.$userName,
-    };
-  },
+  }  
 };
 </script>
