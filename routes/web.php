@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ModalidadController;
+use App\Http\Controllers\AutoridadController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
@@ -33,6 +34,13 @@ Route::get('/modalidades/{modalidad}/edit', [ModalidadController::class, 'edit']
 Route::put('/modalidades/{modalidad}', [ModalidadController::class, 'update'])->name('modalidades.update');
 Route::delete('/modalidades/{modalidad}', [ModalidadController::class, 'destroy'])->name('modalidades.destroy');
 
+Route::get('/autoridades', [AutoridadController::class, 'index'])->name('autoridades.index');
+Route::get('/autoridades/create', [AutoridadController::class, 'create'])->name('autoridades.create');
+Route::post('/autoridades', [AutoridadController::class, 'store'])->name('autoridades.store');
+Route::get('/autoridades/{autoridad}', [AutoridadController::class, 'show'])->name('autoridades.show');
+Route::get('/autoridades/{autoridad}/edit', [AutoridadController::class, 'edit'])->name('autoridades.edit');
+Route::put('/autoridades/{autoridad}', [AutoridadController::class, 'update'])->name('autoridades.update');
+Route::delete('/autoridades/{autoridad}', [AutoridadController::class, 'destroy'])->name('autoridades.destroy');
 
 
 
