@@ -84,6 +84,7 @@ class AutoridadController extends Controller
     public function update(AutoridadRequest $request, Autoridad $autoridad)
     {
         $autoridad->nombre = $request->nombre;
+        $autoridad->grado = $request->grado;
 
         if ($autoridad->update()) {
             $result = ['successMessage' => 'Autoridad actualizada con éxito'];

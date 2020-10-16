@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ModalidadController;
 use App\Http\Controllers\AutoridadController;
+use App\Http\Controllers\CargoController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
@@ -42,9 +43,13 @@ Route::get('/autoridades/{autoridad}/edit', [AutoridadController::class, 'edit']
 Route::put('/autoridades/{autoridad}', [AutoridadController::class, 'update'])->name('autoridades.update');
 Route::delete('/autoridades/{autoridad}', [AutoridadController::class, 'destroy'])->name('autoridades.destroy');
 
-
-
-
+Route::get('/cargos', [CargoController::class, 'index'])->name('cargos.index');
+Route::get('/cargos/create', [CargoController::class, 'create'])->name('cargos.create');
+Route::post('/cargos', [CargoController::class, 'store'])->name('cargos.store');
+Route::get('/cargos/{cargo}', [CargoController::class, 'show'])->name('cargos.show');
+Route::get('/cargos/{cargo}/edit', [CargoController::class, 'edit'])->name('cargos.edit');
+Route::put('/cargos/{cargo}', [CargoController::class, 'update'])->name('cargos.update');
+Route::delete('/cargos/{cargo}', [CargoController::class, 'destroy'])->name('cargos.destroy');
 
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');

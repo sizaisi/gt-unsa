@@ -3,14 +3,14 @@
     <template #icon_title>
       <i class="fa fa-box fa-fw"></i>
     </template>
-    <template #title>Autoridades</template>
+    <template #title>Cargos</template>
 
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Lista de Autoridades</h3>
+        <h3 class="card-title">Lista de Cargos</h3>
         <jet-nav-link
           class="btn btn-success float-right"
-          href="/autoridades/create"
+          href="/cargos/create"
           >Crear</jet-nav-link
         >
       </div>
@@ -25,7 +25,7 @@
           small
           responsive
           stacked="md"
-          :items="autoridades"
+          :items="cargos"
           :fields="fields"
           empty-text="No hay registros para mostrar"
         >
@@ -38,13 +38,13 @@
           <template v-slot:cell(acciones)="row">
             <jet-nav-link
               class="btn btn-primary btn-sm"
-              :href="`/autoridades/${row.item.id}`"
+              :href="`/cargos/${row.item.id}`"
               type="button"
               ><b-icon icon="eye"></b-icon
             ></jet-nav-link>
             <jet-nav-link
               class="btn btn-warning btn-sm"
-              :href="`/autoridades/${row.item.id}/edit`"
+              :href="`/cargos/${row.item.id}/edit`"
               type="button"
               ><b-icon icon="pencil-square"></b-icon
             ></jet-nav-link>
@@ -69,8 +69,8 @@ import JetNavLink from "./../../Jetstream/NavLink";
 import FlashAlert from "./../../components/FlashAlert";
 
 export default {
-  name: "autoridades.index",
-  props: ["autoridades"],
+  name: "cargos.index",
+  props: ["cargos"],
   components: {
     AppLayout,
     JetNavLink,
@@ -80,8 +80,8 @@ export default {
     return {
       fields: [
         { key: "id", label: "ID", sortable: true },
+        { key: "codigo", label: "Codigo", sortable: true },
         { key: "nombre", label: "Nombre", sortable: true },
-        { key: "grado", label: "Grado", sortable: true },
         { key: "condicion", label: "Condición", class: "text-center" },
         { key: "acciones", label: "Acciones", class: "text-center" },
       ],
@@ -89,9 +89,9 @@ export default {
     };
   },
   methods: {
-    eliminar(autoridad) {
+    eliminar(cargo) {
       if (!confirm("Estas seguro de querer eliminar?")) return;
-      this.$inertia.delete(`/autoridades/${autoridad.id}`);
+      this.$inertia.delete(`/cargos/${cargo.id}`);
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;

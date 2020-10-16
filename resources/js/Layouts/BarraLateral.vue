@@ -318,6 +318,15 @@
               <span class="badge badge-info right">2</span></jet-nav-link
             >
           </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/cargos"
+              type="link"
+              :active="$page.currentRouteName == 'cargos.index'"
+              ><i class="nav-icon far fa-image"></i> Cargos
+              <span class="badge badge-info right">2</span></jet-nav-link
+            >
+          </li>
           <!--<li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon far fa-envelope"></i>
