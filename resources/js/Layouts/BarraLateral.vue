@@ -284,15 +284,6 @@
           <li class="nav-header">ADMINISTRACIÓN</li>
           <li class="nav-item">
             <jet-nav-link
-              href="/roles"
-              type="link"
-              :active="$page.currentRouteName == 'roles.index'"
-              ><i class="nav-icon far fa-image"></i> Roles
-              <span class="badge badge-info right">2</span></jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
               href="/usuarios"
               type="link"
               :active="$page.currentRouteName == 'usuarios.index'"
@@ -333,6 +324,24 @@
               type="link"
               :active="$page.currentRouteName == 'procedimientos.index'"
               ><i class="nav-icon far fa-image"></i> Procedimientos
+              <span class="badge badge-info right">2</span></jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/roles"
+              type="link"
+              :active="$page.currentRouteName == 'roles.index'"
+              ><i class="nav-icon far fa-image"></i> Roles
+              <span class="badge badge-info right">2</span></jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/programas"
+              type="link"
+              :active="$page.currentRouteName == 'programas.index'"
+              ><i class="nav-icon far fa-image"></i> Programas de Estudio
               <span class="badge badge-info right">2</span></jet-nav-link
             >
           </li>

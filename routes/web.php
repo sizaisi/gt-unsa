@@ -6,6 +6,7 @@ use App\Http\Controllers\ModalidadController;
 use App\Http\Controllers\AutoridadController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ProcedimientoController;
+use App\Http\Controllers\ProgramaEstudioController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
@@ -59,6 +60,14 @@ Route::get('/procedimientos/{procedimiento}', [ProcedimientoController::class, '
 Route::get('/procedimientos/{procedimiento}/edit', [ProcedimientoController::class, 'edit'])->name('procedimientos.edit');
 Route::put('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'update'])->name('procedimientos.update');
 Route::delete('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'destroy'])->name('procedimientos.destroy');
+
+Route::get('/programas', [ProgramaEstudioController::class, 'index'])->name('programas.index');
+Route::get('/programas/create', [ProgramaEstudioController::class, 'create'])->name('programas.create');
+Route::post('/programas', [ProgramaEstudioController::class, 'store'])->name('programas.store');
+Route::get('/programas/{programa}', [ProgramaEstudioController::class, 'show'])->name('programas.show');
+Route::get('/programas/{programa}/edit', [ProgramaEstudioController::class, 'edit'])->name('programas.edit');
+Route::put('/programas/{programa}', [ProgramaEstudioController::class, 'update'])->name('programas.update');
+Route::delete('/programas/{programa}', [ProgramaEstudioController::class, 'destroy'])->name('programas.destroy');
 
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');

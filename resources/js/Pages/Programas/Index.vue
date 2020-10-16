@@ -3,14 +3,14 @@
     <template #icon_title>
       <i class="fa fa-box fa-fw"></i>
     </template>
-    <template #title>Procedimientos</template>
+    <template #title>Programas de Estudio</template>
 
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Lista de procedimientos</h3>
+        <h3 class="card-title">Lista de programas de estudio</h3>
         <jet-nav-link
           class="btn btn-success float-right"
-          href="/procedimientos/create"
+          href="/programas/create"
           >Crear</jet-nav-link
         >
       </div>
@@ -25,7 +25,7 @@
           small
           responsive
           stacked="md"
-          :items="procedimientos"
+          :items="programas"
           :fields="fields"
           empty-text="No hay registros para mostrar"
         >
@@ -38,13 +38,13 @@
           <template v-slot:cell(acciones)="row">
             <jet-nav-link
               class="btn btn-primary btn-sm"
-              :href="`/procedimientos/${row.item.id}`"
+              :href="`/programas/${row.item.id}`"
               type="button"
               ><b-icon icon="eye"></b-icon
             ></jet-nav-link>
             <jet-nav-link
               class="btn btn-warning btn-sm"
-              :href="`/procedimientos/${row.item.id}/edit`"
+              :href="`/programas/${row.item.id}/edit`"
               type="button"
               ><b-icon icon="pencil-square"></b-icon
             ></jet-nav-link>
@@ -69,8 +69,8 @@ import JetNavLink from "./../../Jetstream/NavLink";
 import FlashAlert from "./../../components/FlashAlert";
 
 export default {
-  name: "procedimientos.index",
-  props: ["procedimientos"],
+  name: "programas.index",
+  props: ["programas"],
   components: {
     AppLayout,
     JetNavLink,
@@ -88,9 +88,9 @@ export default {
     };
   },
   methods: {
-    eliminar(procedimiento) {
+    eliminar(programa) {
       if (!confirm("Estas seguro de querer eliminar?")) return;
-      this.$inertia.delete(`/procedimientos/${procedimiento.id}`);
+      this.$inertia.delete(`/programas/${programa.id}`);
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;

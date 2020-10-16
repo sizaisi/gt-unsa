@@ -1,0 +1,37 @@
+<template>
+  <app-layout>
+    <template #icon_title>
+      <i class="fa fa-box fa-fw"></i>
+    </template>
+    <template #title>Programas de Estudio</template>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Mostrar Programas de Estudio</h3>
+      </div>
+      <div class="card-body">
+        <b-form>
+          <b-form-group id="input-group-2" label="Nombre:" label-for="input-2">
+            <b-form-input
+              id="input-2"
+              v-model="programa.nombre"
+              placeholder="Nombre del programa de estudio"
+              readonly
+            ></b-form-input>
+          </b-form-group>
+        </b-form>
+      </div>
+    </div>
+  </app-layout>
+</template>
+
+<script>
+import AppLayout from "./../../Layouts/AppLayout";
+
+export default {
+  name: "programas.show",
+  props: ["programa"],
+  components: {
+    AppLayout,
+  },
+};
+</script>
