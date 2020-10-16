@@ -5,6 +5,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\ModalidadController;
 use App\Http\Controllers\AutoridadController;
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\ProcedimientoController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
@@ -50,6 +51,14 @@ Route::get('/cargos/{cargo}', [CargoController::class, 'show'])->name('cargos.sh
 Route::get('/cargos/{cargo}/edit', [CargoController::class, 'edit'])->name('cargos.edit');
 Route::put('/cargos/{cargo}', [CargoController::class, 'update'])->name('cargos.update');
 Route::delete('/cargos/{cargo}', [CargoController::class, 'destroy'])->name('cargos.destroy');
+
+Route::get('/procedimientos', [ProcedimientoController::class, 'index'])->name('procedimientos.index');
+Route::get('/procedimientos/create', [ProcedimientoController::class, 'create'])->name('procedimientos.create');
+Route::post('/procedimientos', [ProcedimientoController::class, 'store'])->name('procedimientos.store');
+Route::get('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'show'])->name('procedimientos.show');
+Route::get('/procedimientos/{procedimiento}/edit', [ProcedimientoController::class, 'edit'])->name('procedimientos.edit');
+Route::put('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'update'])->name('procedimientos.update');
+Route::delete('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'destroy'])->name('procedimientos.destroy');
 
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');

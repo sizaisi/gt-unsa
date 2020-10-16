@@ -3,29 +3,18 @@
     <template #icon_title>
       <i class="fa fa-box fa-fw"></i>
     </template>
-    <template #title>Autoridades</template>
+    <template #title>Procedimientos</template>
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Editar Autoridad</h3>
+        <h3 class="card-title">Editar Procedimiento</h3>
       </div>
       <div class="card-body">
         <b-form @submit.prevent="actualizar">
-          <b-form-group id="input-group-2" label="Codigo:" label-for="input-2">
+          <b-form-group id="input-group-2" label="Nombre:" label-for="input-2">
             <b-form-input
               id="input-2"
-              v-model="cargo.codigo"
-              placeholder="Codigo"
-              autocomplete="off"
-            ></b-form-input>
-            <div v-if="$page.errors.codigo" class="text-danger">
-              {{ $page.errors.codigo[0] }}
-            </div>
-          </b-form-group>
-          <b-form-group id="input-group-3" label="Nombre:" label-for="input-3">
-            <b-form-input
-              id="input-3"
-              v-model="cargo.nombre"
-              placeholder="Nombre del Cargo"
+              v-model="procedimiento.nombre"
+              placeholder="Nombre del procedimiento"
               autocomplete="off"
             ></b-form-input>
             <div v-if="$page.errors.nombre" class="text-danger">
@@ -43,8 +32,8 @@
 import AppLayout from "./../../Layouts/AppLayout";
 
 export default {
-  name: "cargos.edit",
-  props: ["cargo"],
+  name: "procedimientos.edit",
+  props: ["procedimiento"],
   components: {
     AppLayout,
   },
@@ -53,7 +42,7 @@ export default {
   },
   methods: {
     actualizar() {
-      this.$inertia.put(`/cargos/${this.cargo.id}`, this.cargo);
+      this.$inertia.put(`/procedimientos/${this.procedimiento.id}`, this.procedimiento);
     },
   },
 };
