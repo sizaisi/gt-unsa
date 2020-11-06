@@ -7,6 +7,8 @@ use App\Http\Controllers\AutoridadController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ProcedimientoController;
 use App\Http\Controllers\ProgramaEstudioController;
+use App\Http\Controllers\GradoController;
+
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
@@ -68,6 +70,15 @@ Route::get('/programas/{programa}', [ProgramaEstudioController::class, 'show'])-
 Route::get('/programas/{programa}/edit', [ProgramaEstudioController::class, 'edit'])->name('programas.edit');
 Route::put('/programas/{programa}', [ProgramaEstudioController::class, 'update'])->name('programas.update');
 Route::delete('/programas/{programa}', [ProgramaEstudioController::class, 'destroy'])->name('programas.destroy');
+
+Route::get('/grados', [GradoController::class, 'index'])->name('grados.index');
+Route::get('/getgrados', [GradoController::class, 'getgrados'])->name('grados.getgrados');
+Route::get('/grados/create', [GradoController::class, 'create'])->name('grados.create');
+Route::post('/grados', [GradoController::class, 'store'])->name('grados.store');
+Route::get('/grados/{grado}', [GradoController::class, 'show'])->name('grados.show');
+Route::get('/grados/{grado}/edit', [GradoController::class, 'edit'])->name('grados.edit');
+Route::put('/grados/{grado}', [GradoController::class, 'update'])->name('grados.update');
+Route::delete('/grados/{grado}', [GradoController::class, 'destroy'])->name('grados.destroy');
 
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');

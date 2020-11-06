@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRolesTable extends Migration
+class CreateGtGradosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('gt_grados', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 35);
+            $table->string('nombre', 50);
+            $table->string('nive', 1);
+            $table->string('codigo', 5);
+            $table->integer('prerequisito');
+            $table->string('descripcion', 250);
             $table->boolean('condicion')->default(true);
             $table->timestamps();
         });
@@ -28,6 +32,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('gt_grados');
     }
 }
