@@ -3,14 +3,14 @@
     <template #icon_title>
       <i class="fa fa-box fa-fw"></i>
     </template>
-    <template #title>Cargo-Autoridad</template>
+    <template #title>Grado-Modalidad</template>
 
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Lista de Cargos-Autoridades</h3>
+        <h3 class="card-title">Lista de Grados-Modalidades</h3>
         <jet-nav-link
           class="btn btn-success float-right"
-          href="/cargosautoridades/create"
+          href="/gradosmodalidades/create"
           >Crear</jet-nav-link
         >
       </div>
@@ -25,7 +25,7 @@
           small
           responsive
           stacked="md"
-          :items="cargosautoridades"
+          :items="gradosmodalidades"
           :fields="fields"
           empty-text="No hay registros para mostrar"
         >
@@ -38,13 +38,13 @@
           <template v-slot:cell(acciones)="row">
             <jet-nav-link
               class="btn btn-primary btn-sm"
-              :href="`/cargosautoridades/${row.item.id}`"
+              :href="`/gradosmodalidades/${row.item.id}`"
               type="button"
               ><b-icon icon="eye"></b-icon
             ></jet-nav-link>
             <jet-nav-link
               class="btn btn-warning btn-sm"
-              :href="`/cargosautoridades/${row.item.id}/edit`"
+              :href="`/gradosmodalidades/${row.item.id}/edit`"
               type="button"
               ><b-icon icon="pencil-square"></b-icon
             ></jet-nav-link>
@@ -69,8 +69,8 @@ import JetNavLink from "./../../Jetstream/NavLink";
 import FlashAlert from "./../../components/FlashAlert";
 
 export default {
-  name: "cargosautoridades.index",
-  props: ["cargosautoridades"],
+  name: "gradosmodalidades.index",
+  props: ["gradosmodalidades"],
   components: {
     AppLayout,
     JetNavLink,
@@ -80,10 +80,9 @@ export default {
     return {
       fields: [
         { key: "id", label: "ID", sortable: true },
-        { key: "idcargo", label: "Cargo", sortable: true },
-        { key: "idautoridad", label: "Autoridad", sortable: true },
-        { key: "fecha_inicio", label: "Fecha Inicio", sortable: true },
-        { key: "fecha_fin", label: "Fecha Fin", sortable: true },
+        { key: "tipo", label: "Tipo", sortable: true },
+        { key: "idgrado", label: "Grado", sortable: true },
+        { key: "idmodalidad", label: "Modalidad", sortable: true },
         { key: "condicion", label: "Condición", class: "text-center" },
         { key: "acciones", label: "Acciones", class: "text-center" },
       ],
@@ -91,9 +90,9 @@ export default {
     };
   },
   methods: {
-    eliminar(cargoautoridad) {
+    eliminar(gradomodalidad) {
       if (!confirm("Estas seguro de querer eliminar?")) return;
-      this.$inertia.delete(`/cargosautoridades/${cargoautoridad.id}`);
+      this.$inertia.delete(`/gradosmodalidades/${gradomodalidad.id}`);
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;

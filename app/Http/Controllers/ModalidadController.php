@@ -21,6 +21,13 @@ class ModalidadController extends Controller
         return Inertia::render('Modalidades/Index', compact('modalidades'));
     }
 
+    public function getmodalidades()
+    {
+        $modalidades = Modalidad::all();
+
+        return $modalidades;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

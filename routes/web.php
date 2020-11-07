@@ -9,6 +9,8 @@ use App\Http\Controllers\ProcedimientoController;
 use App\Http\Controllers\ProgramaEstudioController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\CargoAutoridadController;
+use App\Http\Controllers\GradoModalidadController;
+use App\Http\Controllers\GradoProcedimientoController;
 
 use App\Http\Controllers\UserController;
 
@@ -25,6 +27,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/welcome', function () {
 })->name('welcome');
 
 Route::get('/roles', [RolController::class, 'index'])->name('roles.index');
+Route::get('/getroles', [RolController::class, 'getroles'])->name('roles.getroles');
 Route::get('/roles/create', [RolController::class, 'create'])->name('roles.create');
 Route::post('/roles', [RolController::class, 'store'])->name('roles.store');
 Route::get('/roles/{rol}', [RolController::class, 'show'])->name('roles.show');
@@ -33,6 +36,7 @@ Route::put('/roles/{rol}', [RolController::class, 'update'])->name('roles.update
 Route::delete('/roles/{rol}', [RolController::class, 'destroy'])->name('roles.destroy');
 
 Route::get('/modalidades', [ModalidadController::class, 'index'])->name('modalidades.index');
+Route::get('/getmodalidades', [ModalidadController::class, 'getmodalidades'])->name('modalidades.getmodalidades');
 Route::get('/modalidades/create', [ModalidadController::class, 'create'])->name('modalidades.create');
 Route::post('/modalidades', [ModalidadController::class, 'store'])->name('modalidades.store');
 Route::get('/modalidades/{modalidad}', [ModalidadController::class, 'show'])->name('modalidades.show');
@@ -90,6 +94,22 @@ Route::get('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::cla
 Route::get('/cargosautoridades/{cargoautoridad}/edit', [CargoAutoridadController::class, 'edit'])->name('cargosautoridades.edit');
 Route::put('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::class, 'update'])->name('cargosautoridades.update');
 Route::delete('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::class, 'destroy'])->name('cargosautoridades.destroy');
+
+Route::get('/gradosmodalidades', [GradoModalidadController::class, 'index'])->name('gradosmodalidades.index');
+Route::get('/gradosmodalidades/create', [GradoModalidadController::class, 'create'])->name('gradosmodalidades.create');
+Route::post('/gradosmodalidades', [GradoModalidadController::class, 'store'])->name('gradosmodalidades.store');
+Route::get('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'show'])->name('gradosmodalidades.show');
+Route::get('/gradosmodalidades/{gradomodalidad}/edit', [GradoModalidadController::class, 'edit'])->name('gradosmodalidades.edit');
+Route::put('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'update'])->name('gradosmodalidades.update');
+Route::delete('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'destroy'])->name('gradosmodalidades.destroy');
+
+Route::get('/gradosprocedimientos', [GradoProcedimientoController::class, 'index'])->name('gradosprocedimientos.index');
+Route::get('/gradosprocedimientos/create', [GradoProcedimientoController::class, 'create'])->name('gradosprocedimientos.create');
+Route::post('/gradosprocedimientos', [GradoProcedimientoController::class, 'store'])->name('gradosprocedimientos.store');
+Route::get('/gradosprocedimientos/{gradoprocedimiento}', [GradoProcedimientoController::class, 'show'])->name('gradosprocedimientos.show');
+Route::get('/gradosprocedimientos/{gradoprocedimiento}/edit', [GradoProcedimientoController::class, 'edit'])->name('gradosprocedimientos.edit');
+Route::put('/gradosprocedimientos/{gradoprocedimiento}', [GradoProcedimientoController::class, 'update'])->name('gradosprocedimientos.update');
+Route::delete('/gradosprocedimientos/{gradoprocedimiento}', [GradoProcedimientoController::class, 'destroy'])->name('gradosprocedimientos.destroy');
 
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');
