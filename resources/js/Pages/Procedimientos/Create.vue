@@ -3,18 +3,18 @@
     <template #icon_title>
       <i class="fa fa-box fa-fw"></i>
     </template>
-    <template #title>Modalidades</template>
+    <template #title>Procedimientos</template>
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Nueva Modalidad</h3>
+        <h3 class="card-title">Nuevo Procedimiento</h3>
       </div>
       <div class="card-body">
         <b-form @submit.prevent="registrar">
           <b-form-group id="input-group-2" label="Nombre:" label-for="input-2">
             <b-form-input
               id="input-2"
-              v-model="modalidad.nombre"
-              placeholder="Nombre de la modalidad"
+              v-model="procedimiento.nombre"
+              placeholder="Nombre del Procedimiento"
               autocomplete="off"
             ></b-form-input>
             <div v-if="$page.errors.nombre" class="text-danger">
@@ -32,20 +32,20 @@
 import AppLayout from "./../../Layouts/AppLayout";
 
 export default {
-  name: "modalidades.create",
+  name: "procedimientos.create",
   components: {
     AppLayout,
   },
   data() {
     return {
-      modalidad: {
+      procedimiento: {
         nombre: "",
       },
     };
   },
   methods: {
     registrar() {
-      this.$inertia.post(`/modalidades`, this.modalidad);
+      this.$inertia.post(`/procedimientos`, this.procedimiento);
     },
   },
 };

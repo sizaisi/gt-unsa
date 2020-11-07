@@ -8,6 +8,7 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ProcedimientoController;
 use App\Http\Controllers\ProgramaEstudioController;
 use App\Http\Controllers\GradoController;
+use App\Http\Controllers\CargoAutoridadController;
 
 use App\Http\Controllers\UserController;
 
@@ -40,6 +41,7 @@ Route::put('/modalidades/{modalidad}', [ModalidadController::class, 'update'])->
 Route::delete('/modalidades/{modalidad}', [ModalidadController::class, 'destroy'])->name('modalidades.destroy');
 
 Route::get('/autoridades', [AutoridadController::class, 'index'])->name('autoridades.index');
+Route::get('/getautoridades', [AutoridadController::class, 'getautoridades'])->name('autoridades.getautoridades');
 Route::get('/autoridades/create', [AutoridadController::class, 'create'])->name('autoridades.create');
 Route::post('/autoridades', [AutoridadController::class, 'store'])->name('autoridades.store');
 Route::get('/autoridades/{autoridad}', [AutoridadController::class, 'show'])->name('autoridades.show');
@@ -48,6 +50,7 @@ Route::put('/autoridades/{autoridad}', [AutoridadController::class, 'update'])->
 Route::delete('/autoridades/{autoridad}', [AutoridadController::class, 'destroy'])->name('autoridades.destroy');
 
 Route::get('/cargos', [CargoController::class, 'index'])->name('cargos.index');
+Route::get('/getcargos', [CargoController::class, 'getcargos'])->name('cargos.getcargos');
 Route::get('/cargos/create', [CargoController::class, 'create'])->name('cargos.create');
 Route::post('/cargos', [CargoController::class, 'store'])->name('cargos.store');
 Route::get('/cargos/{cargo}', [CargoController::class, 'show'])->name('cargos.show');
@@ -79,6 +82,14 @@ Route::get('/grados/{grado}', [GradoController::class, 'show'])->name('grados.sh
 Route::get('/grados/{grado}/edit', [GradoController::class, 'edit'])->name('grados.edit');
 Route::put('/grados/{grado}', [GradoController::class, 'update'])->name('grados.update');
 Route::delete('/grados/{grado}', [GradoController::class, 'destroy'])->name('grados.destroy');
+
+Route::get('/cargosautoridades', [CargoAutoridadController::class, 'index'])->name('cargosautoridades.index');
+Route::get('/cargosautoridades/create', [CargoAutoridadController::class, 'create'])->name('cargosautoridades.create');
+Route::post('/cargosautoridades', [CargoAutoridadController::class, 'store'])->name('cargosautoridades.store');
+Route::get('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::class, 'show'])->name('cargosautoridades.show');
+Route::get('/cargosautoridades/{cargoautoridad}/edit', [CargoAutoridadController::class, 'edit'])->name('cargosautoridades.edit');
+Route::put('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::class, 'update'])->name('cargosautoridades.update');
+Route::delete('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::class, 'destroy'])->name('cargosautoridades.destroy');
 
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');

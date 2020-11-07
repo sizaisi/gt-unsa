@@ -21,6 +21,13 @@ class AutoridadController extends Controller
         return Inertia::render('Autoridades/Index', compact('autoridades'));
     }
 
+    public function getAutoridades()
+    {
+        $autoridades = Autoridad::all();
+
+        return $autoridades;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

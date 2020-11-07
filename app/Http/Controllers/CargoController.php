@@ -21,6 +21,13 @@ class CargoController extends Controller
         return Inertia::render('Cargos/Index', compact('cargos'));
     }
 
+    public function getCargos()
+    {
+        $cargos = Cargo::all();
+
+        return $cargos;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
