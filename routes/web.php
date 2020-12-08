@@ -11,6 +11,7 @@ use App\Http\Controllers\GradoController;
 use App\Http\Controllers\CargoAutoridadController;
 use App\Http\Controllers\GradoModalidadController;
 use App\Http\Controllers\GradoProcedimientoController;
+use App\Http\Controllers\RutaController;
 
 use App\Http\Controllers\UserController;
 
@@ -63,6 +64,7 @@ Route::put('/cargos/{cargo}', [CargoController::class, 'update'])->name('cargos.
 Route::delete('/cargos/{cargo}', [CargoController::class, 'destroy'])->name('cargos.destroy');
 
 Route::get('/procedimientos', [ProcedimientoController::class, 'index'])->name('procedimientos.index');
+Route::get('/getprocedimientos', [ProcedimientoController::class, 'getprocedimientos'])->name('procedimientos.getprocedimientos');
 Route::get('/procedimientos/create', [ProcedimientoController::class, 'create'])->name('procedimientos.create');
 Route::post('/procedimientos', [ProcedimientoController::class, 'store'])->name('procedimientos.store');
 Route::get('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'show'])->name('procedimientos.show');
@@ -96,6 +98,7 @@ Route::put('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::cla
 Route::delete('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::class, 'destroy'])->name('cargosautoridades.destroy');
 
 Route::get('/gradosmodalidades', [GradoModalidadController::class, 'index'])->name('gradosmodalidades.index');
+Route::get('/getgradosmodalidades', [GradoModalidadController::class, 'getgradosmodalidades'])->name('gradosmodalidades.getgradosmodalidades');
 Route::get('/gradosmodalidades/create', [GradoModalidadController::class, 'create'])->name('gradosmodalidades.create');
 Route::post('/gradosmodalidades', [GradoModalidadController::class, 'store'])->name('gradosmodalidades.store');
 Route::get('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'show'])->name('gradosmodalidades.show');
@@ -110,6 +113,14 @@ Route::get('/gradosprocedimientos/{gradoprocedimiento}', [GradoProcedimientoCont
 Route::get('/gradosprocedimientos/{gradoprocedimiento}/edit', [GradoProcedimientoController::class, 'edit'])->name('gradosprocedimientos.edit');
 Route::put('/gradosprocedimientos/{gradoprocedimiento}', [GradoProcedimientoController::class, 'update'])->name('gradosprocedimientos.update');
 Route::delete('/gradosprocedimientos/{gradoprocedimiento}', [GradoProcedimientoController::class, 'destroy'])->name('gradosprocedimientos.destroy');
+
+Route::get('/rutas', [RutaController::class, 'index'])->name('rutas.index');
+Route::get('/rutas/create', [RutaController::class, 'create'])->name('rutas.create');
+Route::post('/rutas', [RutaController::class, 'store'])->name('rutas.store');
+Route::get('/rutas/{ruta}', [RutaController::class, 'show'])->name('rutas.show');
+Route::get('/rutas/{ruta}/edit', [RutaController::class, 'edit'])->name('rutas.edit');
+Route::put('/rutas/{ruta}', [RutaController::class, 'update'])->name('rutas.update');
+Route::delete('/rutas/{ruta}', [RutaController::class, 'destroy'])->name('rutas.destroy');
 
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');

@@ -21,6 +21,13 @@ class ProcedimientoController extends Controller
         return Inertia::render('Procedimientos/Index', compact('procedimientos'));
     }
 
+    public function getprocedimientos()
+    {
+        $procedimientos = Procedimiento::all();
+
+        return $procedimientos;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

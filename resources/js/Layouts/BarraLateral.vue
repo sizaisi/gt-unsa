@@ -297,7 +297,7 @@
               type="link"
               :active="$page.currentRouteName == 'modalidades.index'"
               ><i class="nav-icon far fa-image"></i> Modalidades
-              <span class="badge badge-info right">2</span></jet-nav-link
+              </jet-nav-link
             >
           </li>
           <li class="nav-item">
@@ -306,7 +306,7 @@
               type="link"
               :active="$page.currentRouteName == 'autoridades.index'"
               ><i class="nav-icon far fa-image"></i> Autoridades
-              <span class="badge badge-info right">2</span></jet-nav-link
+              </jet-nav-link
             >
           </li>
           <li class="nav-item">
@@ -315,7 +315,7 @@
               type="link"
               :active="$page.currentRouteName == 'cargos.index'"
               ><i class="nav-icon far fa-image"></i> Cargos
-              <span class="badge badge-info right">2</span></jet-nav-link
+              </jet-nav-link
             >
           </li>
           <li class="nav-item">
@@ -324,7 +324,7 @@
               type="link"
               :active="$page.currentRouteName == 'procedimientos.index'"
               ><i class="nav-icon far fa-image"></i> Procedimientos
-              <span class="badge badge-info right">2</span></jet-nav-link
+              </jet-nav-link
             >
           </li>
           <li class="nav-item">
@@ -333,7 +333,7 @@
               type="link"
               :active="$page.currentRouteName == 'roles.index'"
               ><i class="nav-icon far fa-image"></i> Roles
-              <span class="badge badge-info right">2</span></jet-nav-link
+              </jet-nav-link
             >
           </li>
           <li class="nav-item">
@@ -342,7 +342,7 @@
               type="link"
               :active="$page.currentRouteName == 'programas.index'"
               ><i class="nav-icon far fa-image"></i> Programas de Estudio
-              <span class="badge badge-info right">2</span></jet-nav-link
+              </jet-nav-link
             >
           </li>
           <li class="nav-item">
@@ -351,7 +351,7 @@
               type="link"
               :active="$page.currentRouteName == 'grados.index'"
               ><i class="nav-icon far fa-image"></i> Grados/Títulos
-              <span class="badge badge-info right">2</span></jet-nav-link
+              </jet-nav-link
             >
           </li>
           <li class="nav-item">
@@ -360,7 +360,7 @@
               type="link"
               :active="$page.currentRouteName == 'cargosautoridades.index'"
               ><i class="nav-icon far fa-image"></i> Cargo-Autoridad
-              <span class="badge badge-info right">2</span></jet-nav-link
+              </jet-nav-link
             >
           </li>
           <li class="nav-item">
@@ -369,7 +369,25 @@
               type="link"
               :active="$page.currentRouteName == 'gradosmodalidades.index'"
               ><i class="nav-icon far fa-image"></i> Grado-Modalidad
-              <span class="badge badge-info right">2</span></jet-nav-link
+              </jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/gradosprocedimientos"
+              type="link"
+              :active="$page.currentRouteName == 'gradosprocedimientos.index'"
+              ><i class="nav-icon far fa-image"></i> Grado-Procedimiento
+              </jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/rutas"
+              type="link"
+              :active="$page.currentRouteName == 'rutas.index'"
+              ><i class="nav-icon far fa-image"></i> Rutas
+              </jet-nav-link
             >
           </li>
           <!--<li class="nav-item has-treeview">

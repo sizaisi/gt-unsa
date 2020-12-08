@@ -9,6 +9,6 @@ class Rol extends Model
     protected $table = 'roles';
 
     protected $fillable = [
-        'nombre',
+        'nombre', 'condicion'
     ];
 }
