@@ -15,6 +15,9 @@ class CreateGtCargosTable extends Migration
     {
         Schema::create('gt_cargos', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo', 50);
+            $table->string('nombre', 50);
+            $table->boolean('condicion')->default(true);
             $table->timestamps();
         });
     }

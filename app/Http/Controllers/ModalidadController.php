@@ -9,34 +9,25 @@ use App\Http\Requests\ModalidadRequest;
 
 class ModalidadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $modalidades = Modalidad::latest()->get();
+        $modalidades = Modalidad::withTrashed()->latest()->get();
 
         return Inertia::render('Modalidades/Index', compact('modalidades'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function getmodalidades()
+    {
+        $modalidades = Modalidad::all();
+
+        return $modalidades;
+    }
+
     public function create()
     {
         return Inertia::render('Modalidades/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(ModalidadRequest $request)
     {
         $modalidad = new Modalidad();
@@ -51,35 +42,16 @@ class ModalidadController extends Controller
         return redirect()->route('modalidades.index')->with($result);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Modalidad $modalidad)
     {
         return Inertia::render('Modalidades/Show', compact('modalidad'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Modalidad $modalidad)
-    {
+    {        
         return Inertia::render('Modalidades/Edit', compact('modalidad'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(ModalidadRequest $request, Modalidad $modalidad)
     {
         $modalidad->nombre = $request->nombre;
@@ -93,19 +65,28 @@ class ModalidadController extends Controller
         return redirect()->route('modalidades.index')->with($result);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Modalidad $modalidad)
-    {
+    {       
         if ($modalidad->delete()) {
             $result = ['successMessage' => 'Modalidad eliminada con éxito'];
         } else {
             $result = ['errorMessage' => 'No se pudo eliminar la modalidad'];
         }
+
+        return redirect()->back()->with($result);
+    }
+
+    public function restore($modalidad_id) 
+    {              
+        try {
+            $modalidad = Modalidad::withTrashed()->findOrFail($modalidad_id);
+            $modalidad->restore();
+            $result = ['successMessage' => 'Modalidad restaurada con éxito'];
+        }
+        catch(\Exception $e) {
+            $result = ['errorMessage' => 'No se pudo restaurar la modalidad'];
+            \Log::warning('ModalidadController@update, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
+        }        
 
         return redirect()->back()->with($result);
     }

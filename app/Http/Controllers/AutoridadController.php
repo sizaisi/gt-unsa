@@ -21,6 +21,13 @@ class AutoridadController extends Controller
         return Inertia::render('Autoridades/Index', compact('autoridades'));
     }
 
+    public function getAutoridades()
+    {
+        $autoridades = Autoridad::all();
+
+        return $autoridades;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -84,6 +91,7 @@ class AutoridadController extends Controller
     public function update(AutoridadRequest $request, Autoridad $autoridad)
     {
         $autoridad->nombre = $request->nombre;
+        $autoridad->grado = $request->grado;
 
         if ($autoridad->update()) {
             $result = ['successMessage' => 'Autoridad actualizada con éxito'];

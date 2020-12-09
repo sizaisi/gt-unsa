@@ -284,15 +284,6 @@
           <li class="nav-header">ADMINISTRACIÓN</li>
           <li class="nav-item">
             <jet-nav-link
-              href="/roles"
-              type="link"
-              :active="$page.currentRouteName == 'roles.index'"
-              ><i class="nav-icon far fa-image"></i> Roles
-              <span class="badge badge-info right">2</span></jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
               href="/usuarios"
               type="link"
               :active="$page.currentRouteName == 'usuarios.index'"
@@ -306,7 +297,7 @@
               type="link"
               :active="$page.currentRouteName == 'modalidades.index'"
               ><i class="nav-icon far fa-image"></i> Modalidades
-              <span class="badge badge-info right">2</span></jet-nav-link
+              </jet-nav-link
             >
           </li>
           <li class="nav-item">
@@ -315,7 +306,88 @@
               type="link"
               :active="$page.currentRouteName == 'autoridades.index'"
               ><i class="nav-icon far fa-image"></i> Autoridades
-              <span class="badge badge-info right">2</span></jet-nav-link
+              </jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/cargos"
+              type="link"
+              :active="$page.currentRouteName == 'cargos.index'"
+              ><i class="nav-icon far fa-image"></i> Cargos
+              </jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/procedimientos"
+              type="link"
+              :active="$page.currentRouteName == 'procedimientos.index'"
+              ><i class="nav-icon far fa-image"></i> Procedimientos
+              </jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/roles"
+              type="link"
+              :active="$page.currentRouteName == 'roles.index'"
+              ><i class="nav-icon far fa-image"></i> Roles
+              </jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/programas"
+              type="link"
+              :active="$page.currentRouteName == 'programas.index'"
+              ><i class="nav-icon far fa-image"></i> Programas de Estudio
+              </jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/grados"
+              type="link"
+              :active="$page.currentRouteName == 'grados.index'"
+              ><i class="nav-icon far fa-image"></i> Grados/Títulos
+              </jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/cargosautoridades"
+              type="link"
+              :active="$page.currentRouteName == 'cargosautoridades.index'"
+              ><i class="nav-icon far fa-image"></i> Cargo-Autoridad
+              </jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/gradosmodalidades"
+              type="link"
+              :active="$page.currentRouteName == 'gradosmodalidades.index'"
+              ><i class="nav-icon far fa-image"></i> Grado-Modalidad
+              </jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/gradosprocedimientos"
+              type="link"
+              :active="$page.currentRouteName == 'gradosprocedimientos.index'"
+              ><i class="nav-icon far fa-image"></i> Grado-Procedimiento
+              </jet-nav-link
+            >
+          </li>
+          <li class="nav-item">
+            <jet-nav-link
+              href="/rutas"
+              type="link"
+              :active="$page.currentRouteName == 'rutas.index'"
+              ><i class="nav-icon far fa-image"></i> Rutas
+              </jet-nav-link
             >
           </li>
           <!--<li class="nav-item has-treeview">

@@ -3,18 +3,19 @@
     <template #icon_title>
       <i class="fa fa-box fa-fw"></i>
     </template>
-    <template #title>Modalidades</template>
+    <template #title>Grado-Procedimiento</template>
 
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Lista de modalidades</h3>
+        <h3 class="card-title">Lista de Grados-Procedimientos</h3>
         <jet-nav-link
           class="btn btn-success float-right"
-          href="/modalidades/create"
+          href="/gradosprocedimientos/create"
           >Crear</jet-nav-link
         >
       </div>
-      <div class="card-body">        
+      <div class="card-body">
+        <hr class="bg-secondary" />
         <flash-alert />
         <b-table
           show-empty
@@ -24,49 +25,37 @@
           small
           responsive
           stacked="md"
-          :items="modalidades"
+          :items="gradosprocedimientos"
           :fields="fields"
           empty-text="No hay registros para mostrar"
         >
           <template v-slot:cell(condicion)="row">
-            <b-badge v-if="row.item.deleted_at == null" variant="success"
+            <b-badge v-if="row.item.condicion == 1" variant="success"
               >Activo</b-badge
             >
             <b-badge v-else variant="secondary">Inactivo</b-badge>
           </template>
           <template v-slot:cell(acciones)="row">
             <jet-nav-link
-              v-if="row.item.deleted_at == null"
               class="btn btn-primary btn-sm"
-              :href="`/modalidades/${row.item.id}`"
+              :href="`/gradosprocedimientos/${row.item.id}`"
               type="button"
               ><b-icon icon="eye"></b-icon
             ></jet-nav-link>
             <jet-nav-link
-              v-if="row.item.deleted_at == null"
               class="btn btn-warning btn-sm"
-              :href="`/modalidades/${row.item.id}/edit`"
+              :href="`/gradosprocedimientos/${row.item.id}/edit`"
               type="button"
               ><b-icon icon="pencil-square"></b-icon
             ></jet-nav-link>
             <b-button
-              v-if="row.item.deleted_at == null"
               variant="danger"
               size="sm"
               title="Eliminar"
-              @click="eliminar(row.item)"                           
+              @click="eliminar(row.item)"
             >
               <b-icon icon="trash"></b-icon>
             </b-button>
-            <b-button
-              v-else
-              variant="success"
-              size="sm"
-              title="Restaurar"
-              @click="restaurar(row.item)"                             
-            >
-              <b-icon icon="check"></b-icon>
-            </b-button>            
           </template>
         </b-table>
       </div>
@@ -80,8 +69,8 @@ import JetNavLink from "./../../Jetstream/NavLink";
 import FlashAlert from "./../../components/FlashAlert";
 
 export default {
-  name: "modalidades.index",
-  props: ["modalidades"],
+  name: "gradosprocedimientos.index",
+  props: ["gradosprocedimientos"],
   components: {
     AppLayout,
     JetNavLink,
@@ -90,8 +79,14 @@ export default {
   data() {
     return {
       fields: [
-        { key: "id", label: "ID", sortable: true, class: "text-center"},
-        { key: "nombre", label: "Nombre", sortable: true },
+        { key: "id", label: "ID", sortable: true },
+        { key: "idgradomodalidad", label: "Grado Modalidad", sortable: true },
+        { key: "idprocedimiento", label: "Procedimiento", sortable: true },
+        { key: "idrol", label: "Rol", sortable: true },
+        { key: "tipo_rol", label: "Tipo", sortable: true },
+        { key: "url_formulario", label: "Formulario", sortable: true },
+        { key: "orden", label: "Orden", sortable: true },
+        { key: "descripcion", label: "Descripción", sortable: true },
         { key: "condicion", label: "Condición", class: "text-center" },
         { key: "acciones", label: "Acciones", class: "text-center" },
       ],
@@ -99,14 +94,9 @@ export default {
     };
   },
   methods: {
-    eliminar(modalidad) {      
-      if (!confirm("Estas seguro de querer eliminar esta modalidad?")) return;
-      this.$inertia.delete(`/modalidades/${modalidad.id}`);
-      
-    },
-    restaurar(modalidad) {      
-      if (!confirm("Estas seguro de querer restaurar esta modalidad?")) return;
-      this.$inertia.post(`/modalidades/${modalidad.id}/restore`);
+    eliminar(gradoprocedimiento) {
+      if (!confirm("Estas seguro de querer eliminar?")) return;
+      this.$inertia.delete(`/gradosprocedimientos/${gradoprocedimiento.id}`);
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;

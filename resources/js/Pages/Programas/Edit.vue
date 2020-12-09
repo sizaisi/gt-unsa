@@ -3,18 +3,18 @@
     <template #icon_title>
       <i class="fa fa-box fa-fw"></i>
     </template>
-    <template #title>Modalidades</template>
+    <template #title>Programas de Estudio</template>
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Editar Modalidad</h3>
+        <h3 class="card-title">Editar Programa de Estudio</h3>
       </div>
       <div class="card-body">
         <b-form @submit.prevent="actualizar">
           <b-form-group id="input-group-2" label="Nombre:" label-for="input-2">
             <b-form-input
               id="input-2"
-              v-model="modalidad.nombre"
-              placeholder="Nombre de rol"
+              v-model="programa.nombre"
+              placeholder="Nombre del programa"
               autocomplete="off"
             ></b-form-input>
             <div v-if="$page.errors.nombre" class="text-danger">
@@ -32,8 +32,8 @@
 import AppLayout from "./../../Layouts/AppLayout";
 
 export default {
-  name: "modalidades.edit",
-  props: ["modalidad"],
+  name: "programas.edit",
+  props: ["programa"],
   components: {
     AppLayout,
   },
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     actualizar() {
-      this.$inertia.post(`/modalidades/${this.modalidad.id}`, this.modalidad);
+      this.$inertia.put(`/programas/${this.programa.id}`, this.programa);
     },
   },
 };

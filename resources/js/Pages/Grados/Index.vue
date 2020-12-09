@@ -3,14 +3,14 @@
     <template #icon_title>
       <i class="fa fa-box fa-fw"></i>
     </template>
-    <template #title>Modalidades</template>
+    <template #title>Grados - Títulos</template>
 
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Lista de modalidades</h3>
+        <h3 class="card-title">Lista de Grados</h3>
         <jet-nav-link
           class="btn btn-success float-right"
-          href="/modalidades/create"
+          href="/grados/create"
           >Crear</jet-nav-link
         >
       </div>
@@ -24,7 +24,7 @@
           small
           responsive
           stacked="md"
-          :items="modalidades"
+          :items="grados"
           :fields="fields"
           empty-text="No hay registros para mostrar"
         >
@@ -38,14 +38,14 @@
             <jet-nav-link
               v-if="row.item.deleted_at == null"
               class="btn btn-primary btn-sm"
-              :href="`/modalidades/${row.item.id}`"
+              :href="`/grados/${row.item.id}`"
               type="button"
               ><b-icon icon="eye"></b-icon
             ></jet-nav-link>
             <jet-nav-link
               v-if="row.item.deleted_at == null"
               class="btn btn-warning btn-sm"
-              :href="`/modalidades/${row.item.id}/edit`"
+              :href="`/grados/${row.item.id}/edit`"
               type="button"
               ><b-icon icon="pencil-square"></b-icon
             ></jet-nav-link>
@@ -66,7 +66,7 @@
               @click="restaurar(row.item)"                             
             >
               <b-icon icon="check"></b-icon>
-            </b-button>            
+            </b-button>  
           </template>
         </b-table>
       </div>
@@ -80,8 +80,8 @@ import JetNavLink from "./../../Jetstream/NavLink";
 import FlashAlert from "./../../components/FlashAlert";
 
 export default {
-  name: "modalidades.index",
-  props: ["modalidades"],
+  name: "grados.index",
+  props: ["grados"],
   components: {
     AppLayout,
     JetNavLink,
@@ -90,8 +90,11 @@ export default {
   data() {
     return {
       fields: [
-        { key: "id", label: "ID", sortable: true, class: "text-center"},
+        { key: "id", label: "ID", sortable: true, class: "text-center" },
         { key: "nombre", label: "Nombre", sortable: true },
+        { key: "nive", label: "Nive", sortable: true, class: "text-center" },
+        { key: "codigo", label: "Código", sortable: true, class: "text-center" },
+        { key: "prerequisito", label: "Prerequisito", class: "text-center" },        
         { key: "condicion", label: "Condición", class: "text-center" },
         { key: "acciones", label: "Acciones", class: "text-center" },
       ],
@@ -99,14 +102,13 @@ export default {
     };
   },
   methods: {
-    eliminar(modalidad) {      
-      if (!confirm("Estas seguro de querer eliminar esta modalidad?")) return;
-      this.$inertia.delete(`/modalidades/${modalidad.id}`);
-      
+    eliminar(grado) {
+      if (!confirm("Estas seguro de querer eliminar este grado?")) return;
+      this.$inertia.delete(`/grados/${grado.id}`);
     },
-    restaurar(modalidad) {      
-      if (!confirm("Estas seguro de querer restaurar esta modalidad?")) return;
-      this.$inertia.post(`/modalidades/${modalidad.id}/restore`);
+    restaurar(grado) {      
+      if (!confirm("Estas seguro de querer restaurar este grado?")) return;
+      this.$inertia.post(`/grados/${grado.id}/restore`);
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;

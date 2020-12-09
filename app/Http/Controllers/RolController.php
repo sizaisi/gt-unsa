@@ -15,6 +15,13 @@ class RolController extends Controller
         return Inertia::render('Roles/Index', compact('roles'));
     }
 
+    public function getroles()
+    {
+        $roles = Rol::all();
+
+        return $roles;
+    }
+
     public function create()
     {
         return Inertia::render('Roles/Create');
