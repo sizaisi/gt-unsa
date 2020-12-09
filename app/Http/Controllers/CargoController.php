@@ -8,42 +8,19 @@ use Inertia\Inertia;
 use App\Http\Requests\CargoRequest;
 
 class CargoController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{    
     public function index()
     {
-        $cargos = Cargo::latest()->get();
+        $cargos = Cargo::withTrashed()->latest()->get();
 
         return Inertia::render('Cargos/Index', compact('cargos'));
-    }
-
-    public function getCargos()
-    {
-        $cargos = Cargo::all();
-
-        return $cargos;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    }   
+    
     public function create()
     {
         return Inertia::render('Cargos/Create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(CargoRequest $request)
     {
         $cargo = new Cargo();
@@ -58,36 +35,17 @@ class CargoController extends Controller
 
         return redirect()->route('cargos.index')->with($result);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Cargo $cargo)
     {
         return Inertia::render('Cargos/Show', compact('cargo'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Cargo $cargo)
     {
         return Inertia::render('Cargos/Edit', compact('cargo'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(CargoRequest $request, Cargo $cargo)
     {
         $cargo->codigo = $request->codigo;
@@ -101,13 +59,7 @@ class CargoController extends Controller
 
         return redirect()->route('cargos.index')->with($result);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Cargo $cargo)
     {
         if ($cargo->delete()) {
@@ -115,6 +67,21 @@ class CargoController extends Controller
         } else {
             $result = ['errorMessage' => 'No se pudo eliminar el cargo'];
         }
+
+        return redirect()->back()->with($result);
+    }
+
+    public function restore($cargo_id) 
+    {                   
+        try {
+            $cargo = Cargo::withTrashed()->findOrFail($cargo_id);
+            $cargo->restore();
+            $result = ['successMessage' => 'Cargo restaurado con éxito'];
+        }
+        catch(\Exception $e) {
+            $result = ['errorMessage' => 'No se pudo restaurar el cargo'];
+            \Log::warning('CargoController@update, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
+        }        
 
         return redirect()->back()->with($result);
     }

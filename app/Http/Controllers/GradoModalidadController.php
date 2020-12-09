@@ -12,8 +12,7 @@ use App\Http\Requests\GradoModalidadRequest;
 class GradoModalidadController extends Controller
 {    
     public function index()
-    {
-        //$gradosmodalidades = GradoModalidad::latest()->get();
+    {        
         $gradosmodalidades = \DB::table('gt_grados_modalidades')
                                 ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
                                 ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
