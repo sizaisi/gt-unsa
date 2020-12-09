@@ -23,10 +23,17 @@ class GradoModalidadRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'tipo' => 'required',
+        return [            
             'idgrado' => 'required',
             'idmodalidad' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'idgrado.required' => 'El campo grado es obligatorio.',            
+            'idmodalidad.required' => 'El campo modalidad es obligatorio.',            
         ];
     }
 }

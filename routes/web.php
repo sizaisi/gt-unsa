@@ -46,7 +46,6 @@ Route::delete('/grados/{grado}', [GradoController::class, 'destroy'])->name('gra
 Route::post('/grados/{grado}/restore', [GradoController::class, 'restore'])->name('grados.restore');
 
 Route::get('/modalidades', [ModalidadController::class, 'index'])->name('modalidades.index');
-Route::get('/getmodalidades', [ModalidadController::class, 'getmodalidades'])->name('modalidades.getmodalidades');
 Route::get('/modalidades/create', [ModalidadController::class, 'create'])->name('modalidades.create');
 Route::post('/modalidades', [ModalidadController::class, 'store'])->name('modalidades.store');
 Route::get('/modalidades/{modalidad}', [ModalidadController::class, 'show'])->name('modalidades.show');
@@ -90,8 +89,6 @@ Route::get('/programas/{programa}/edit', [ProgramaEstudioController::class, 'edi
 Route::put('/programas/{programa}', [ProgramaEstudioController::class, 'update'])->name('programas.update');
 Route::delete('/programas/{programa}', [ProgramaEstudioController::class, 'destroy'])->name('programas.destroy');
 
-
-
 Route::get('/cargosautoridades', [CargoAutoridadController::class, 'index'])->name('cargosautoridades.index');
 Route::get('/cargosautoridades/create', [CargoAutoridadController::class, 'create'])->name('cargosautoridades.create');
 Route::post('/cargosautoridades', [CargoAutoridadController::class, 'store'])->name('cargosautoridades.store');
@@ -106,8 +103,9 @@ Route::get('/gradosmodalidades/create', [GradoModalidadController::class, 'creat
 Route::post('/gradosmodalidades', [GradoModalidadController::class, 'store'])->name('gradosmodalidades.store');
 Route::get('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'show'])->name('gradosmodalidades.show');
 Route::get('/gradosmodalidades/{gradomodalidad}/edit', [GradoModalidadController::class, 'edit'])->name('gradosmodalidades.edit');
-Route::put('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'update'])->name('gradosmodalidades.update');
+Route::post('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'update'])->name('gradosmodalidades.update');
 Route::delete('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'destroy'])->name('gradosmodalidades.destroy');
+Route::post('/gradosmodalidades/{gradomodalidad}/restore', [GradoModalidadController::class, 'restore'])->name('gradosmodalidades.restore');
 
 Route::get('/gradosprocedimientos', [GradoProcedimientoController::class, 'index'])->name('gradosprocedimientos.index');
 Route::get('/gradosprocedimientos/create', [GradoProcedimientoController::class, 'create'])->name('gradosprocedimientos.create');

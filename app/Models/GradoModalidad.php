@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class GradoModalidad extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'gt_grados_modalidades';
 
-    protected $fillable = [
-        'tipo', 'idgrado', 'idmodalidad', 'condicion'
-    ];
+    protected $fillable = ['idgrado', 'idmodalidad', 'condicion'];
 }

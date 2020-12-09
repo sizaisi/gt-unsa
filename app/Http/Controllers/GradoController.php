@@ -45,7 +45,7 @@ class GradoController extends Controller
     }
 
     public function show(Grado $grado)
-    {
+    {        
         return Inertia::render('Grados/Show', compact('grado'));
     }
 

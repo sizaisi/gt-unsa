@@ -14,14 +14,7 @@ class ModalidadController extends Controller
         $modalidades = Modalidad::withTrashed()->latest()->get();
 
         return Inertia::render('Modalidades/Index', compact('modalidades'));
-    }
-
-    public function getmodalidades()
-    {
-        $modalidades = Modalidad::all();
-
-        return $modalidades;
-    }
+    }  
 
     public function create()
     {
