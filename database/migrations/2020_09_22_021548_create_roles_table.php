@@ -13,11 +13,11 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('gt_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 35);
-            $table->boolean('condicion')->default(true);
+            $table->string('nombre', 50);            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

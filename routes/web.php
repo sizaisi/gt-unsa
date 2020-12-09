@@ -28,13 +28,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/welcome', function () {
 })->name('welcome');
 
 Route::get('/roles', [RolController::class, 'index'])->name('roles.index');
-Route::get('/getroles', [RolController::class, 'getroles'])->name('roles.getroles');
 Route::get('/roles/create', [RolController::class, 'create'])->name('roles.create');
 Route::post('/roles', [RolController::class, 'store'])->name('roles.store');
 Route::get('/roles/{rol}', [RolController::class, 'show'])->name('roles.show');
 Route::get('/roles/{rol}/edit', [RolController::class, 'edit'])->name('roles.edit');
-Route::put('/roles/{rol}', [RolController::class, 'update'])->name('roles.update');
+Route::post('/roles/{rol}', [RolController::class, 'update'])->name('roles.update');
 Route::delete('/roles/{rol}', [RolController::class, 'destroy'])->name('roles.destroy');
+Route::post('/roles/{rol}/restore', [RolController::class, 'restore'])->name('roles.restore');
 
 Route::get('/grados', [GradoController::class, 'index'])->name('grados.index');
 Route::get('/grados/create', [GradoController::class, 'create'])->name('grados.create');

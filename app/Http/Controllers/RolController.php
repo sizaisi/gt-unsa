@@ -10,17 +10,10 @@ class RolController extends Controller
 {
     public function index()
     {
-        $roles = Rol::latest()->get();
+        $roles = Rol::withTrashed()->latest()->get();
 
         return Inertia::render('Roles/Index', compact('roles'));
-    }
-
-    public function getroles()
-    {
-        $roles = Rol::all();
-
-        return $roles;
-    }
+    }   
 
     public function create()
     {
@@ -71,6 +64,21 @@ class RolController extends Controller
         } else {
             $result = ['errorMessage' => 'No se pudo eliminar el rol'];
         }
+
+        return redirect()->back()->with($result);
+    }
+
+    public function restore($rol_id) 
+    {                   
+        try {
+            $rol = Rol::withTrashed()->findOrFail($rol_id);
+            $rol->restore();
+            $result = ['successMessage' => 'Rol restaurado con éxito'];
+        }
+        catch(\Exception $e) {
+            $result = ['errorMessage' => 'No se pudo restaurar el rol'];
+            \Log::warning('RolController@update, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
+        }        
 
         return redirect()->back()->with($result);
     }
