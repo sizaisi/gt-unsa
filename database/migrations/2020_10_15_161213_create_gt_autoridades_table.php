@@ -16,9 +16,9 @@ class CreateGtAutoridadesTable extends Migration
         Schema::create('gt_autoridades', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 50);
-            $table->string('grado', 50);
-            $table->boolean('condicion')->default(true);
+            $table->string('grado', 50);            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

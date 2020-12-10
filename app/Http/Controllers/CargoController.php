@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Cargo;
 use Inertia\Inertia;
+use App\Models\Cargo;
+use Illuminate\Http\Request;
 use App\Http\Requests\CargoRequest;
 
 class CargoController extends Controller

@@ -2,48 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Autoridad;
 use Inertia\Inertia;
+use App\Models\Autoridad;
+use Illuminate\Http\Request;
 use App\Http\Requests\AutoridadRequest;
 
 class AutoridadController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{    
     public function index()
     {
-        $autoridades = Autoridad::latest()->get();
+        $autoridades = Autoridad::withTrashed()->latest()->get();
 
         return Inertia::render('Autoridades/Index', compact('autoridades'));
-    }
-
-    public function getAutoridades()
-    {
-        $autoridades = Autoridad::all();
-
-        return $autoridades;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    }   
+    
     public function create()
     {
         return Inertia::render('Autoridades/Create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(AutoridadRequest $request)
     {
         $autoridad = new Autoridad();
@@ -58,36 +35,17 @@ class AutoridadController extends Controller
 
         return redirect()->route('autoridades.index')->with($result);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Autoridad $autoridad)
     {
         return Inertia::render('Autoridades/Show', compact('autoridad'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Autoridad $autoridad)
     {
         return Inertia::render('Autoridades/Edit', compact('autoridad'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(AutoridadRequest $request, Autoridad $autoridad)
     {
         $autoridad->nombre = $request->nombre;
@@ -101,13 +59,7 @@ class AutoridadController extends Controller
 
         return redirect()->route('autoridades.index')->with($result);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Autoridad $autoridad)
     {
         if ($autoridad->delete()) {
@@ -115,6 +67,21 @@ class AutoridadController extends Controller
         } else {
             $result = ['errorMessage' => 'No se pudo eliminar la autoridad'];
         }
+
+        return redirect()->back()->with($result);
+    }
+
+    public function restore($autoridad_id) 
+    {                   
+        try {
+            $autoridad = Autoridad::withTrashed()->findOrFail($autoridad_id);
+            $autoridad->restore();
+            $result = ['successMessage' => 'Autoridad restaurado con éxito'];
+        }
+        catch(\Exception $e) {
+            $result = ['errorMessage' => 'No se pudo restaurar el autoridad'];
+            \Log::warning('AutoridadController@update, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
+        }        
 
         return redirect()->back()->with($result);
     }

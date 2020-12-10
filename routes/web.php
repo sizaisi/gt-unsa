@@ -55,13 +55,13 @@ Route::delete('/modalidades/{modalidad}', [ModalidadController::class, 'destroy'
 Route::post('/modalidades/{modalidad}/restore', [ModalidadController::class, 'restore'])->name('modalidades.restore');
 
 Route::get('/autoridades', [AutoridadController::class, 'index'])->name('autoridades.index');
-Route::get('/getautoridades', [AutoridadController::class, 'getautoridades'])->name('autoridades.getautoridades');
 Route::get('/autoridades/create', [AutoridadController::class, 'create'])->name('autoridades.create');
 Route::post('/autoridades', [AutoridadController::class, 'store'])->name('autoridades.store');
 Route::get('/autoridades/{autoridad}', [AutoridadController::class, 'show'])->name('autoridades.show');
 Route::get('/autoridades/{autoridad}/edit', [AutoridadController::class, 'edit'])->name('autoridades.edit');
-Route::put('/autoridades/{autoridad}', [AutoridadController::class, 'update'])->name('autoridades.update');
+Route::post('/autoridades/{autoridad}', [AutoridadController::class, 'update'])->name('autoridades.update');
 Route::delete('/autoridades/{autoridad}', [AutoridadController::class, 'destroy'])->name('autoridades.destroy');
+Route::post('/autoridades/{autoridad}/restore', [AutoridadController::class, 'restore'])->name('autoridades.restore');
 
 Route::get('/cargos', [CargoController::class, 'index'])->name('cargos.index');
 Route::get('/cargos/create', [CargoController::class, 'create'])->name('cargos.create');
