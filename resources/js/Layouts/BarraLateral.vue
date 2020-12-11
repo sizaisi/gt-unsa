@@ -1,43 +1,47 @@
 <template>
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
-      <img
-        src="/../img/AdminLTELogo.png"
-        alt="AdminLTE Logo"
-        class="brand-image img-circle elevation-3"
-        style="opacity: 0.8"
-      />
-      <span class="brand-text font-weight-light">GT-UNSA</span>
-    </a>
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="../../index3.html" class="brand-link">
+            <img
+                src="/../img/AdminLTELogo.png"
+                alt="AdminLTE Logo"
+                class="brand-image img-circle elevation-3"
+                style="opacity: 0.8"
+            />
+            <span class="brand-text font-weight-light">GT-UNSA</span>
+        </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img
-            src="/../img/user2-160x160.jpg"
-            class="img-circle elevation-2"
-            alt="User Image"
-          />
-        </div>
-        <div class="info">
-          <a href="#" class="d-block" v-text="$page.auth.user.name"></a>
-        </div>
-      </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img
+                        src="/../img/user2-160x160.jpg"
+                        class="img-circle elevation-2"
+                        alt="User Image"
+                    />
+                </div>
+                <div class="info">
+                    <a
+                        href="#"
+                        class="d-block"
+                        v-text="$page.auth.user.name"
+                    ></a>
+                </div>
+            </div>
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul
-          class="nav nav-pills nav-sidebar flex-column"
-          data-widget="treeview"
-          role="menu"
-          data-accordion="false"
-        >
-          <!-- Add icons to the links using the .nav-icon class
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul
+                    class="nav nav-pills nav-sidebar flex-column"
+                    data-widget="treeview"
+                    role="menu"
+                    data-accordion="false"
+                >
+                    <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <!--<li class="nav-item has-treeview">
+                    <!--<li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -281,116 +285,118 @@
                         </li>
                     </ul>
                 </li>-->
-          <li class="nav-header">ADMINISTRACIÓN</li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/usuarios"
-              type="link"
-              :active="$page.currentRouteName == 'usuarios.index'"
-              ><i class="nav-icon far fa-image"></i> Usuarios</jet-nav-link
-            >
-          </li>
-          <li class="nav-header">MANTENIMIENTO</li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/modalidades"
-              type="link"
-              :active="$page.currentRouteName == 'modalidades.index'"
-              ><i class="nav-icon far fa-image"></i> Modalidades
-              </jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/autoridades"
-              type="link"
-              :active="$page.currentRouteName == 'autoridades.index'"
-              ><i class="nav-icon far fa-image"></i> Autoridades
-              </jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/cargos"
-              type="link"
-              :active="$page.currentRouteName == 'cargos.index'"
-              ><i class="nav-icon far fa-image"></i> Cargos
-              </jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/procedimientos"
-              type="link"
-              :active="$page.currentRouteName == 'procedimientos.index'"
-              ><i class="nav-icon far fa-image"></i> Procedimientos
-              </jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/roles"
-              type="link"
-              :active="$page.currentRouteName == 'roles.index'"
-              ><i class="nav-icon far fa-image"></i> Roles
-              </jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/programas"
-              type="link"
-              :active="$page.currentRouteName == 'programas.index'"
-              ><i class="nav-icon far fa-image"></i> Programas de Estudio
-              </jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/grados"
-              type="link"
-              :active="$page.currentRouteName == 'grados.index'"
-              ><i class="nav-icon far fa-image"></i> Grados/Títulos
-              </jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/cargosautoridades"
-              type="link"
-              :active="$page.currentRouteName == 'cargosautoridades.index'"
-              ><i class="nav-icon far fa-image"></i> Cargo-Autoridad
-              </jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/gradosmodalidades"
-              type="link"
-              :active="$page.currentRouteName == 'gradosmodalidades.index'"
-              ><i class="nav-icon far fa-image"></i> Grado-Modalidad
-              </jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/gradosprocedimientos"
-              type="link"
-              :active="$page.currentRouteName == 'gradosprocedimientos.index'"
-              ><i class="nav-icon far fa-image"></i> Grado-Procedimiento
-              </jet-nav-link
-            >
-          </li>
-          <li class="nav-item">
-            <jet-nav-link
-              href="/rutas"
-              type="link"
-              :active="$page.currentRouteName == 'rutas.index'"
-              ><i class="nav-icon far fa-image"></i> Rutas
-              </jet-nav-link
-            >
-          </li>
-          <!--<li class="nav-item has-treeview">
+                    <li class="nav-header">ADMINISTRACIÓN</li>
+                    <li class="nav-item">
+                        <jet-nav-link
+                            href="/usuarios"
+                            type="link"
+                            :active="$page.currentRouteName == 'usuarios.index'"
+                            ><i class="nav-icon far fa-image"></i>
+                            Usuarios</jet-nav-link
+                        >
+                    </li>
+                    <li class="nav-header">MANTENIMIENTO</li>
+                    <li class="nav-item">
+                        <jet-nav-link
+                            href="/modalidades"
+                            type="link"
+                            :active="
+                                $page.currentRouteName == 'modalidades.index'
+                            "
+                            ><i class="nav-icon far fa-image"></i> Modalidades
+                        </jet-nav-link>
+                    </li>
+                    <li class="nav-item">
+                        <jet-nav-link
+                            href="/autoridades"
+                            type="link"
+                            :active="
+                                $page.currentRouteName == 'autoridades.index'
+                            "
+                            ><i class="nav-icon far fa-image"></i> Autoridades
+                        </jet-nav-link>
+                    </li>
+                    <li class="nav-item">
+                        <jet-nav-link
+                            href="/cargos"
+                            type="link"
+                            :active="$page.currentRouteName == 'cargos.index'"
+                            ><i class="nav-icon far fa-image"></i> Cargos
+                        </jet-nav-link>
+                    </li>
+                    <li class="nav-item">
+                        <jet-nav-link
+                            href="/procedimientos"
+                            type="link"
+                            :active="
+                                $page.currentRouteName == 'procedimientos.index'
+                            "
+                            ><i class="nav-icon far fa-image"></i>
+                            Procedimientos
+                        </jet-nav-link>
+                    </li>
+                    <li class="nav-item">
+                        <jet-nav-link
+                            href="/roles"
+                            type="link"
+                            :active="$page.currentRouteName == 'roles.index'"
+                            ><i class="nav-icon far fa-image"></i> Roles
+                        </jet-nav-link>
+                    </li>
+                    <li class="nav-item">
+                        <jet-nav-link
+                            href="/grados"
+                            type="link"
+                            :active="$page.currentRouteName == 'grados.index'"
+                            ><i class="nav-icon far fa-image"></i>
+                            Grados/Títulos
+                        </jet-nav-link>
+                    </li>
+                    <li class="nav-item">
+                        <jet-nav-link
+                            href="/cargosautoridades"
+                            type="link"
+                            :active="
+                                $page.currentRouteName ==
+                                    'cargosautoridades.index'
+                            "
+                            ><i class="nav-icon far fa-image"></i>
+                            Cargo-Autoridad
+                        </jet-nav-link>
+                    </li>
+                    <li class="nav-item">
+                        <jet-nav-link
+                            href="/gradosmodalidades"
+                            type="link"
+                            :active="
+                                $page.currentRouteName ==
+                                    'gradosmodalidades.index'
+                            "
+                            ><i class="nav-icon far fa-image"></i>
+                            Grado-Modalidad
+                        </jet-nav-link>
+                    </li>
+                    <li class="nav-item">
+                        <jet-nav-link
+                            href="/gradosprocedimientos"
+                            type="link"
+                            :active="
+                                $page.currentRouteName ==
+                                    'gradosprocedimientos.index'
+                            "
+                            ><i class="nav-icon far fa-image"></i>
+                            Grado-Procedimiento
+                        </jet-nav-link>
+                    </li>
+                    <li class="nav-item">
+                        <jet-nav-link
+                            href="/rutas"
+                            type="link"
+                            :active="$page.currentRouteName == 'rutas.index'"
+                            ><i class="nav-icon far fa-image"></i> Rutas
+                        </jet-nav-link>
+                    </li>
+                    <!--<li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon far fa-envelope"></i>
                         <p>
@@ -652,19 +658,19 @@
                         <p>Informational</p>
                     </a>
                 </li>-->
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
 </template>
 <script>
 import JetNavLink from "./../Jetstream/NavLink";
 
 export default {
-  components: {
-    JetNavLink,
-  }  
+    components: {
+        JetNavLink
+    }
 };
 </script>

@@ -81,14 +81,6 @@ Route::get('/procedimientos/{procedimiento}/edit', [ProcedimientoController::cla
 Route::put('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'update'])->name('procedimientos.update');
 Route::delete('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'destroy'])->name('procedimientos.destroy');
 
-Route::get('/programas', [ProgramaEstudioController::class, 'index'])->name('programas.index');
-Route::get('/programas/create', [ProgramaEstudioController::class, 'create'])->name('programas.create');
-Route::post('/programas', [ProgramaEstudioController::class, 'store'])->name('programas.store');
-Route::get('/programas/{programa}', [ProgramaEstudioController::class, 'show'])->name('programas.show');
-Route::get('/programas/{programa}/edit', [ProgramaEstudioController::class, 'edit'])->name('programas.edit');
-Route::put('/programas/{programa}', [ProgramaEstudioController::class, 'update'])->name('programas.update');
-Route::delete('/programas/{programa}', [ProgramaEstudioController::class, 'destroy'])->name('programas.destroy');
-
 Route::get('/cargosautoridades', [CargoAutoridadController::class, 'index'])->name('cargosautoridades.index');
 Route::get('/cargosautoridades/create', [CargoAutoridadController::class, 'create'])->name('cargosautoridades.create');
 Route::post('/cargosautoridades', [CargoAutoridadController::class, 'store'])->name('cargosautoridades.store');
