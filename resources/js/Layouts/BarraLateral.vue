@@ -326,17 +326,6 @@
                     </li>
                     <li class="nav-item">
                         <jet-nav-link
-                            href="/procedimientos"
-                            type="link"
-                            :active="
-                                $page.currentRouteName == 'procedimientos.index'
-                            "
-                            ><i class="nav-icon far fa-image"></i>
-                            Procedimientos
-                        </jet-nav-link>
-                    </li>
-                    <li class="nav-item">
-                        <jet-nav-link
                             href="/roles"
                             type="link"
                             :active="$page.currentRouteName == 'roles.index'"

@@ -72,15 +72,6 @@ Route::post('/cargos/{cargo}', [CargoController::class, 'update'])->name('cargos
 Route::delete('/cargos/{cargo}', [CargoController::class, 'destroy'])->name('cargos.destroy');
 Route::post('/cargos/{cargo}/restore', [CargoController::class, 'restore'])->name('cargos.restore');
 
-Route::get('/procedimientos', [ProcedimientoController::class, 'index'])->name('procedimientos.index');
-Route::get('/getprocedimientos', [ProcedimientoController::class, 'getprocedimientos'])->name('procedimientos.getprocedimientos');
-Route::get('/procedimientos/create', [ProcedimientoController::class, 'create'])->name('procedimientos.create');
-Route::post('/procedimientos', [ProcedimientoController::class, 'store'])->name('procedimientos.store');
-Route::get('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'show'])->name('procedimientos.show');
-Route::get('/procedimientos/{procedimiento}/edit', [ProcedimientoController::class, 'edit'])->name('procedimientos.edit');
-Route::put('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'update'])->name('procedimientos.update');
-Route::delete('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'destroy'])->name('procedimientos.destroy');
-
 Route::get('/cargosautoridades', [CargoAutoridadController::class, 'index'])->name('cargosautoridades.index');
 Route::get('/cargosautoridades/create', [CargoAutoridadController::class, 'create'])->name('cargosautoridades.create');
 Route::post('/cargosautoridades', [CargoAutoridadController::class, 'store'])->name('cargosautoridades.store');
