@@ -30,4 +30,12 @@ class CargoAutoridadRequest extends FormRequest
             'fecha_fin' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'idcargo.required' => 'El campo cargo es obligatorio.',            
+            'idautoridad.required' => 'El campo autoridad es obligatorio.',            
+        ];
+    }
 }

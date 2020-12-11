@@ -55,17 +55,14 @@ class GradoModalidadController extends Controller
 
     public function show(GradoModalidad $gradomodalidad)
     {
-        $grado = Grado::where('id', $gradomodalidad->idgrado)
-                        ->select('nombre as grado')
-                        ->firstOrFail()
-                        ->grado;
+        $gradomodalidad = \DB::table('gt_grados_modalidades')
+                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
+                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
+                                ->select('gt_grados_modalidades.*', 'gt_grados.nombre as grado', 'gt_modalidades.nombre as modalidad')
+                                ->where('gt_grados_modalidades.id', $gradomodalidad->id)                                
+                                ->first();                
 
-        $modalidad = Grado::where('id', $gradomodalidad->idmodalidad)
-                        ->select('nombre as modalidad')
-                        ->firstOrFail()
-                        ->modalidad;
-
-        return Inertia::render('GradosModalidades/Show', compact('grado', 'modalidad'));
+        return Inertia::render('GradosModalidades/Show', compact('gradomodalidad'));
     }
 
     public function edit(GradoModalidad $gradomodalidad)

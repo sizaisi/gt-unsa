@@ -71,14 +71,6 @@ export default {
     components: {
         AppLayout
     },
-    data() {
-        return {
-            array_grados: [],
-            select_grados: [],
-            array_modalidades: [],
-            select_modalidades: []
-        };
-    },
     methods: {
         actualizar() {
             this.$inertia.post(

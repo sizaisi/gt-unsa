@@ -17,7 +17,7 @@
                     >
                         <b-form-input
                             id="input-3"
-                            v-model="grado"
+                            v-model="gradomodalidad.grado"
                             readonly
                         ></b-form-input>
                     </b-form-group>
@@ -28,7 +28,7 @@
                     >
                         <b-form-input
                             id="input-4"
-                            v-model="modalidad"
+                            v-model="gradomodalidad.modalidad"
                             readonly
                         ></b-form-input>
                     </b-form-group>
@@ -43,7 +43,7 @@ import AppLayout from "./../../Layouts/AppLayout";
 
 export default {
     name: "gradosmodalidades.show",
-    props: ["grado", "modalidad"],
+    props: ["gradomodalidad"],
     components: {
         AppLayout
     }

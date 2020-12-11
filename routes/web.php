@@ -94,8 +94,9 @@ Route::get('/cargosautoridades/create', [CargoAutoridadController::class, 'creat
 Route::post('/cargosautoridades', [CargoAutoridadController::class, 'store'])->name('cargosautoridades.store');
 Route::get('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::class, 'show'])->name('cargosautoridades.show');
 Route::get('/cargosautoridades/{cargoautoridad}/edit', [CargoAutoridadController::class, 'edit'])->name('cargosautoridades.edit');
-Route::put('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::class, 'update'])->name('cargosautoridades.update');
+Route::post('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::class, 'update'])->name('cargosautoridades.update');
 Route::delete('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::class, 'destroy'])->name('cargosautoridades.destroy');
+Route::post('/cargosautoridades/{cargoautoridad}/restore', [CargoAutoridadController::class, 'restore'])->name('cargosautoridades.restore');
 
 Route::get('/gradosmodalidades', [GradoModalidadController::class, 'index'])->name('gradosmodalidades.index');
 Route::get('/getgradosmodalidades', [GradoModalidadController::class, 'getgradosmodalidades'])->name('gradosmodalidades.getgradosmodalidades');

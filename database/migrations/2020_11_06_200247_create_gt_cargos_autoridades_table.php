@@ -18,9 +18,9 @@ class CreateGtCargosAutoridadesTable extends Migration
             $table->integer('idcargo');
             $table->integer('idautoridad');
             $table->date('fecha_inicio');
-            $table->date('fecha_fin');
-            $table->boolean('condicion')->default(true);
+            $table->date('fecha_fin');            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
