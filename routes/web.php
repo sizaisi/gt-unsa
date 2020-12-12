@@ -91,13 +91,14 @@ Route::post('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::cl
 Route::delete('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'destroy'])->name('gradosmodalidades.destroy');
 Route::post('/gradosmodalidades/{gradomodalidad}/restore', [GradoModalidadController::class, 'restore'])->name('gradosmodalidades.restore');
 
-Route::get('/gradosprocedimientos', [GradoProcedimientoController::class, 'index'])->name('gradosprocedimientos.index');
-Route::get('/gradosprocedimientos/create', [GradoProcedimientoController::class, 'create'])->name('gradosprocedimientos.create');
-Route::post('/gradosprocedimientos', [GradoProcedimientoController::class, 'store'])->name('gradosprocedimientos.store');
-Route::get('/gradosprocedimientos/{gradoprocedimiento}', [GradoProcedimientoController::class, 'show'])->name('gradosprocedimientos.show');
-Route::get('/gradosprocedimientos/{gradoprocedimiento}/edit', [GradoProcedimientoController::class, 'edit'])->name('gradosprocedimientos.edit');
-Route::put('/gradosprocedimientos/{gradoprocedimiento}', [GradoProcedimientoController::class, 'update'])->name('gradosprocedimientos.update');
-Route::delete('/gradosprocedimientos/{gradoprocedimiento}', [GradoProcedimientoController::class, 'destroy'])->name('gradosprocedimientos.destroy');
+Route::get('/procedimientos', [ProcedimientoController::class, 'index'])->name('procedimientos.index');
+Route::get('/procedimientos/create', [ProcedimientoController::class, 'create'])->name('procedimientos.create');
+Route::post('/procedimientos', [ProcedimientoController::class, 'store'])->name('procedimientos.store');
+Route::get('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'show'])->name('procedimientos.show');
+Route::get('/procedimientos/{procedimiento}/edit', [ProcedimientoController::class, 'edit'])->name('procedimientos.edit');
+Route::post('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'update'])->name('procedimientos.update');
+Route::delete('/procedimientos/{procedimiento}', [ProcedimientoController::class, 'destroy'])->name('procedimientos.destroy');
+Route::post('/procedimientos/{procedimiento}/restore', [ProcedimientoController::class, 'restore'])->name('procedimientos.restore');
 
 Route::get('/rutas', [RutaController::class, 'index'])->name('rutas.index');
 Route::get('/rutas/create', [RutaController::class, 'create'])->name('rutas.create');

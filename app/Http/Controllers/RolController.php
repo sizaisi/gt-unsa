@@ -77,7 +77,7 @@ class RolController extends Controller
         }
         catch(\Exception $e) {
             $result = ['errorMessage' => 'No se pudo restaurar el rol'];
-            \Log::warning('RolController@update, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
+            \Log::warning('RolController@restore, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
         }        
 
         return redirect()->back()->with($result);

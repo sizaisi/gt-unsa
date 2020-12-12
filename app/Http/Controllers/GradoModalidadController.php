@@ -21,14 +21,7 @@ class GradoModalidadController extends Controller
                                 ->get();
 
         return Inertia::render('GradosModalidades/Index', compact('gradosmodalidades'));
-    }
-
-    public function getgradosmodalidades()
-    {
-        $gradosmodalidades = GradoModalidad::all();
-
-        return $gradosmodalidades;
-    }
+    }    
 
     public function create()
     {

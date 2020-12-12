@@ -42,7 +42,7 @@ class CreateGtModalidadesTable extends Migration
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'nombre' => '	AUTOMÁTICO',
+                'nombre' => 'AUTOMÁTICO',
                 'created_at' => date("Y-m-d H:i:s"),         
                 'updated_at' => date("Y-m-d H:i:s"),    
             ],

@@ -80,7 +80,7 @@ class CargoController extends Controller
         }
         catch(\Exception $e) {
             $result = ['errorMessage' => 'No se pudo restaurar el cargo'];
-            \Log::warning('CargoController@update, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
+            \Log::warning('CargoController@restore, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
         }        
 
         return redirect()->back()->with($result);

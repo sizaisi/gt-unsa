@@ -367,14 +367,14 @@
                     </li>
                     <li class="nav-item">
                         <jet-nav-link
-                            href="/gradosprocedimientos"
+                            href="/procedimientos"
                             type="link"
                             :active="
                                 $page.currentRouteName ==
                                     'gradosprocedimientos.index'
                             "
                             ><i class="nav-icon far fa-image"></i>
-                            Grado-Procedimiento
+                            Procedimiento
                         </jet-nav-link>
                     </li>
                     <li class="nav-item">
