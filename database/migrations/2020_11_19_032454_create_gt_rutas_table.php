@@ -15,11 +15,12 @@ class CreateGtRutasTable extends Migration
     {
         Schema::create('gt_rutas', function (Blueprint $table) {
             $table->id();
-            $table->integer('idgradoprocedimiento_origen');
-            $table->integer('idgradoprocedimiento_destino');
-            $table->enum('etiqueta', ['Iniciar', 'Enviar', 'Derivar', 'Cambiar', 'Devolver', 'Denegar', 'Observar', 'Rechazar', 'Aceptar', 'Aprobar', 'Finalizar']);
-            $table->boolean('condicion')->default(true);
+            $table->integer('idgradomodalidad');         
+            $table->integer('idproc_origen');
+            $table->integer('idproc_destino');
+            $table->enum('etiqueta', ['iniciar', 'enviar', 'derivar', 'devolver', 'denegar', 'observar', 'rechazar', 'aceptar', 'aprobar', 'finalizar']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

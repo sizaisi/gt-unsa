@@ -23,21 +23,7 @@ class ProcedimientoController extends Controller
                                 ->get();       
         
         return Inertia::render('Procedimientos/Index', compact('procedimientos'));
-    }
-
-    public function getgradosprocedimientosorigen()
-    {
-        $gradosprocedimientos_origen = Procedimiento::all();
-
-        return $gradosprocedimientos_origen;
-    }
-
-    public function getgradosprocedimientosdestino()
-    {
-        $gradosprocedimientos_destino = Procedimiento::all();
-
-        return $gradosprocedimientos_destino;
-    }
+    }    
 
     public function create()
     {
@@ -55,7 +41,7 @@ class ProcedimientoController extends Controller
     }
     
     public function store(ProcedimientoRequest $request)
-    {        
+    {                  
         $procedimiento = new Procedimiento();
 
         $procedimiento->nombre = $request->nombre;

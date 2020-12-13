@@ -26,8 +26,7 @@ class ProcedimientoRequest extends FormRequest
         return [
             'nombre' => 'required:max:150',
             'idgradomodalidad' => 'required',             
-            'idrol' => 'required', 
-            'tipo_rol' => 'required',  
+            'idrol' => 'required',             
             'url_formulario' => 'required|max:250',
             'orden' => 'required',
             'descripcion' => 'required|max:250',
