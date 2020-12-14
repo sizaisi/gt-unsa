@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGtGradosProcedimientosTable extends Migration
+class CreateGtProcedimientosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateGtGradosProcedimientosTable extends Migration
      */
     public function up()
     {
-        Schema::create('gt_grados_procedimientos', function (Blueprint $table) {
+        Schema::create('gt_procedimientos', function (Blueprint $table) {
             $table->id();
-            $table->integer('idgradomodalidad');
-            $table->integer('idprocedimiento');
+            $table->string('nombre', 150);
+            $table->integer('idgradomodalidad');            
             $table->integer('idrol');
-            $table->enum('tipo_rol', ['Asesor', 'Jurado']);
+            $table->enum('tipo_rol', ['asesor', 'jurado'])->nullable();
             $table->string('url_formulario', 250);
             $table->tinyInteger('orden');
-            $table->string('descripcion', 250);
-            $table->boolean('condicion')->default(true);
+            $table->string('descripcion', 250);            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -34,6 +34,6 @@ class CreateGtGradosProcedimientosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gt_grados_procedimientos');
+        Schema::dropIfExists('gt_procedimientos');
     }
 }

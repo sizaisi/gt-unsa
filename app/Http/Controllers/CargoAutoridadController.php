@@ -2,44 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+use App\Models\Cargo;
+use App\Models\Autoridad;
 use Illuminate\Http\Request;
 use App\Models\CargoAutoridad;
-use Inertia\Inertia;
 use App\Http\Requests\CargoAutoridadRequest;
 
 class CargoAutoridadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $cargosautoridades = CargoAutoridad::latest()->get();
-
+        $cargosautoridades = \DB::table('gt_cargos_autoridades')
+                                ->join('gt_cargos', 'gt_cargos.id', '=', 'gt_cargos_autoridades.idcargo')
+                                ->join('gt_autoridades', 'gt_autoridades.id', '=', 'gt_cargos_autoridades.idautoridad')
+                                ->select('gt_cargos_autoridades.*', 'gt_cargos.nombre as cargo', 'gt_autoridades.nombre as autoridad')
+                                ->orderBy('gt_cargos_autoridades.id', 'desc')
+                                ->get();        
+        
         return Inertia::render('CargosAutoridades/Index', compact('cargosautoridades'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        return Inertia::render('CargosAutoridades/Create');
-    }
+        $cargos = Cargo::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
+        $autoridades = Autoridad::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+        return Inertia::render('CargosAutoridades/Create', compact('cargos', 'autoridades'));
+    }
+    
     public function store(CargoAutoridadRequest $request)
     {
         $cargoautoridad = new CargoAutoridad();
+
         $cargoautoridad->idcargo = $request->idcargo;
         $cargoautoridad->idautoridad = $request->idautoridad;
         $cargoautoridad->fecha_inicio = $request->fecha_inicio;
@@ -53,36 +48,27 @@ class CargoAutoridadController extends Controller
 
         return redirect()->route('cargosautoridades.index')->with($result);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(CargoAutoridad $cargoautoridad)
     {
+        $cargoautoridad = \DB::table('gt_cargos_autoridades')
+                                ->join('gt_cargos', 'gt_cargos.id', '=', 'gt_cargos_autoridades.idcargo')
+                                ->join('gt_autoridades', 'gt_autoridades.id', '=', 'gt_cargos_autoridades.idautoridad')
+                                ->select('gt_cargos_autoridades.*', 'gt_cargos.nombre as cargo', 'gt_autoridades.nombre as autoridad')
+                                ->where('gt_cargos_autoridades.id', $cargoautoridad->id)                                
+                                ->first();        
+        
         return Inertia::render('CargosAutoridades/Show', compact('cargoautoridad'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(CargoAutoridad $cargoautoridad)
     {
-        return Inertia::render('CargosAutoridades/Edit', compact('cargoautoridad'));
+        $cargos = Cargo::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
+        $autoridades = Autoridad::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
+        
+        return Inertia::render('CargosAutoridades/Edit', compact('cargoautoridad', 'cargos', 'autoridades'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(CargoAutoridadRequest $request, CargoAutoridad $cargoautoridad)
     {
         $cargoautoridad->idcargo = $request->idcargo;
@@ -98,13 +84,7 @@ class CargoAutoridadController extends Controller
 
         return redirect()->route('cargosautoridades.index')->with($result);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(CargoAutoridad $cargoautoridad)
     {
         if ($cargoautoridad->delete()) {
@@ -112,6 +92,21 @@ class CargoAutoridadController extends Controller
         } else {
             $result = ['errorMessage' => 'No se pudo crear el Cargo-Autoridad'];
         }
+
+        return redirect()->back()->with($result);
+    }
+
+    public function restore($cargoautoridad_id) 
+    {                   
+        try {
+            $cargoautoridad = CargoAutoridad::withTrashed()->findOrFail($cargoautoridad_id);
+            $cargoautoridad->restore();
+            $result = ['successMessage' => 'Cargo-Autoridad restaurado con éxito'];
+        }
+        catch(\Exception $e) {
+            $result = ['errorMessage' => 'No se pudo restaurar el cargo-autoridad'];
+            \Log::warning('CargoAutoridadController@restore, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
+        }        
 
         return redirect()->back()->with($result);
     }

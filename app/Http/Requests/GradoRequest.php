@@ -25,10 +25,15 @@ class GradoRequest extends FormRequest
     {
         return [
             'nombre' => 'required|max:50',
-            'nive' => 'required|max:1',
-            'codigo' => 'required|max:5',
-            'prerequisito' => 'required',
-            'descripcion' => 'required|max:250',
+            'nive' => 'required',
+            'codigo' => 'required',                        
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nive.required' => 'El campo nivel es obligatorio.',            
         ];
     }
 }

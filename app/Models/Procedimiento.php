@@ -2,16 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Procedimiento extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'gt_procedimientos';
 
     protected $fillable = [
-        'nombre', 'condicion'
+        'nombre', 
+        'idgradomodalidad',         
+        'idrol', 
+        'tipo_rol', 
+        'url_formulario', 
+        'orden', 
+        'descripcion'
     ];
 }

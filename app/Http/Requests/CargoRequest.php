@@ -24,7 +24,7 @@ class CargoRequest extends FormRequest
     public function rules()
     {
         return [
-            'codigo' => 'required|max:50',
+            'codigo' => 'required|max:15',
             'nombre' => 'required|max:50',
         ];
     }

@@ -24,7 +24,7 @@ class RolRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|max:35',
+            'nombre' => 'required|max:50',
         ];
     }
 }

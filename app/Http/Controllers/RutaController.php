@@ -2,83 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Ruta;
+
 use Inertia\Inertia;
+use App\Models\Ruta;
+use Illuminate\Http\Request;
+use App\Models\Procedimiento;
 use App\Http\Requests\RutaRequest;
 
 class RutaController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{    
     public function index()
     {
-        $rutas = Ruta::latest()->get();
-
-        return Inertia::render('Rutas/Index', compact('rutas'));
-    }
-
-    public function getAutoridades()
-    {
-        $autoridades = Autoridad::all();
-
-        return $autoridades;
-    }
-
-    public function getRutasByProc() { // obtener rutas salida por cada procedimiento
-		$ruta = new Ruta();		
-		
-		$ruta->setIdGradProcOrigen($_POST['idgradproc_origen']);    
-
-		$result = $ruta->getRutasByIdProcOrigen();
-
-        echo json_encode($result);
+        $rutas = \DB::table('gt_rutas as R')
+                    ->join('gt_procedimientos as P1', 'P1.id', '=', 'R.idproc_origen')
+                    ->join('gt_procedimientos as P2', 'P2.id', '=', 'R.idproc_destino')
+                    ->join('gt_grados_modalidades', 'gt_grados_modalidades.id', '=', 'R.idgradomodalidad')
+                    ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
+                    ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
+                    ->select('R.*', 'P1.nombre as proc_origen', 'P2.nombre as proc_destino',
+                            \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as grado_modalidad'))
+                    ->orderBy('R.id', 'desc')
+                    ->get();                      
         
-        return redirect()->route('rutas.index')->with($result);
-    }
-
-    public function getListGradModalidad(){
-		$grado_modalidad = new GradoModalidad();
-
-		$result = $grado_modalidad->getActives();
-
-		echo json_encode($result);           
-    }
-    
-    public function getListGradProcedimientos(){
-		$grado_procedimiento = new GradoProcedimiento();      
-		
-		$grado_procedimiento->setIdGradoModalidad($_POST['idgrado_modalidad']);      
-		
-		$result = $grado_procedimiento->getListByIdGradoModalidad();
-
-		echo json_encode($result);       					  
-	}
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+        return Inertia::render('Rutas/Index', compact('rutas'));
+    }     
+        
     public function create()
     {
-        return Inertia::render('Rutas/Create');
-    }
+        $gradosmodalidades = \DB::table('gt_grados_modalidades')
+                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
+                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
+                                ->select('gt_grados_modalidades.id as value',
+                                        \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as text'))
+                                ->orderBy('gt_grados_modalidades.id', 'desc')
+                                ->get();  
+        
+        $procedimientos = Procedimiento::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
+        
+        return Inertia::render('Rutas/Create', compact('gradosmodalidades','procedimientos'));
+    }    
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(RutaRequest $request)
-    {
+    {      
         $ruta = new Ruta();
-        $ruta->idgradoprocedimiento_origen = $request->idgradoprocedimiento_origen;
-        $ruta->idgradoprocedimiento_destino = $request->idgradoprocedimiento_destino;
+
+        $ruta->idgradomodalidad = $request->idgradomodalidad;
+        $ruta->idproc_origen = $request->idproc_origen;
+        $ruta->idproc_destino = $request->idproc_destino;
         $ruta->etiqueta = $request->etiqueta;
 
         if ($ruta->save()) {
@@ -89,40 +59,44 @@ class RutaController extends Controller
 
         return redirect()->route('rutas.index')->with($result);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Ruta $ruta)
     {
+        $ruta = \DB::table('gt_rutas as R')
+                    ->join('gt_procedimientos as P1', 'P1.id', '=', 'R.idproc_origen')
+                    ->join('gt_procedimientos as P2', 'P2.id', '=', 'R.idproc_destino')
+                    ->join('gt_grados_modalidades', 'gt_grados_modalidades.id', '=', 'R.idgradomodalidad')
+                    ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
+                    ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
+                    ->select('R.*', 'P1.nombre as proc_origen', 'P2.nombre as proc_destino',
+                            \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as grado_modalidad'))
+                    ->where('R.id', $ruta->id)
+                    ->first();    
+
         return Inertia::render('Rutas/Show', compact('ruta'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit(Ruta $ruta)
     {
-        return Inertia::render('Rutas/Edit', compact('ruta'));
-    }
+        $gradosmodalidades = \DB::table('gt_grados_modalidades')
+                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
+                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
+                                ->select('gt_grados_modalidades.id as value',
+                                        \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as text'))
+                                ->orderBy('gt_grados_modalidades.id', 'desc')
+                                ->get();  
+        
+        $procedimientos = Procedimiento::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+        return Inertia::render('Rutas/Edit', compact('ruta', 'gradosmodalidades', 'procedimientos'));
+    }
+    
     public function update(RutaRequest $request, Ruta $ruta)
     {
-        $ruta->idgradoprocedimiento_origen = $request->idgradoprocedimiento_origen;
-        $ruta->idgradoprocedimiento_destino = $request->idgradoprocedimiento_destino;
+        $ruta->idgradomodalidad = $request->idgradomodalidad;
+        $ruta->idproc_origen = $request->idproc_origen;
+        $ruta->idproc_destino = $request->idproc_destino;
         $ruta->etiqueta = $request->etiqueta;
 
         if ($ruta->update()) {
@@ -133,13 +107,7 @@ class RutaController extends Controller
 
         return redirect()->route('rutas.index')->with($result);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Ruta $ruta)
     {
         if ($ruta->delete()) {
@@ -147,6 +115,21 @@ class RutaController extends Controller
         } else {
             $result = ['errorMessage' => 'No se pudo eliminar la Ruta'];
         }
+
+        return redirect()->back()->with($result);
+    }
+
+    public function restore($ruta_id) 
+    {                   
+        try {
+            $ruta = Ruta::withTrashed()->findOrFail($ruta_id);
+            $ruta->restore();
+            $result = ['successMessage' => 'Ruta restaurada con éxito'];
+        }
+        catch(\Exception $e) {
+            $result = ['errorMessage' => 'No se pudo restaurar la ruta'];
+            \Log::warning('RutaController@restore, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
+        }        
 
         return redirect()->back()->with($result);
     }

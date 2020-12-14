@@ -14,12 +14,11 @@ class CreateGtGradosModalidadesTable extends Migration
     public function up()
     {
         Schema::create('gt_grados_modalidades', function (Blueprint $table) {
-            $table->id();
-            $table->enum('tipo', ['Interno', 'Externo'])->default('Interno');
+            $table->id();            
             $table->integer('idgrado');
-            $table->integer('idmodalidad');
-            $table->boolean('condicion')->default(true);
+            $table->integer('idmodalidad');            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

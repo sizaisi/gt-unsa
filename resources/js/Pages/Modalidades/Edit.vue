@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     actualizar() {
-      this.$inertia.put(`/modalidades/${this.modalidad.id}`, this.modalidad);
+      this.$inertia.post(`/modalidades/${this.modalidad.id}`, this.modalidad);
     },
   },
 };

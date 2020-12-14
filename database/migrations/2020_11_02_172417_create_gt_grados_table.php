@@ -18,11 +18,38 @@ class CreateGtGradosTable extends Migration
             $table->string('nombre', 50);
             $table->string('nive', 1);
             $table->string('codigo', 5);
-            $table->integer('prerequisito');
-            $table->string('descripcion', 250);
-            $table->boolean('condicion')->default(true);
+            $table->integer('prerequisito')->nullable();                        
             $table->timestamps();
+            $table->softDeletes();
         });
+
+        DB::table('gt_grados')->insert([
+            [
+                'nombre' => 'EGRESADO',
+                'nive' => 'Z',
+                'codigo' => '4',
+                'prerequisito' => NULL,
+                'created_at' => date("Y-m-d H:i:s"),         
+                'updated_at' => date("Y-m-d H:i:s"),
+            ],
+            [
+                'nombre' => 'BACHILLER',
+                'nive' => 'Z',
+                'codigo' => '4',
+                'prerequisito' => 1,
+                'created_at' => date("Y-m-d H:i:s"),         
+                'updated_at' => date("Y-m-d H:i:s"),
+            ],
+            [
+                'nombre' => 'TÍTULO PROFESIONAL',
+                'nive' => 'Z',
+                'codigo' => '4',
+                'prerequisito' => 2,
+                'created_at' => date("Y-m-d H:i:s"),         
+                'updated_at' => date("Y-m-d H:i:s"),
+            ],
+            
+        ]);
     }
 
     /**
