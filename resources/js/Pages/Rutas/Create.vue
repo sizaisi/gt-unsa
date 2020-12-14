@@ -119,7 +119,7 @@ export default {
       })
     },
     getAllGradosProcedimientosOrigen() {
-      axios.get(`/getgrados`)
+      axios.get(`/getgradosprocedimientosorigen`)
         .then(response => {
         console.log(response.data);
           this.array_grados = response.data;
@@ -132,7 +132,7 @@ export default {
       })
     },
     getAllGradosProcedimientosDestino() {
-      axios.get(`/getmodalidades`)
+      axios.get(`/getgradosprocedimientosdestino`)
         .then(response => {
         console.log(response.data);
           this.array_modalidades = response.data;
