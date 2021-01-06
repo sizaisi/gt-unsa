@@ -10,7 +10,7 @@
                 <h3 class="card-title">Lista de Cargos-Autoridades</h3>
                 <jet-nav-link
                     class="btn btn-success float-right"
-                    href="/cargosautoridades/create"
+                    :href="`${api_url}/cargosautoridades/create`"
                     >Crear</jet-nav-link
                 >
             </div>
@@ -41,14 +41,14 @@
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-primary btn-sm"
-                            :href="`/cargosautoridades/${row.item.id}`"
+                            :href="`${api_url}/cargosautoridades/${row.item.id}`"
                             type="button"
                             ><b-icon icon="eye"></b-icon
                         ></jet-nav-link>
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-warning btn-sm"
-                            :href="`/cargosautoridades/${row.item.id}/edit`"
+                            :href="`${api_url}/cargosautoridades/${row.item.id}/edit`"
                             type="button"
                             ><b-icon icon="pencil-square"></b-icon
                         ></jet-nav-link>
@@ -92,6 +92,7 @@ export default {
     },
     data() {
         return {
+            api_url: this.$root.api_url,
             fields: [
                 {
                     key: "id",
@@ -127,7 +128,7 @@ export default {
                 )
             )
                 return;
-            this.$inertia.delete(`/cargosautoridades/${cargoautoridad.id}`);
+            this.$inertia.delete(`${this.api_url}/cargosautoridades/${cargoautoridad.id}`);
         },
         restaurar(cargoautoridad) {
             if (
@@ -137,7 +138,7 @@ export default {
             )
                 return;
             this.$inertia.post(
-                `/cargosautoridades/${cargoautoridad.id}/restore`
+                `${this.api_url}/cargosautoridades/${cargoautoridad.id}/restore`
             );
         },
         countDownChanged(dismissCountDown) {

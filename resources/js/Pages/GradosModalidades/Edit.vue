@@ -11,14 +11,14 @@
             <div class="card-body">
                 <b-form @submit.prevent="actualizar">
                     <b-form-group
-                        id="input-group-3"
+                        id="input-group-1"
                         label="Grado:"
-                        label-for="input-3"
+                        label-for="input-1"
                     >
                         <b-form-select
                             v-model="gradomodalidad.idgrado"
                             :options="grados"
-                            id="input-3"
+                            id="input-1"
                         >
                             <template v-slot:first>
                                 <option :value="null" disabled>
@@ -31,14 +31,14 @@
                         </div>
                     </b-form-group>
                     <b-form-group
-                        id="input-group-4"
+                        id="input-group-2"
                         label="Modalidad:"
-                        label-for="input-4"
+                        label-for="input-2"
                     >
                         <b-form-select
                             v-model="gradomodalidad.idmodalidad"
                             :options="modalidades"
-                            id="input-4"
+                            id="input-2"
                         >
                             <template v-slot:first>
                                 <option :value="null" disabled>
@@ -46,16 +46,22 @@
                                 </option>
                             </template>
                         </b-form-select>
-                        <div
-                            v-if="$page.errors.idmodalidad"
-                            class="text-danger"
-                        >
+                        <div v-if="$page.errors.idmodalidad" class="text-danger">
                             {{ $page.errors.idmodalidad[0] }}
                         </div>
                     </b-form-group>
-                    <b-button type="submit" variant="success"
-                        >Actualizar</b-button
-                    >
+                    <b-form-group id="input-group-3" label="Componente:" label-for="input-3">
+                        <b-form-input
+                            id="input-3"
+                            v-model="gradomodalidad.componente"
+                            placeholder="Nombre de componente"
+                            autocomplete="off"
+                        ></b-form-input>
+                        <div v-if="$page.errors.componente" class="text-danger">
+                            {{ $page.errors.componente[0] }}
+                        </div>
+                    </b-form-group>
+                    <b-button type="submit" variant="success">Actualizar</b-button>
                 </b-form>
             </div>
         </div>
@@ -71,12 +77,14 @@ export default {
     components: {
         AppLayout
     },
+    data() {
+        return {
+            api_url: this.$root.api_url            
+        };
+    },
     methods: {
         actualizar() {
-            this.$inertia.post(
-                `/gradosmodalidades/${this.gradomodalidad.id}`,
-                this.gradomodalidad
-            );
+            this.$inertia.post(`${this.api_url}/gradosmodalidades/${this.gradomodalidad.id}`, this.gradomodalidad);
         }
     }
 };

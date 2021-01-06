@@ -10,7 +10,7 @@
         <h3 class="card-title">Lista de Grados</h3>
         <jet-nav-link
           class="btn btn-success float-right"
-          href="/grados/create"
+          :href="`${api_url}/grados/create`"
           >Crear</jet-nav-link
         >
       </div>
@@ -38,14 +38,14 @@
             <jet-nav-link
               v-if="row.item.deleted_at == null"
               class="btn btn-primary btn-sm"
-              :href="`/grados/${row.item.id}`"
+              :href="`${api_url}/grados/${row.item.id}`"
               type="button"
               ><b-icon icon="eye"></b-icon
             ></jet-nav-link>
             <jet-nav-link
               v-if="row.item.deleted_at == null"
               class="btn btn-warning btn-sm"
-              :href="`/grados/${row.item.id}/edit`"
+              :href="`${api_url}/grados/${row.item.id}/edit`"
               type="button"
               ><b-icon icon="pencil-square"></b-icon
             ></jet-nav-link>
@@ -89,6 +89,7 @@ export default {
   },
   data() {
     return {
+      api_url: this.$root.api_url,
       fields: [
         { key: "id", label: "ID", sortable: true, class: "text-center" },
         { key: "nombre", label: "Nombre", sortable: true },
@@ -104,11 +105,11 @@ export default {
   methods: {
     eliminar(grado) {
       if (!confirm("Estas seguro de querer eliminar este grado?")) return;
-      this.$inertia.delete(`/grados/${grado.id}`);
+      this.$inertia.delete(`${this.api_url}/grados/${grado.id}`);
     },
     restaurar(grado) {      
       if (!confirm("Estas seguro de querer restaurar este grado?")) return;
-      this.$inertia.post(`/grados/${grado.id}/restore`);
+      this.$inertia.post(`${this.api_url}/grados/${grado.id}/restore`);
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;

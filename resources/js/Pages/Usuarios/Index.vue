@@ -33,7 +33,7 @@
       <div class="card-body">
         <b-row>
           <b-col lg="2">
-            <jet-nav-link class="btn btn-success" href="/usuarios/create"
+            <jet-nav-link class="btn btn-success" :href="`${api_url}/usuarios/create`"
               >Nuevo Usuario</jet-nav-link
             >
           </b-col>
@@ -145,6 +145,7 @@ export default {
   },
   data() {
     return {
+      api_url: this.$root.api_url,
       fields: [
         { key: "id", label: "ID", sortable: true },
         { key: "name", label: "Nombre", sortable: true },

@@ -13,11 +13,11 @@ class CargoAutoridadController extends Controller
 {
     public function index()
     {
-        $cargosautoridades = \DB::table('gt_cargos_autoridades')
-                                ->join('gt_cargos', 'gt_cargos.id', '=', 'gt_cargos_autoridades.idcargo')
-                                ->join('gt_autoridades', 'gt_autoridades.id', '=', 'gt_cargos_autoridades.idautoridad')
-                                ->select('gt_cargos_autoridades.*', 'gt_cargos.nombre as cargo', 'gt_autoridades.nombre as autoridad')
-                                ->orderBy('gt_cargos_autoridades.id', 'desc')
+        $cargosautoridades = \DB::table('gt_cargo_autoridades')
+                                ->join('gt_cargos', 'gt_cargos.id', '=', 'gt_cargo_autoridades.idcargo')
+                                ->join('gt_autoridades', 'gt_autoridades.id', '=', 'gt_cargo_autoridades.idautoridad')
+                                ->select('gt_cargo_autoridades.*', 'gt_cargos.nombre as cargo', 'gt_autoridades.nombre as autoridad')
+                                ->orderBy('gt_cargo_autoridades.id', 'desc')
                                 ->get();        
         
         return Inertia::render('CargosAutoridades/Index', compact('cargosautoridades'));
@@ -51,11 +51,11 @@ class CargoAutoridadController extends Controller
     
     public function show(CargoAutoridad $cargoautoridad)
     {
-        $cargoautoridad = \DB::table('gt_cargos_autoridades')
-                                ->join('gt_cargos', 'gt_cargos.id', '=', 'gt_cargos_autoridades.idcargo')
-                                ->join('gt_autoridades', 'gt_autoridades.id', '=', 'gt_cargos_autoridades.idautoridad')
-                                ->select('gt_cargos_autoridades.*', 'gt_cargos.nombre as cargo', 'gt_autoridades.nombre as autoridad')
-                                ->where('gt_cargos_autoridades.id', $cargoautoridad->id)                                
+        $cargoautoridad = \DB::table('gt_cargo_autoridades')
+                                ->join('gt_cargos', 'gt_cargos.id', '=', 'gt_cargo_autoridades.idcargo')
+                                ->join('gt_autoridades', 'gt_autoridades.id', '=', 'gt_cargo_autoridades.idautoridad')
+                                ->select('gt_cargo_autoridades.*', 'gt_cargos.nombre as cargo', 'gt_autoridades.nombre as autoridad')
+                                ->where('gt_cargo_autoridades.id', $cargoautoridad->id)                                
                                 ->first();        
         
         return Inertia::render('CargosAutoridades/Show', compact('cargoautoridad'));

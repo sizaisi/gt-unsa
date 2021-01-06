@@ -38,6 +38,7 @@ export default {
   },
   data() {
     return {
+      api_url: this.$root.api_url,
       rol: {
         nombre: "",
       },
@@ -45,7 +46,7 @@ export default {
   },
   methods: {
     registrar() {
-      this.$inertia.post(`/roles`, this.rol);
+      this.$inertia.post(`${this.api_url}/roles`, this.rol);
     },
   },
 };

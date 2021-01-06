@@ -59,11 +59,13 @@ export default {
         AppLayout
     },
     data() {
-        return {};
+        return {
+            api_url: this.$root.api_url,
+        };
     },
     methods: {
         actualizar() {
-            this.$inertia.post(`/cargos/${this.cargo.id}`, this.cargo);
+            this.$inertia.post(`${this.api_url}/cargos/${this.cargo.id}`, this.cargo);
         }
     }
 };

@@ -35,7 +35,7 @@
                     </b-form-group>
                     <b-form-group
                         id="input-group-2"
-                        label="Grado:"
+                        label="Procedimiento origen:"
                         label-for="input-2"
                     >
                         <b-form-select
@@ -58,7 +58,7 @@
                     </b-form-group>
                     <b-form-group
                         id="input-group-3"
-                        label="Modalidad:"
+                        label="Procedimiento destino:"
                         label-for="input-3"
                     >
                         <b-form-select
@@ -81,7 +81,7 @@
                     </b-form-group>
                     <b-form-group
                         id="input-group-4"
-                        label="Modalidad:"
+                        label="Etiqueta:"
                         label-for="input-4"
                     >
                         <b-form-select
@@ -99,9 +99,7 @@
                             {{ $page.errors.etiqueta[0] }}
                         </div>
                     </b-form-group>
-                    <b-button type="submit" variant="success"
-                        >Registrar</b-button
-                    >
+                    <b-button type="submit" variant="success">Actualizar</b-button>
                 </b-form>
             </div>
         </div>
@@ -113,18 +111,14 @@ import AppLayout from "./../../Layouts/AppLayout";
 
 export default {
     name: "rutas.create",
-    props: ["ruta", "gradosmodalidades", "procedimientos"],
+    props: ["ruta", "gradosmodalidades"],
     components: {
         AppLayout
     },
     data() {
-        return {
-            ruta: {
-                idgradomodalidad: null,
-                idproc_origen: null,
-                idproc_destino: null,
-                etiqueta: null
-            },
+        return {     
+            api_url: this.$root.api_url,     
+            procedimientos: [],
             etiquetas: [
                 "iniciar",
                 "enviar",
@@ -140,9 +134,39 @@ export default {
             ]
         };
     },
+    watch: {
+        'ruta.idgradomodalidad': function(val) {              
+            this.ruta.idproc_origen = null
+            this.ruta.idproc_destino = null            
+
+            axios.get(`${this.api_url}/rutas/getProcedimientos/${val}`)
+                .then(response => {                    
+                    this.procedimientos = response.data;
+                    this.procedimientos.unshift({value: 0, text: 'Inicio'})
+                    this.procedimientos.push({value: 0, text: 'Fin'})
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },        
+    },
+    created() {
+        this.getProcedimientos()
+    },
     methods: {
         registrar() {
-            this.$inertia.post(`/rutas/${this.ruta.id}`, this.ruta);
+            this.$inertia.post(`${this.api_url}/rutas/${this.ruta.id}`, this.ruta);
+        },
+        getProcedimientos() {
+            axios.get(`${this.api_url}/rutas/getProcedimientos/${this.ruta.idgradomodalidad}`)
+                .then(response => {                    
+                    this.procedimientos = response.data;
+                    this.procedimientos.unshift({value: 0, text: 'Inicio'})
+                    this.procedimientos.push({value: 0, text: 'Fin'})
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 };

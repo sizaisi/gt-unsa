@@ -13,26 +13,26 @@ class ProcedimientoController extends Controller
     public function index()
     {
         $procedimientos = \DB::table('gt_procedimientos')
-                                ->join('gt_grados_modalidades', 'gt_grados_modalidades.id', '=', 'gt_procedimientos.idgradomodalidad')
+                                ->join('gt_grado_modalidades', 'gt_grado_modalidades.id', '=', 'gt_procedimientos.idgradomodalidad')
                                 ->join('gt_roles', 'gt_roles.id', '=', 'gt_procedimientos.idrol')
-                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
-                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
+                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grado_modalidades.idgrado')
+                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grado_modalidades.idmodalidad')
                                 ->select('gt_procedimientos.*', 'gt_roles.nombre as rol',
                                         \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as grado_modalidad'))
                                 ->orderBy('gt_procedimientos.id', 'desc')
                                 ->get();       
         
         return Inertia::render('Procedimientos/Index', compact('procedimientos'));
-    }    
+    }        
 
     public function create()
     {
-        $gradosmodalidades = \DB::table('gt_grados_modalidades')
-                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
-                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
-                                ->select('gt_grados_modalidades.id as value',
+        $gradosmodalidades = \DB::table('gt_grado_modalidades')
+                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grado_modalidades.idgrado')
+                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grado_modalidades.idmodalidad')
+                                ->select('gt_grado_modalidades.id as value',
                                         \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as text'))
-                                ->orderBy('gt_grados_modalidades.id', 'desc')
+                                ->orderBy('gt_grado_modalidades.id', 'desc')
                                 ->get();      
         
         $roles = Rol::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
@@ -48,7 +48,7 @@ class ProcedimientoController extends Controller
         $procedimiento->idgradomodalidad = $request->idgradomodalidad;        
         $procedimiento->idrol = $request->idrol;
         $procedimiento->tipo_rol = $request->tipo_rol;
-        $procedimiento->url_formulario = $request->url_formulario;
+        $procedimiento->componente = $request->componente;
         $procedimiento->orden = $request->orden;
         $procedimiento->descripcion = $request->descripcion;
 
@@ -64,10 +64,10 @@ class ProcedimientoController extends Controller
     public function show(Procedimiento $procedimiento)
     {
         $procedimiento = \DB::table('gt_procedimientos')
-                                ->join('gt_grados_modalidades', 'gt_grados_modalidades.id', '=', 'gt_procedimientos.idgradomodalidad')
+                                ->join('gt_grado_modalidades', 'gt_grado_modalidades.id', '=', 'gt_procedimientos.idgradomodalidad')
                                 ->join('gt_roles', 'gt_roles.id', '=', 'gt_procedimientos.idrol')
-                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
-                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
+                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grado_modalidades.idgrado')
+                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grado_modalidades.idmodalidad')
                                 ->select('gt_procedimientos.*', 'gt_roles.nombre as rol',
                                         \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as grado_modalidad'))
                                 ->where('gt_procedimientos.id', $procedimiento->id)
@@ -78,12 +78,12 @@ class ProcedimientoController extends Controller
 
     public function edit(Procedimiento $procedimiento)
     {
-        $gradosmodalidades = \DB::table('gt_grados_modalidades')
-                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
-                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
-                                ->select('gt_grados_modalidades.id as value',
+        $gradosmodalidades = \DB::table('gt_grado_modalidades')
+                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grado_modalidades.idgrado')
+                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grado_modalidades.idmodalidad')
+                                ->select('gt_grado_modalidades.id as value',
                                         \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as text'))
-                                ->orderBy('gt_grados_modalidades.id', 'desc')
+                                ->orderBy('gt_grado_modalidades.id', 'desc')
                                 ->get();      
         
         $roles = Rol::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
@@ -97,7 +97,7 @@ class ProcedimientoController extends Controller
         $procedimiento->idgradomodalidad = $request->idgradomodalidad;        
         $procedimiento->idrol = $request->idrol;
         $procedimiento->tipo_rol = $request->tipo_rol;
-        $procedimiento->url_formulario = $request->url_formulario;
+        $procedimiento->componente = $request->componente;
         $procedimiento->orden = $request->orden;
         $procedimiento->descripcion = $request->descripcion;
 

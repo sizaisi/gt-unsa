@@ -18,40 +18,7 @@ class CreateGtModalidadesTable extends Migration
             $table->string('nombre', 50);
             $table->timestamps();
             $table->softDeletes();
-        });
-
-        DB::table('gt_modalidades')->insert([
-            [
-                'nombre' => 'TRABAJO DE INVESTIGACIÓN',
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
-            [
-                'nombre' => 'SUSTENTACIÓN DE TESIS',
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),               
-            ],
-            [
-                'nombre' => 'PRUEBA DE SUFICIENCIA PROFESIONAL',
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),               
-            ],
-            [
-                'nombre' => 'TRABAJO ACADÉMICO',
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
-            [
-                'nombre' => 'AUTOMÁTICO',
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),    
-            ],
-            [
-                'nombre' => 'SERVICIOS PROFESIONALES',
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),               
-            ],
-        ]);
+        });        
     }
 
     /**

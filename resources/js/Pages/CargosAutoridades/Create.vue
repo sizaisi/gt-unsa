@@ -108,6 +108,7 @@ export default {
     },
     data() {
         return {
+            api_url: this.$root.api_url,
             cargoautoridad: {
                 idcargo: null,
                 idautoridad: null,
@@ -118,7 +119,7 @@ export default {
     },
     methods: {
         registrar() {
-            this.$inertia.post(`/cargosautoridades`, this.cargoautoridad);
+            this.$inertia.post(`${this.api_url}/cargosautoridades`, this.cargoautoridad);
         }
     }
 };

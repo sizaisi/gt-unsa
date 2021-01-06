@@ -72,7 +72,7 @@
                         id="input-group-5"
                         label="Tipo-Rol:"
                         label-for="input-5"
-                        v-if="procedimiento.idrol == 3"
+                        v-if="procedimiento.idrol == 4"
                     >
                         <b-form-select
                             v-model="procedimiento.tipo_rol"
@@ -92,20 +92,20 @@
 
                     <b-form-group
                         id="input-group-7"
-                        label="Formulario:"
+                        label="Componente:"
                         label-for="input-7"
                     >
                         <b-form-input
                             id="input-7"
-                            v-model="procedimiento.url_formulario"
+                            v-model="procedimiento.componente"
                             placeholder="Nombre de formulario"
                             autocomplete="off"
                         ></b-form-input>
                         <div
-                            v-if="$page.errors.url_formulario"
+                            v-if="$page.errors.componente"
                             class="text-danger"
                         >
-                            {{ $page.errors.url_formulario[0] }}
+                            {{ $page.errors.componente[0] }}
                         </div>
                     </b-form-group>
                     <b-form-group
@@ -163,12 +163,13 @@ export default {
     },
     data() {
         return {
+            api_url: this.$root.api_url,
             procedimiento: {
                 nombre: "",
                 idgradomodalidad: null,
                 idrol: null,
                 tipo_rol: null,
-                url_formulario: "",
+                componente: "",
                 orden: "",
                 descripcion: ""
             }
@@ -176,7 +177,7 @@ export default {
     },
     methods: {
         registrar() {
-            this.$inertia.post(`/procedimientos`, this.procedimiento);
+            this.$inertia.post(`${this.api_url}/procedimientos`, this.procedimiento);
         }
     }
 };

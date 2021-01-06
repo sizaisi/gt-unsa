@@ -10,7 +10,7 @@
                 <h3 class="card-title">Lista de Cargos</h3>
                 <jet-nav-link
                     class="btn btn-success float-right"
-                    href="/cargos/create"
+                    :href="`${api_url}/cargos/create`"
                     >Crear</jet-nav-link
                 >
             </div>
@@ -41,14 +41,14 @@
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-primary btn-sm"
-                            :href="`/cargos/${row.item.id}`"
+                            :href="`${api_url}/cargos/${row.item.id}`"
                             type="button"
                             ><b-icon icon="eye"></b-icon
                         ></jet-nav-link>
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-warning btn-sm"
-                            :href="`/cargos/${row.item.id}/edit`"
+                            :href="`${api_url}/cargos/${row.item.id}/edit`"
                             type="button"
                             ><b-icon icon="pencil-square"></b-icon
                         ></jet-nav-link>
@@ -92,6 +92,7 @@ export default {
     },
     data() {
         return {
+            api_url: this.$root.api_url,
             fields: [
                 {
                     key: "id",
@@ -115,12 +116,12 @@ export default {
     methods: {
         eliminar(cargo) {
             if (!confirm("Estas seguro de querer eliminar este cargo?")) return;
-            this.$inertia.delete(`/cargos/${cargo.id}`);
+            this.$inertia.delete(`${this.api_url}/cargos/${cargo.id}`);
         },
         restaurar(cargo) {
             if (!confirm("Estas seguro de querer restaurar este cargo?"))
                 return;
-            this.$inertia.post(`/cargos/${cargo.id}/restore`);
+            this.$inertia.post(`${this.api_url}/cargos/${cargo.id}/restore`);
         },
         countDownChanged(dismissCountDown) {
             this.dismissCountDown = dismissCountDown;

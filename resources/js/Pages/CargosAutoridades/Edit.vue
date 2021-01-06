@@ -106,10 +106,15 @@ export default {
     components: {
         AppLayout
     },
+    data() {
+        return {
+            api_url: this.$root.api_url            
+        };
+    },
     methods: {
         actualizar() {
             this.$inertia.post(
-                `/cargosautoridades/${this.cargoautoridad.id}`,
+                `${this.api_url}/cargosautoridades/${this.cargoautoridad.id}`,
                 this.cargoautoridad
             );
         }

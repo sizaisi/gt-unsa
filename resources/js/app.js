@@ -23,7 +23,12 @@ Vue.use(PortalVue);
 
 const app = document.getElementById("app");
 
+import config from "./config";
+
 new Vue({
+    data: {
+        api_url: config.API_URL
+    },
     render: h =>
         h(InertiaApp, {
             props: {

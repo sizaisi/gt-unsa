@@ -56,12 +56,12 @@
                     </b-form-group>
                     <b-form-group
                         id="input-group-6"
-                        label="Url formulario:"
+                        label="Componente:"
                         label-for="input-6"
                     >
                         <b-form-input
                             id="input-6"
-                            v-model="procedimiento.url_formulario"
+                            v-model="procedimiento.componente"
                             readonly
                         ></b-form-input>
                     </b-form-group>

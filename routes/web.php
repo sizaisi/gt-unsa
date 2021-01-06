@@ -89,7 +89,7 @@ Route::get('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::cla
 Route::get('/gradosmodalidades/{gradomodalidad}/edit', [GradoModalidadController::class, 'edit'])->name('gradosmodalidades.edit');
 Route::post('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'update'])->name('gradosmodalidades.update');
 Route::delete('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'destroy'])->name('gradosmodalidades.destroy');
-//Route::post('/gradosmodalidades/{gradomodalidad}/restore', [GradoModalidadController::class, 'restore'])->name('gradosmodalidades.restore');
+Route::post('/gradosmodalidades/{gradomodalidad}/restore', [GradoModalidadController::class, 'restore'])->name('gradosmodalidades.restore');
 
 Route::get('/procedimientos', [ProcedimientoController::class, 'index'])->name('procedimientos.index');
 Route::get('/procedimientos/create', [ProcedimientoController::class, 'create'])->name('procedimientos.create');
@@ -108,6 +108,7 @@ Route::get('/rutas/{ruta}/edit', [RutaController::class, 'edit'])->name('rutas.e
 Route::post('/rutas/{ruta}', [RutaController::class, 'update'])->name('rutas.update');
 Route::delete('/rutas/{ruta}', [RutaController::class, 'destroy'])->name('rutas.destroy');
 Route::post('/rutas/{ruta}/restore', [RutaController::class, 'restore'])->name('rutas.restore');
+Route::get('/rutas/getProcedimientos/{idgradomodalidad}', [RutaController::class, 'getProcedimientos'])->name('rutas.getProcedimientos');
 
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');

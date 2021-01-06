@@ -88,6 +88,7 @@ export default {
   },
   data() {
     return {
+      api_url: this.$root.api_url,
       form: {
         email: "",
         name: "",

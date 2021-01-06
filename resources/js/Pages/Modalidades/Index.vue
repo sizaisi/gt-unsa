@@ -10,7 +10,7 @@
         <h3 class="card-title">Lista de modalidades</h3>
         <jet-nav-link
           class="btn btn-success float-right"
-          href="/modalidades/create"
+          :href="`${api_url}/modalidades/create`"
           >Crear</jet-nav-link
         >
       </div>
@@ -38,14 +38,14 @@
             <jet-nav-link
               v-if="row.item.deleted_at == null"
               class="btn btn-primary btn-sm"
-              :href="`/modalidades/${row.item.id}`"
+              :href="`${api_url}/modalidades/${row.item.id}`"
               type="button"
               ><b-icon icon="eye"></b-icon
             ></jet-nav-link>
             <jet-nav-link
               v-if="row.item.deleted_at == null"
               class="btn btn-warning btn-sm"
-              :href="`/modalidades/${row.item.id}/edit`"
+              :href="`${api_url}/modalidades/${row.item.id}/edit`"
               type="button"
               ><b-icon icon="pencil-square"></b-icon
             ></jet-nav-link>
@@ -89,6 +89,7 @@ export default {
   },
   data() {
     return {
+      api_url: this.$root.api_url,
       fields: [
         { key: "id", label: "ID", sortable: true, class: "text-center"},
         { key: "nombre", label: "Nombre", sortable: true },
@@ -101,12 +102,12 @@ export default {
   methods: {
     eliminar(modalidad) {      
       if (!confirm("Estas seguro de querer eliminar esta modalidad?")) return;
-      this.$inertia.delete(`/modalidades/${modalidad.id}`);
+      this.$inertia.delete(`${this.api_url}/modalidades/${modalidad.id}`);
       
     },
     restaurar(modalidad) {      
       if (!confirm("Estas seguro de querer restaurar esta modalidad?")) return;
-      this.$inertia.post(`/modalidades/${modalidad.id}/restore`);
+      this.$inertia.post(`${this.api_url}/modalidades/${modalidad.id}/restore`);
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;

@@ -11,26 +11,33 @@
             <div class="card-body">
                 <b-form>
                     <b-form-group
-                        id="input-group-3"
+                        id="input-group-1"
                         label="Grado:"
-                        label-for="input-3"
+                        label-for="input-1"
                     >
                         <b-form-input
-                            id="input-3"
+                            id="input-1"
                             v-model="gradomodalidad.grado"
                             readonly
                         ></b-form-input>
                     </b-form-group>
                     <b-form-group
-                        id="input-group-4"
+                        id="input-group-2"
                         label="Modalidad:"
-                        label-for="input-4"
+                        label-for="input-2"
                     >
                         <b-form-input
-                            id="input-4"
+                            id="input-2"
                             v-model="gradomodalidad.modalidad"
                             readonly
                         ></b-form-input>
+                    </b-form-group>
+                    <b-form-group id="input-group-3" label="Componente:" label-for="input-3">
+                        <b-form-input
+                            id="input-3"
+                            v-model="gradomodalidad.componente"                            
+                            readonly
+                        ></b-form-input>                       
                     </b-form-group>
                 </b-form>
             </div>
@@ -46,6 +53,6 @@ export default {
     props: ["gradomodalidad"],
     components: {
         AppLayout
-    }
+    }    
 };
 </script>

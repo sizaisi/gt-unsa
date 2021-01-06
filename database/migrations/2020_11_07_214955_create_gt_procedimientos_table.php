@@ -19,9 +19,9 @@ class CreateGtProcedimientosTable extends Migration
             $table->integer('idgradomodalidad');            
             $table->integer('idrol');
             $table->enum('tipo_rol', ['asesor', 'jurado'])->nullable();
-            $table->string('url_formulario', 250);
+            $table->string('componente', 250);
             $table->tinyInteger('orden');
-            $table->string('descripcion', 250);            
+            $table->string('descripcion', 1000);            
             $table->timestamps();
             $table->softDeletes();
         });

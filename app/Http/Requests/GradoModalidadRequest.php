@@ -26,6 +26,7 @@ class GradoModalidadRequest extends FormRequest
         return [            
             'idgrado' => 'required',
             'idmodalidad' => 'required',
+            'componente' => 'required',
         ];
     }
 

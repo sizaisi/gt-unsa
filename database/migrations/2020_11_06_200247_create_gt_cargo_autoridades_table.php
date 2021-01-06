@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGtCargosAutoridadesTable extends Migration
+class CreateGtCargoAutoridadesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateGtCargosAutoridadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('gt_cargos_autoridades', function (Blueprint $table) {
+        Schema::create('gt_cargo_autoridades', function (Blueprint $table) {
             $table->id();
             $table->integer('idcargo');
             $table->integer('idautoridad');
@@ -31,6 +31,6 @@ class CreateGtCargosAutoridadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gt_cargos_autoridades');
+        Schema::dropIfExists('gt_cargo_autoridades');
     }
 }

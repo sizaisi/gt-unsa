@@ -83,7 +83,8 @@ export default {
     AppLayout,
   },
   data() {
-    return {      
+    return {    
+      api_url: this.$root.api_url,  
       niveles: [
           { value: 'W', text: 'W' },
           { value: 'X', text: 'X' },
@@ -100,7 +101,7 @@ export default {
   },  
   methods: {
     actualizar() {
-      this.$inertia.post(`/grados/${this.grado.id}`, this.grado);
+      this.$inertia.post(`${this.api_url}/grados/${this.grado.id}`, this.grado);
     }    
   },
 };

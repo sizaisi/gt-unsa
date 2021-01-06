@@ -49,6 +49,7 @@ export default {
   },
   data() {
     return {
+      api_url: this.$root.api_url,
       autoridad: {
         nombre: "",
         grado: "",
@@ -57,7 +58,7 @@ export default {
   },
   methods: {
     registrar() {
-      this.$inertia.post(`/autoridades`, this.autoridad);
+      this.$inertia.post(`${this.api_url}/autoridades`, this.autoridad);
     },
   },
 };

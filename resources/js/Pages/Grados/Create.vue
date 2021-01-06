@@ -87,6 +87,7 @@ export default {
   },
   data() {
     return {
+      api_url: this.$root.api_url,
       grado: {
         nombre: "",
         nive: null,
@@ -110,7 +111,7 @@ export default {
   },  
   methods: {
     registrar() {
-      this.$inertia.post(`/grados`, this.grado);
+      this.$inertia.post(`${this.api_url}/grados`, this.grado);
     }    
   },
 };

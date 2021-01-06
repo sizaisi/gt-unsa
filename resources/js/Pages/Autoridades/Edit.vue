@@ -59,14 +59,13 @@ export default {
         AppLayout
     },
     data() {
-        return {};
+        return {
+            api_url: this.$root.api_url,
+        };
     },
     methods: {
         actualizar() {
-            this.$inertia.post(
-                `/autoridades/${this.autoridad.id}`,
-                this.autoridad
-            );
+            this.$inertia.post(`${this.api_url}/autoridades/${this.autoridad.id}`, this.autoridad);
         }
     }
 };

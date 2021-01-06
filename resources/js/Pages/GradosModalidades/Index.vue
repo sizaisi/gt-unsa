@@ -10,7 +10,7 @@
                 <h3 class="card-title">Lista de Grados-Modalidades</h3>
                 <jet-nav-link
                     class="btn btn-success float-right"
-                    href="/gradosmodalidades/create"
+                    :href="`${api_url}/gradosmodalidades/create`"
                     >Crear</jet-nav-link
                 >
             </div>
@@ -29,25 +29,23 @@
                     empty-text="No hay registros para mostrar"
                 >
                     <template v-slot:cell(condicion)="row">
-                        <b-badge
-                            v-if="row.item.deleted_at == null"
-                            variant="success"
-                            >Activo</b-badge
-                        >
+                        <b-badge v-if="row.item.deleted_at == null" variant="success">
+                            Activo
+                        </b-badge>
                         <b-badge v-else variant="secondary">Inactivo</b-badge>
                     </template>
                     <template v-slot:cell(acciones)="row">
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-primary btn-sm"
-                            :href="`/gradosmodalidades/${row.item.id}`"
+                            :href="`${api_url}/gradosmodalidades/${row.item.id}`"
                             type="button"
                             ><b-icon icon="eye"></b-icon
                         ></jet-nav-link>
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-warning btn-sm"
-                            :href="`/gradosmodalidades/${row.item.id}/edit`"
+                            :href="`${api_url}/gradosmodalidades/${row.item.id}/edit`"
                             type="button"
                             ><b-icon icon="pencil-square"></b-icon
                         ></jet-nav-link>
@@ -91,6 +89,7 @@ export default {
     },
     data() {
         return {
+            api_url: this.$root.api_url,
             fields: [
                 {
                     key: "id",
@@ -100,6 +99,7 @@ export default {
                 },
                 { key: "grado", label: "Grado", sortable: true },
                 { key: "modalidad", label: "Modalidad", sortable: true },
+                { key: "componente", label: "Componente", sortable: true },
                 { key: "condicion", label: "Condición", class: "text-center" },
                 { key: "acciones", label: "Acciones", class: "text-center" }
             ],
@@ -107,25 +107,17 @@ export default {
         };
     },
     methods: {
-        eliminar(gradomodalidad) {
-            if (
-                !confirm(
-                    "Estas seguro de querer eliminar este grado-modalidad?"
-                )
-            )
+        eliminar(gradomodalidad) {            
+            if (!confirm("Estas seguro de querer eliminar este grado-modalidad?"))
                 return;
-            this.$inertia.delete(`/gradosmodalidades/${gradomodalidad.id}`);
+
+            this.$inertia.delete(`${this.api_url}/gradosmodalidades/${gradomodalidad.id}`);
         },
         restaurar(gradomodalidad) {
-            if (
-                !confirm(
-                    "Estas seguro de querer restaurar este grado-modalidad?"
-                )
-            )
+            if (!confirm("Estas seguro de querer restaurar este grado-modalidad?"))
                 return;
-            this.$inertia.post(
-                `/gradosmodalidades/${gradomodalidad.id}/restore`
-            );
+
+            this.$inertia.post(`${this.api_url}/gradosmodalidades/${gradomodalidad.id}/restore`);
         },
         countDownChanged(dismissCountDown) {
             this.dismissCountDown = dismissCountDown;

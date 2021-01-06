@@ -10,7 +10,7 @@ class CargoAutoridad extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'gt_cargos_autoridades';
+    protected $table = 'gt_cargo_autoridades';
 
     protected $fillable = ['idcargo', 'idautoridad', 'fecha_inicio', 'fecha_fin'];
 }

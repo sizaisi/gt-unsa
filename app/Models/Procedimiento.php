@@ -17,7 +17,7 @@ class Procedimiento extends Model
         'idgradomodalidad',         
         'idrol', 
         'tipo_rol', 
-        'url_formulario', 
+        'componente', 
         'orden', 
         'descripcion'
     ];

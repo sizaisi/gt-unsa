@@ -10,7 +10,7 @@
                 <h3 class="card-title">Lista de Autoridades</h3>
                 <jet-nav-link
                     class="btn btn-success float-right"
-                    href="/autoridades/create"
+                    :href="`${api_url}/autoridades/create`"
                     >Crear</jet-nav-link
                 >
             </div>
@@ -41,14 +41,14 @@
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-primary btn-sm"
-                            :href="`/autoridades/${row.item.id}`"
+                            :href="`${api_url}/autoridades/${row.item.id}`"
                             type="button"
                             ><b-icon icon="eye"></b-icon
                         ></jet-nav-link>
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-warning btn-sm"
-                            :href="`/autoridades/${row.item.id}/edit`"
+                            :href="`${api_url}/autoridades/${row.item.id}/edit`"
                             type="button"
                             ><b-icon icon="pencil-square"></b-icon
                         ></jet-nav-link>
@@ -92,6 +92,7 @@ export default {
     },
     data() {
         return {
+            api_url: this.$root.api_url,
             fields: [
                 {
                     key: "id",
@@ -111,12 +112,12 @@ export default {
         eliminar(autoridad) {
             if (!confirm("Estas seguro de querer eliminar esta autoridad?"))
                 return;
-            this.$inertia.delete(`/autoridades/${autoridad.id}`);
+            this.$inertia.delete(`${this.api_url}/autoridades/${autoridad.id}`);
         },
         restaurar(autoridad) {
             if (!confirm("Estas seguro de querer restaurar esta autoridad?"))
                 return;
-            this.$inertia.post(`/autoridades/${autoridad.id}/restore`);
+            this.$inertia.post(`${this.api_url}/autoridades/${autoridad.id}/restore`);
         },
         countDownChanged(dismissCountDown) {
             this.dismissCountDown = dismissCountDown;

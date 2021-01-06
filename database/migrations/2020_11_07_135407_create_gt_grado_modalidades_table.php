@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGtGradosModalidadesTable extends Migration
+class CreateGtGradoModalidadesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateGtGradosModalidadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('gt_grados_modalidades', function (Blueprint $table) {
+        Schema::create('gt_grado_modalidades', function (Blueprint $table) {
             $table->id();            
             $table->integer('idgrado');
-            $table->integer('idmodalidad');            
+            $table->integer('idmodalidad'); 
+            $table->string('componente', 50);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ class CreateGtGradosModalidadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gt_grados_modalidades');
+        Schema::dropIfExists('gt_grado_modalidades');
     }
 }

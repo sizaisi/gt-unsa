@@ -38,11 +38,13 @@ export default {
     AppLayout,
   },
   data() {
-    return {};
+    return {
+      api_url: this.$root.api_url,
+    };
   },
   methods: {
     actualizar() {
-      this.$inertia.post(`/modalidades/${this.modalidad.id}`, this.modalidad);
+      this.$inertia.post(`${this.api_url}/modalidades/${this.modalidad.id}`, this.modalidad);
     },
   },
 };

@@ -288,7 +288,7 @@
                     <li class="nav-header">ADMINISTRACIÓN</li>
                     <li class="nav-item">
                         <jet-nav-link
-                            href="/usuarios"
+                            :href="`${api_url}/usuarios`"                            
                             type="link"
                             :active="$page.currentRouteName == 'usuarios.index'"
                             ><i class="nav-icon far fa-image"></i>
@@ -298,7 +298,7 @@
                     <li class="nav-header">MANTENIMIENTO</li>
                     <li class="nav-item">
                         <jet-nav-link
-                            href="/modalidades"
+                            :href="`${api_url}/modalidades`"                            
                             type="link"
                             :active="
                                 $page.currentRouteName == 'modalidades.index'
@@ -308,7 +308,7 @@
                     </li>
                     <li class="nav-item">
                         <jet-nav-link
-                            href="/autoridades"
+                            :href="`${api_url}/autoridades`"                            
                             type="link"
                             :active="
                                 $page.currentRouteName == 'autoridades.index'
@@ -318,7 +318,7 @@
                     </li>
                     <li class="nav-item">
                         <jet-nav-link
-                            href="/cargos"
+                            :href="`${api_url}/cargos`"                         
                             type="link"
                             :active="$page.currentRouteName == 'cargos.index'"
                             ><i class="nav-icon far fa-image"></i> Cargos
@@ -326,7 +326,7 @@
                     </li>
                     <li class="nav-item">
                         <jet-nav-link
-                            href="/roles"
+                            :href="`${api_url}/roles`"                            
                             type="link"
                             :active="$page.currentRouteName == 'roles.index'"
                             ><i class="nav-icon far fa-image"></i> Roles
@@ -334,16 +334,16 @@
                     </li>
                     <li class="nav-item">
                         <jet-nav-link
-                            href="/grados"
+                            :href="`${api_url}/grados`"                            
                             type="link"
                             :active="$page.currentRouteName == 'grados.index'"
                             ><i class="nav-icon far fa-image"></i>
-                            Grados/Títulos
+                            Grados ó Títulos
                         </jet-nav-link>
                     </li>
                     <li class="nav-item">
-                        <jet-nav-link
-                            href="/cargosautoridades"
+                        <jet-nav-link                            
+                            :href="`${api_url}/cargosautoridades`"
                             type="link"
                             :active="
                                 $page.currentRouteName ==
@@ -355,7 +355,7 @@
                     </li>
                     <li class="nav-item">
                         <jet-nav-link
-                            href="/gradosmodalidades"
+                            :href="`${api_url}/gradosmodalidades/`"                            
                             type="link"
                             :active="
                                 $page.currentRouteName ==
@@ -367,19 +367,16 @@
                     </li>
                     <li class="nav-item">
                         <jet-nav-link
-                            href="/procedimientos"
+                            :href="`${api_url}/procedimientos`"                            
                             type="link"
-                            :active="
-                                $page.currentRouteName ==
-                                    'gradosprocedimientos.index'
-                            "
+                            :active="$page.currentRouteName == 'gradosprocedimientos.index'"
                             ><i class="nav-icon far fa-image"></i>
-                            Procedimiento
+                            Procedimientos
                         </jet-nav-link>
                     </li>
                     <li class="nav-item">
                         <jet-nav-link
-                            href="/rutas"
+                            :href="`${api_url}/rutas`"                            
                             type="link"
                             :active="$page.currentRouteName == 'rutas.index'"
                             ><i class="nav-icon far fa-image"></i> Rutas
@@ -660,6 +657,11 @@ import JetNavLink from "./../Jetstream/NavLink";
 export default {
     components: {
         JetNavLink
-    }
+    },
+    data() {
+        return {
+            api_url: this.$root.api_url,
+        };
+    },
 };
 </script>

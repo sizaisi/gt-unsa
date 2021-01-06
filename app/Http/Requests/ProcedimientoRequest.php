@@ -27,7 +27,7 @@ class ProcedimientoRequest extends FormRequest
             'nombre' => 'required:max:150',
             'idgradomodalidad' => 'required',             
             'idrol' => 'required',             
-            'url_formulario' => 'required|max:250',
+            'componente' => 'required|max:250',
             'orden' => 'required',
             'descripcion' => 'required|max:250',
         ];

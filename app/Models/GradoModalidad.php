@@ -10,7 +10,7 @@ class GradoModalidad extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'gt_grados_modalidades';
+    protected $table = 'gt_grado_modalidades';
 
     protected $fillable = ['idgrado', 'idmodalidad', 'condicion'];
 }

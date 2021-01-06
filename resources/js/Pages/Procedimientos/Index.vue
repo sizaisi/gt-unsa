@@ -10,7 +10,7 @@
                 <h3 class="card-title">Lista de Procedimientos</h3>
                 <jet-nav-link
                     class="btn btn-success float-right"
-                    href="/procedimientos/create"
+                    :href="`${api_url}/procedimientos/create`"
                     >Crear</jet-nav-link
                 >
             </div>
@@ -41,14 +41,14 @@
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-primary btn-sm"
-                            :href="`/procedimientos/${row.item.id}`"
+                            :href="`${api_url}/procedimientos/${row.item.id}`"
                             type="button"
                             ><b-icon icon="eye"></b-icon
                         ></jet-nav-link>
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-warning btn-sm"
-                            :href="`/procedimientos/${row.item.id}/edit`"
+                            :href="`${api_url}/procedimientos/${row.item.id}/edit`"
                             type="button"
                             ><b-icon icon="pencil-square"></b-icon
                         ></jet-nav-link>
@@ -92,6 +92,7 @@ export default {
     },
     data() {
         return {
+            api_url: this.$root.api_url,
             fields: [
                 {
                     key: "id",
@@ -107,7 +108,7 @@ export default {
                 },
                 { key: "rol", label: "Rol", sortable: true },
                 { key: "tipo_rol", label: "Tipo", sortable: true },
-                { key: "url_formulario", label: "Formulario" },
+                { key: "componente", label: "Componente" },
                 {
                     key: "orden",
                     label: "Orden",
@@ -125,14 +126,14 @@ export default {
         eliminar(procedimiento) {
             if (!confirm("Estas seguro de querer eliminar este procedimiento?"))
                 return;
-            this.$inertia.delete(`/procedimientos/${procedimiento.id}`);
+            this.$inertia.delete(`${this.api_url}/procedimientos/${procedimiento.id}`);
         },
         restaurar(procedimiento) {
             if (
                 !confirm("Estas seguro de querer restaurar este procedimiento?")
             )
                 return;
-            this.$inertia.post(`/procedimientos/${procedimiento.id}/restore`);
+            this.$inertia.post(`${this.api_url}/procedimientos/${procedimiento.id}/restore`);
         },
         countDownChanged(dismissCountDown) {
             this.dismissCountDown = dismissCountDown;

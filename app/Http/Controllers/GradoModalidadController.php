@@ -13,11 +13,11 @@ class GradoModalidadController extends Controller
 {    
     public function index()
     {        
-        $gradosmodalidades = \DB::table('gt_grados_modalidades')
-                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
-                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
-                                ->select('gt_grados_modalidades.*', 'gt_grados.nombre as grado', 'gt_modalidades.nombre as modalidad')
-                                ->orderBy('gt_grados_modalidades.id', 'desc')
+        $gradosmodalidades = \DB::table('gt_grado_modalidades')
+                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grado_modalidades.idgrado')
+                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grado_modalidades.idmodalidad')
+                                ->select('gt_grado_modalidades.*', 'gt_grados.nombre as grado', 'gt_modalidades.nombre as modalidad')
+                                ->orderBy('gt_grado_modalidades.id', 'desc')
                                 ->get();
 
         return Inertia::render('GradosModalidades/Index', compact('gradosmodalidades'));
@@ -36,6 +36,7 @@ class GradoModalidadController extends Controller
         $gradomodalidad = new GradoModalidad();        
         $gradomodalidad->idgrado = $request->idgrado;
         $gradomodalidad->idmodalidad = $request->idmodalidad;
+        $gradomodalidad->componente = $request->componente;
 
         if ($gradomodalidad->save()) {
             $result = ['successMessage' => 'Grado-Modalidad creado con éxito'];
@@ -48,11 +49,11 @@ class GradoModalidadController extends Controller
 
     public function show(GradoModalidad $gradomodalidad)
     {
-        $gradomodalidad = \DB::table('gt_grados_modalidades')
-                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grados_modalidades.idgrado')
-                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grados_modalidades.idmodalidad')
-                                ->select('gt_grados_modalidades.*', 'gt_grados.nombre as grado', 'gt_modalidades.nombre as modalidad')
-                                ->where('gt_grados_modalidades.id', $gradomodalidad->id)                                
+        $gradomodalidad = \DB::table('gt_grado_modalidades')
+                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grado_modalidades.idgrado')
+                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grado_modalidades.idmodalidad')
+                                ->select('gt_grado_modalidades.*', 'gt_grados.nombre as grado', 'gt_modalidades.nombre as modalidad')
+                                ->where('gt_grado_modalidades.id', $gradomodalidad->id)                                
                                 ->first();                
 
         return Inertia::render('GradosModalidades/Show', compact('gradomodalidad'));
@@ -70,6 +71,7 @@ class GradoModalidadController extends Controller
     {
         $gradomodalidad->idgrado = $request->idgrado;
         $gradomodalidad->idmodalidad = $request->idmodalidad;
+        $gradomodalidad->componente = $request->componente;
 
         if ($gradomodalidad->update()) {
             $result = ['successMessage' => 'Grado-Modalidad actualizado con éxito'];

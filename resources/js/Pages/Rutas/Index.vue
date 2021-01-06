@@ -10,7 +10,7 @@
                 <h3 class="card-title">Lista de Rutas</h3>
                 <jet-nav-link
                     class="btn btn-success float-right"
-                    href="/rutas/create"
+                    :href="`${api_url}/rutas/create`"
                     >Crear</jet-nav-link
                 >
             </div>
@@ -41,14 +41,14 @@
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-primary btn-sm"
-                            :href="`/rutas/${row.item.id}`"
+                            :href="`${api_url}/rutas/${row.item.id}`"
                             type="button"
                             ><b-icon icon="eye"></b-icon
                         ></jet-nav-link>
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-warning btn-sm"
-                            :href="`/rutas/${row.item.id}/edit`"
+                            :href="`${api_url}/rutas/${row.item.id}/edit`"
                             type="button"
                             ><b-icon icon="pencil-square"></b-icon
                         ></jet-nav-link>
@@ -92,6 +92,7 @@ export default {
     },
     data() {
         return {
+            api_url: this.$root.api_url,
             fields: [
                 {
                     key: "id",
@@ -116,11 +117,11 @@ export default {
     methods: {
         eliminar(ruta) {
             if (!confirm("Estas seguro de querer eliminar esta ruta?")) return;
-            this.$inertia.delete(`/rutas/${ruta.id}`);
+            this.$inertia.delete(`${this.api_url}/rutas/${ruta.id}`);
         },
         restaurar(ruta) {
             if (!confirm("Estas seguro de querer restaurar esta ruta?")) return;
-            this.$inertia.post(`/rutas/${ruta.id}/restore`);
+            this.$inertia.post(`${this.api_url}/rutas/${ruta.id}/restore`);
         },
         countDownChanged(dismissCountDown) {
             this.dismissCountDown = dismissCountDown;

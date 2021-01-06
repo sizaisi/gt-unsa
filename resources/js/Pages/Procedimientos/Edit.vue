@@ -72,7 +72,7 @@
                         id="input-group-5"
                         label="Tipo-Rol:"
                         label-for="input-5"
-                        v-if="procedimiento.idrol == 3"
+                        v-if="procedimiento.idrol == 4"
                     >
                         <b-form-select
                             v-model="procedimiento.tipo_rol"
@@ -91,20 +91,20 @@
                     </b-form-group>
                     <b-form-group
                         id="input-group-7"
-                        label="Url formulario:"
+                        label="Componente:"
                         label-for="input-7"
                     >
                         <b-form-input
                             id="input-7"
-                            v-model="procedimiento.url_formulario"
+                            v-model="procedimiento.componente"
                             placeholder="Url del Formulario"
                             autocomplete="off"
                         ></b-form-input>
                         <div
-                            v-if="$page.errors.url_formulario"
+                            v-if="$page.errors.componente"
                             class="text-danger"
                         >
-                            {{ $page.errors.url_formulario[0] }}
+                            {{ $page.errors.componente[0] }}
                         </div>
                     </b-form-group>
                     <b-form-group
@@ -140,9 +140,7 @@
                             {{ $page.errors.descripcion[0] }}
                         </div>
                     </b-form-group>
-                    <b-button type="submit" variant="success"
-                        >Actualizar</b-button
-                    >
+                    <b-button type="submit" variant="success">Actualizar</b-button>
                 </b-form>
             </div>
         </div>
@@ -158,10 +156,15 @@ export default {
     components: {
         AppLayout
     },
+    data() {
+        return {
+            api_url: this.$root.api_url            
+        };
+    },
     methods: {
         actualizar() {
             this.$inertia.post(
-                `/procedimientos/${this.procedimiento.id}`,
+                `${this.api_url}/procedimientos/${this.procedimiento.id}`,
                 this.procedimiento
             );
         }

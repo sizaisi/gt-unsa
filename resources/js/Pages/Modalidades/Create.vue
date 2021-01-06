@@ -38,6 +38,7 @@ export default {
   },
   data() {
     return {
+      api_url: this.$root.api_url,
       modalidad: {
         nombre: "",
       },
@@ -45,7 +46,7 @@ export default {
   },
   methods: {
     registrar() {
-      this.$inertia.post(`/modalidades`, this.modalidad);
+      this.$inertia.post(`${this.api_url}/modalidades`, this.modalidad);
     },
   },
 };

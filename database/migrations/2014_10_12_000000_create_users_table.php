@@ -36,6 +36,12 @@ class CreateUsersTable extends Migration
                 'email' => 'renzosiza7@gmail.com',
                 'password' => '$2y$10$iWpGEsVCi2Sml9NQuOWIMustHPXE3yEE/ImdUj2u4LIpk3YjzPySC',
                 'role' => 'ADMIN',                           
+            ],
+            [
+                'name' => 'Luis',                
+                'email' => 'lpiccone@unsa.edu.pe',
+                'password' => '$2y$10$iWpGEsVCi2Sml9NQuOWIMustHPXE3yEE/ImdUj2u4LIpk3YjzPySC',
+                'role' => 'ADMIN',                           
             ],            
         ]);
     }

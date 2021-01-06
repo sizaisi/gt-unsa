@@ -49,6 +49,7 @@ export default {
   },
   data() {
     return {
+      api_url: this.$root.api_url,
       cargo: {
         codigo: "",
         nombre: "",
@@ -57,7 +58,7 @@ export default {
   },
   methods: {
     registrar() {
-      this.$inertia.post(`/cargos`, this.cargo);
+      this.$inertia.post(`${this.api_url}/cargos`, this.cargo);
     },
   },
 };
