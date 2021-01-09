@@ -1,7 +1,7 @@
 <template>
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
+    <!-- Left navbar links
     <ul class="navbar-nav">
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Inicio</a>
@@ -9,9 +9,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contactos</a>
       </li>
-    </ul>
+    </ul> -->
 
-    <!-- SEARCH FORM -->
+    <!-- SEARCH FORM 
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input
@@ -26,7 +26,7 @@
           </button>
         </div>
       </div>
-    </form>
+    </form>-->
 
     <perfil-notificacion />
 

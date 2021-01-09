@@ -12,6 +12,8 @@ use App\Http\Controllers\CargoAutoridadController;
 use App\Http\Controllers\GradoModalidadController;
 use App\Http\Controllers\GradoProcedimientoController;
 use App\Http\Controllers\RutaController;
+use App\Http\Controllers\ColacionController;
+use App\Http\Controllers\ExpedienteController;
 
 use App\Http\Controllers\UserController;
 
@@ -112,3 +114,21 @@ Route::get('/rutas/getProcedimientos/{idgradomodalidad}', [RutaController::class
 
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');
+
+Route::get('/colaciones', [ColacionController::class, 'index'])->name('colaciones.index');
+Route::get('/colaciones/create', [ColacionController::class, 'create'])->name('colaciones.create');
+Route::post('/colaciones', [ColacionController::class, 'store'])->name('colaciones.store');
+Route::get('/colaciones/{colacion}', [ColacionController::class, 'show'])->name('colaciones.show');
+Route::get('/colaciones/{colacion}/edit', [ColacionController::class, 'edit'])->name('colaciones.edit');
+Route::post('/colaciones/{colacion}', [ColacionController::class, 'update'])->name('colaciones.update');
+Route::delete('/colaciones/{colacion}', [ColacionController::class, 'destroy'])->name('colaciones.destroy');
+Route::post('/colaciones/{colacion}/restore', [ColacionController::class, 'restore'])->name('colaciones.restore');
+
+Route::get('/expedientes', [ExpedienteController::class, 'index'])->name('expedientes.index');
+Route::get('/expedientes/create', [ExpedienteController::class, 'create'])->name('expedientes.create');
+Route::post('/expedientes', [ExpedienteController::class, 'store'])->name('expedientes.store');
+Route::get('/expedientes/{expediente}', [ExpedienteController::class, 'show'])->name('expedientes.show');
+Route::get('/expedientes/{expediente}/edit', [ExpedienteController::class, 'edit'])->name('expedientes.edit');
+Route::post('/expedientes/{expediente}', [ExpedienteController::class, 'update'])->name('expedientes.update');
+Route::delete('/expedientes/{expediente}', [ExpedienteController::class, 'destroy'])->name('expedientes.destroy');
+Route::post('/expedientes/{expediente}/restore', [ExpedienteController::class, 'restore'])->name('expedientes.restore');

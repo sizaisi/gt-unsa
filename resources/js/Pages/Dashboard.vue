@@ -5,8 +5,10 @@
     </template>
     <template #title>Inicio</template>
 
+
     <div class="card">
-      <div class="card-header">
+      <b-img-lazy v-bind="{width: 800, height: 1000}" src="/../img/dashboardsisgrad.png" center alt="Center image"></b-img-lazy>
+      <!--<div class="card-header">
         <h3 class="card-title">Title</h3>
 
         <div class="card-tools">
@@ -31,9 +33,7 @@
         </div>
       </div>
       <div class="card-body">Start creating your amazing application!</div>
-      <!-- /.card-body -->
-      <div class="card-footer">Footer</div>
-      <!-- /.card-footer-->
+      <div class="card-footer">Footer</div>-->
     </div>
   </app-layout>
 </template>

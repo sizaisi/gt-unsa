@@ -5,7 +5,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
+      <!-- Content Header (Page header) 
       <section class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
@@ -22,8 +22,7 @@
             </div>
           </div>
         </div>
-        <!-- /.container-fluid -->
-      </section>
+      </section>-->
 
       <!-- Page Content -->
       <main>
