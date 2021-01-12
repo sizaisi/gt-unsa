@@ -14,7 +14,7 @@ class Procedimiento extends Model
 
     protected $fillable = [
         'nombre', 
-        'idgradomodalidad',         
+        'idtramite',         
         'idrol', 
         'tipo_rol', 
         'componente', 

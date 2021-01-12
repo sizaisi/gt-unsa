@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Rol;
-use App\Models\Grado;
-use App\Models\Modalidad;
-use App\Models\GradoModalidad;
+use App\Models\Tramite;
 use Illuminate\Database\Seeder;
 
 class ConfigurationSeeder extends Seeder
@@ -25,92 +23,25 @@ class ConfigurationSeeder extends Seeder
         Rol::create(['nombre' => 'Facultad']);               
         Rol::create(['nombre' => 'Of. de Grados y Títulos']);
         Rol::create(['nombre' => 'Repositorio Institucional']);
-        Rol::create(['nombre' => 'Administrador']);
+        Rol::create(['nombre' => 'Administrador']);       
 
-        Grado::truncate();
-        Grado::create(
-            [
-                'nombre' => 'BACHILLER',
-                'nive' => 'Z',
-                'codigo' => '4',
-                'prerequisito' => 1,
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
-        );
-        Grado::create(
-            [
-                'nombre' => 'TÍTULO PROFESIONAL',
-                'nive' => 'Z',
-                'codigo' => '4',
-                'prerequisito' => 2,
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
-        );
-
-        Modalidad::truncate();
-
-        Modalidad::create(
-            [
-                'nombre' => 'AUTOMÁTICO',
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),    
-            ],
-        );
-
-        Modalidad::create(
-            [
-                'nombre' => 'SUSTENTACIÓN DE TESIS',
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),               
-            ],
-        );
-
-        Modalidad::create(
-            [
-                'nombre' => 'TRABAJO DE INVESTIGACIÓN',
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),
-            ]
-        );        
-
-        Modalidad::create(
-            [
-                'nombre' => 'PRUEBA DE SUFICIENCIA PROFESIONAL',
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),               
-            ],
-        );        
+        Tramite::truncate();
         
-        Modalidad::create(
+        Tramite::create(
             [
-                'nombre' => 'SERVICIOS PROFESIONALES',
-                'created_at' => date("Y-m-d H:i:s"),         
-                'updated_at' => date("Y-m-d H:i:s"),               
-            ],
-        );
-
-
-        GradoModalidad::truncate();
-
-        //Bachiller - Automático (id:1)
-        GradoModalidad::create(
-            [
-                'idgrado' => 1,
-                'idmodalidad' => 1,
+                'nombre' => 'Bachiller - Automatico',
+                'codigo' => 4,
                 'componente' => 'Bachiller-Automatico',
                 'created_at' => date("Y-m-d H:i:s"),         
                 'updated_at' => date("Y-m-d H:i:s"),               
             ],
         );
 
-        //Título profesional - Sustentación de tesis (id:2)
-        GradoModalidad::create(
+        Tramite::create(
             [
-                'idgrado' => 2,
-                'idmodalidad' => 2,
-                'componente' => 'TituloProfesional-SustentancionTesis',
+                'nombre' => 'Título Profesional - Sustentación de Tesis',
+                'codigo' => 4,
+                'componente' => 'TituloProfesional-SustentacionTesis',
                 'created_at' => date("Y-m-d H:i:s"),         
                 'updated_at' => date("Y-m-d H:i:s"),               
             ],

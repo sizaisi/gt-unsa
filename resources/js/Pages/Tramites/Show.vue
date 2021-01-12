@@ -3,50 +3,35 @@
     <template #icon_title>
       <i class="fa fa-box fa-fw"></i>
     </template>
-    <template #title>Rutas</template>
+    <template #title>Trámites</template>
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Mostrar Ruta</h3>
+        <h3 class="card-title">Mostrar Trámite</h3>
       </div>
       <div class="card-body">
         <b-form>
-          <b-form-group id="input-group-1" label="Trámite:" label-for="input-1">
+          <b-form-group id="input-group-1" label="Nombre:" label-for="input-1">
             <b-form-input
               id="input-1"
-              v-model="ruta.tramite"
+              v-model="tramite.nombre"
               readonly
             ></b-form-input>
           </b-form-group>
-          <b-form-group
-            id="input-group-2"
-            label="Procedimiento origen:"
-            label-for="input-2"
-          >
+          <b-form-group id="input-group-2" label="Código:" label-for="input-2">
             <b-form-input
               id="input-2"
-              v-model="ruta.proc_origen"
+              v-model="tramite.codigo"
               readonly
             ></b-form-input>
           </b-form-group>
           <b-form-group
             id="input-group-3"
-            label="Procedimiento destino:"
+            label="Componente:"
             label-for="input-3"
           >
             <b-form-input
               id="input-3"
-              v-model="ruta.proc_destino"
-              readonly
-            ></b-form-input>
-          </b-form-group>
-          <b-form-group
-            id="input-group-4"
-            label="Etiqueta:"
-            label-for="input-4"
-          >
-            <b-form-input
-              id="input-4"
-              v-model="ruta.etiqueta"
+              v-model="tramite.componente"
               readonly
             ></b-form-input>
           </b-form-group>
@@ -60,8 +45,8 @@
 import AppLayout from "./../../Layouts/AppLayout";
 
 export default {
-  name: "rutas.show",
-  props: ["ruta"],
+  name: "tramites.show",
+  props: ["tramite"],
   components: {
     AppLayout,
   },

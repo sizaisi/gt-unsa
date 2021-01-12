@@ -9,7 +9,7 @@ use App\Http\Controllers\ProcedimientoController;
 use App\Http\Controllers\ProgramaEstudioController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\CargoAutoridadController;
-use App\Http\Controllers\GradoModalidadController;
+use App\Http\Controllers\TramiteController;
 use App\Http\Controllers\GradoProcedimientoController;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\ColacionController;
@@ -83,15 +83,14 @@ Route::post('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::cl
 Route::delete('/cargosautoridades/{cargoautoridad}', [CargoAutoridadController::class, 'destroy'])->name('cargosautoridades.destroy');
 Route::post('/cargosautoridades/{cargoautoridad}/restore', [CargoAutoridadController::class, 'restore'])->name('cargosautoridades.restore');
 
-Route::get('/gradosmodalidades', [GradoModalidadController::class, 'index'])->name('gradosmodalidades.index');
-Route::get('/getgradosmodalidades', [GradoModalidadController::class, 'getgradosmodalidades'])->name('gradosmodalidades.getgradosmodalidades');
-Route::get('/gradosmodalidades/create', [GradoModalidadController::class, 'create'])->name('gradosmodalidades.create');
-Route::post('/gradosmodalidades', [GradoModalidadController::class, 'store'])->name('gradosmodalidades.store');
-Route::get('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'show'])->name('gradosmodalidades.show');
-Route::get('/gradosmodalidades/{gradomodalidad}/edit', [GradoModalidadController::class, 'edit'])->name('gradosmodalidades.edit');
-Route::post('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'update'])->name('gradosmodalidades.update');
-Route::delete('/gradosmodalidades/{gradomodalidad}', [GradoModalidadController::class, 'destroy'])->name('gradosmodalidades.destroy');
-Route::post('/gradosmodalidades/{gradomodalidad}/restore', [GradoModalidadController::class, 'restore'])->name('gradosmodalidades.restore');
+Route::get('/tramites', [TramiteController::class, 'index'])->name('tramites.index');
+Route::get('/tramites/create', [TramiteController::class, 'create'])->name('tramites.create');
+Route::post('/tramites', [TramiteController::class, 'store'])->name('tramites.store');
+Route::get('/tramites/{tramite}', [TramiteController::class, 'show'])->name('tramites.show');
+Route::get('/tramites/{tramite}/edit', [TramiteController::class, 'edit'])->name('tramites.edit');
+Route::post('/tramites/{tramite}', [TramiteController::class, 'update'])->name('tramites.update');
+Route::delete('/tramites/{tramite}', [TramiteController::class, 'destroy'])->name('tramites.destroy');
+Route::post('/tramites/{tramite}/restore', [TramiteController::class, 'restore'])->name('tramites.restore');
 
 Route::get('/procedimientos', [ProcedimientoController::class, 'index'])->name('procedimientos.index');
 Route::get('/procedimientos/create', [ProcedimientoController::class, 'create'])->name('procedimientos.create');

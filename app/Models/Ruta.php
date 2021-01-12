@@ -13,6 +13,6 @@ class Ruta extends Model
     protected $table = 'gt_rutas';
 
     protected $fillable = [
-        'idgradomodalidad', 'idproc_origen', 'idproc_destino', 'etiqueta'
+        'idtramite', 'idproc_origen', 'idproc_destino', 'etiqueta'
     ];
 }

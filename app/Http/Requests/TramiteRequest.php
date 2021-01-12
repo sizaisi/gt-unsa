@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GradoRequest extends FormRequest
+class TramiteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +23,17 @@ class GradoRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'nombre' => 'required|max:50',
-            'nive' => 'required',
-            'codigo' => 'required',                        
+        return [            
+            'nombre' => 'required',
+            'codigo' => 'required',
+            'componente' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'nive.required' => 'El campo nivel es obligatorio.',            
+            'codigo.required' => 'El campo código es obligatorio.',                        
         ];
     }
 }

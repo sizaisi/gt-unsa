@@ -25,7 +25,7 @@ class ProcedimientoRequest extends FormRequest
     {
         return [
             'nombre' => 'required:max:150',
-            'idgradomodalidad' => 'required',             
+            'idtramite' => 'required',             
             'idrol' => 'required',             
             'componente' => 'required|max:250',
             'orden' => 'required',
@@ -36,7 +36,7 @@ class ProcedimientoRequest extends FormRequest
     public function messages()
     {
         return [
-            'idgradomodalidad.required' => 'El campo grado-modalidad es obligatorio.',            
+            'idtramite.required' => 'El campo trámite es obligatorio.',            
             'idrol.required' => 'El campo rol es obligatorio.',            
         ];
     }
