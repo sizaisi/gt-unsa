@@ -24,7 +24,7 @@ class RutaRequest extends FormRequest
     public function rules()
     {
         return [
-            'idgradomodalidad' => 'required',   
+            'idtramite' => 'required',   
             'idproc_origen' => 'required',
             'idproc_destino'=> 'required', 
             'etiqueta' => 'required'
@@ -34,8 +34,9 @@ class RutaRequest extends FormRequest
     public function messages()
     {
         return [
-            'idgradomodalidad.required' => 'El campo grado-modalidad es obligatorio.',            
-            'idproc_origen.required' => 'El campo rol es obligatorio.',            
+            'idtramite.required' => 'El campo trámite es obligatorio.',            
+            'idproc_origen.required' => 'El campo procedimiento origen es obligatorio.',            
+            'idproc_destino.required' => 'El campo procedimiento destino es obligatorio.',                        
         ];
     }
 }

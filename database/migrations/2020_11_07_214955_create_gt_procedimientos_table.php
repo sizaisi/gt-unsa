@@ -16,7 +16,7 @@ class CreateGtProcedimientosTable extends Migration
         Schema::create('gt_procedimientos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 150);
-            $table->integer('idgradomodalidad');            
+            $table->integer('idtramite');            
             $table->integer('idrol');
             $table->enum('tipo_rol', ['asesor', 'jurado'])->nullable();
             $table->string('componente', 250);

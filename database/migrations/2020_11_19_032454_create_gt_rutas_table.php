@@ -15,7 +15,7 @@ class CreateGtRutasTable extends Migration
     {
         Schema::create('gt_rutas', function (Blueprint $table) {
             $table->id();
-            $table->integer('idgradomodalidad');         
+            $table->integer('idtramite');         
             $table->integer('idproc_origen');
             $table->integer('idproc_destino');
             $table->enum('etiqueta', ['iniciar', 'enviar', 'derivar', 'devolver', 'denegar', 'observar', 'rechazar', 'aceptar', 'aprobar', 'finalizar']);

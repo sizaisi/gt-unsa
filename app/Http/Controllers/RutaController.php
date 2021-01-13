@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Inertia\Inertia;
 use App\Models\Ruta;
 use Illuminate\Http\Request;
@@ -16,43 +15,37 @@ class RutaController extends Controller
         $rutas = \DB::table('gt_rutas as R')
                     ->leftJoin('gt_procedimientos as P1', 'P1.id', '=', 'R.idproc_origen')
                     ->leftJoin('gt_procedimientos as P2', 'P2.id', '=', 'R.idproc_destino')
-                    ->leftJoin('gt_grado_modalidades', 'gt_grado_modalidades.id', '=', 'R.idgradomodalidad')
-                    ->leftJoin('gt_grados', 'gt_grados.id', '=', 'gt_grado_modalidades.idgrado')
-                    ->leftJoin('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grado_modalidades.idmodalidad')
-                    ->select('R.*', 'P1.nombre as proc_origen', 'P2.nombre as proc_destino',
-                            \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as grado_modalidad'))
+                    ->leftJoin('gt_tramites', 'gt_tramites.id', '=', 'R.idtramite')                    
+                    ->select('R.*', 'P1.nombre as proc_origen', 'P2.nombre as proc_destino', 'gt_tramites.nombre as tramite')                            
                     ->orderBy('R.id', 'desc')
                     ->get();                      
         
         return Inertia::render('Rutas/Index', compact('rutas'));
     }     
 
-    public function getProcedimientos($idgradomodalidad)
+    public function getProcedimientos($idtramite)
     {       
         $procedimientos = Procedimiento::select('id as value','nombre as text')
-                                        ->where('idgradomodalidad', $idgradomodalidad)
+                                        ->where('idtramite', $idtramite)
                                         ->orderBy('nombre', 'asc')->get();      
         return $procedimientos;
     }    
         
     public function create()
     {
-        $gradosmodalidades = \DB::table('gt_grado_modalidades')
-                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grado_modalidades.idgrado')
-                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grado_modalidades.idmodalidad')
-                                ->select('gt_grado_modalidades.id as value',
-                                        \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as text'))
-                                ->orderBy('gt_grado_modalidades.id', 'desc')
-                                ->get();        
+        $tramites = \DB::table('gt_tramites')                                
+                        ->select('id as value', 'nombre as text')                                        
+                        ->orderBy('nombre', 'asc')
+                        ->get();      
                 
-        return Inertia::render('Rutas/Create', compact('gradosmodalidades'));
+        return Inertia::render('Rutas/Create', compact('tramites'));
     }    
 
     public function store(RutaRequest $request)
     {      
         $ruta = new Ruta();
 
-        $ruta->idgradomodalidad = $request->idgradomodalidad;
+        $ruta->idtramite = $request->idtramite;
         $ruta->idproc_origen = $request->idproc_origen;
         $ruta->idproc_destino = $request->idproc_destino;
         $ruta->etiqueta = $request->etiqueta;
@@ -71,11 +64,8 @@ class RutaController extends Controller
         $ruta = \DB::table('gt_rutas as R')
                     ->join('gt_procedimientos as P1', 'P1.id', '=', 'R.idproc_origen')
                     ->join('gt_procedimientos as P2', 'P2.id', '=', 'R.idproc_destino')
-                    ->join('gt_grado_modalidades', 'gt_grado_modalidades.id', '=', 'R.idgradomodalidad')
-                    ->join('gt_grados', 'gt_grados.id', '=', 'gt_grado_modalidades.idgrado')
-                    ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grado_modalidades.idmodalidad')
-                    ->select('R.*', 'P1.nombre as proc_origen', 'P2.nombre as proc_destino',
-                            \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as grado_modalidad'))
+                    ->join('gt_tramites', 'gt_tramites.id', '=', 'R.idtramite')                    
+                    ->select('R.*', 'P1.nombre as proc_origen', 'P2.nombre as proc_destino', 'gt_tramites.nombre as tramite')
                     ->where('R.id', $ruta->id)
                     ->first();    
 
@@ -84,20 +74,17 @@ class RutaController extends Controller
    
     public function edit(Ruta $ruta)
     {
-        $gradosmodalidades = \DB::table('gt_grado_modalidades')
-                                ->join('gt_grados', 'gt_grados.id', '=', 'gt_grado_modalidades.idgrado')
-                                ->join('gt_modalidades', 'gt_modalidades.id', '=', 'gt_grado_modalidades.idmodalidad')
-                                ->select('gt_grado_modalidades.id as value',
-                                        \DB::raw('CONCAT(gt_grados.nombre, " - ", gt_modalidades.nombre) as text'))
-                                ->orderBy('gt_grado_modalidades.id', 'desc')
-                                ->get();          
+        $tramites = \DB::table('gt_tramites')                                
+                        ->select('id as value', 'nombre as text')                                        
+                        ->orderBy('nombre', 'asc')
+                        ->get();      
         
-        return Inertia::render('Rutas/Edit', compact('ruta', 'gradosmodalidades'));
+        return Inertia::render('Rutas/Edit', compact('ruta', 'tramites'));
     }
     
     public function update(RutaRequest $request, Ruta $ruta)
     {
-        $ruta->idgradomodalidad = $request->idgradomodalidad;
+        $ruta->idtramite = $request->idtramite;
         $ruta->idproc_origen = $request->idproc_origen;
         $ruta->idproc_destino = $request->idproc_destino;
         $ruta->etiqueta = $request->etiqueta;
