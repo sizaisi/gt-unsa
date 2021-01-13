@@ -14,6 +14,7 @@ class CreateGtColacionExpedientesTable extends Migration
     public function up()
     {
         Schema::create('gt_colacion_expedientes', function (Blueprint $table) {
+            $table->id();
             $table->integer('idcolacion');  
             $table->integer('idexpediente');  
             $table->timestamps();

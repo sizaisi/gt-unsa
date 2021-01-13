@@ -4,7 +4,6 @@
             <i class="fa fa-box fa-fw"></i>
         </template>
         <template #title>Expediente</template>
-
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Lista de Expedientes</h3>
@@ -17,17 +16,23 @@
             <div class="card-body">
                 <hr class="bg-secondary" />
                 <flash-alert />
+                <b-button size="sm" @click="selectAllRows">Seccionar Todos</b-button>
+                <b-button size="sm" @click="clearSelected">Deseleccionar Todos</b-button>
                 <b-table
                     show-empty
                     striped
                     hover
                     bordered
                     small
-                    responsive
                     stacked="md"
                     :items="expedientes"
                     :fields="fields"
                     empty-text="No hay registros para mostrar"
+                    :select-mode="multi"
+                    responsive="sm"
+                    ref="selectableTable"
+                    selectable
+                    @row-selected="onRowSelected"
                 >
                     <template v-slot:cell(condicion)="row">
                         <b-badge
@@ -72,6 +77,10 @@
                         </b-button>
                     </template>
                 </b-table>
+                <p>
+                        Selected Rows:<br>
+                        {{ selected }}
+                        </p>
             </div>
         </div>
     </app-layout>
@@ -92,11 +101,27 @@ export default {
     },
     data() {
         return {
+            modes: ['multi', 'single', 'range'],
+            fields: ['selected', 'isActive', 'age', 'first_name', 'last_name'],
+            items: [
+            { isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
+            { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' },
+            { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' },
+            { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }
+            ],
+            selectMode: 'multi',
+            selected: [],
             api_url: this.$root.api_url,
             fields: [
                 {
                     key: "id",
                     label: "ID",
+                    sortable: true,
+                    class: "text-center"
+                },
+                {
+                    key: "selected",
+                    label: "Selected",
                     sortable: true,
                     class: "text-center"
                 },
@@ -151,6 +176,23 @@ export default {
         },
         countDownChanged(dismissCountDown) {
             this.dismissCountDown = dismissCountDown;
+        },
+        onRowSelected(items) {
+        this.selected = items
+        },
+        selectAllRows() {
+            this.$refs.selectableTable.selectAllRows()
+        },
+        clearSelected() {
+            this.$refs.selectableTable.clearSelected()
+        },
+        selectThirdRow() {
+            // Rows are indexed from 0, so the third row is index 2
+            this.$refs.selectableTable.selectRow(2)
+        },
+        unselectThirdRow() {
+            // Rows are indexed from 0, so the third row is index 2
+            this.$refs.selectableTable.unselectRow(2)
         }
     }
 };

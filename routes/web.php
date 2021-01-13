@@ -14,6 +14,7 @@ use App\Http\Controllers\GradoProcedimientoController;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\ColacionController;
 use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\ColacionExpedienteController;
 
 use App\Http\Controllers\UserController;
 
@@ -131,3 +132,12 @@ Route::get('/expedientes/{expediente}/edit', [ExpedienteController::class, 'edit
 Route::post('/expedientes/{expediente}', [ExpedienteController::class, 'update'])->name('expedientes.update');
 Route::delete('/expedientes/{expediente}', [ExpedienteController::class, 'destroy'])->name('expedientes.destroy');
 Route::post('/expedientes/{expediente}/restore', [ExpedienteController::class, 'restore'])->name('expedientes.restore');
+
+Route::get('/colacionesexpedientes', [ColacionExpedienteController::class, 'index'])->name('colacionesexpedientes.index');
+Route::get('/colacionesexpedientes/create', [ColacionExpedienteController::class, 'create'])->name('colacionesexpedientes.create');
+Route::post('/colacionesexpedientes', [ColacionExpedienteController::class, 'store'])->name('colacionesexpedientes.store');
+Route::get('/colacionesexpedientes/{colacionexpediente}', [ColacionExpedienteController::class, 'show'])->name('colacionesexpedientes.show');
+Route::get('/colacionesexpedientes/{colacionexpediente}/edit', [ColacionExpedienteController::class, 'edit'])->name('colacionesexpedientes.edit');
+Route::post('/colacionesexpedientes/{colacionexpediente}', [ColacionExpedienteController::class, 'update'])->name('colacionesexpedientes.update');
+Route::delete('/colacionesexpedientes/{colacionexpediente}', [ColacionExpedienteController::class, 'destroy'])->name('colacionesexpedientes.destroy');
+Route::post('/colacionesexpedientes/{colacionexpediente}/restore', [ColacionExpedienteController::class, 'restore'])->name('colacionesexpedientes.restore');

@@ -4,47 +4,51 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\ColacionExpediente;
+use App\Models\Colacion;
+use App\Models\Expediente;
 use Illuminate\Http\Request;
 use App\Http\Requests\ColacionExpedienteRequest;
+use App\Models\Income;
 
 class ColacionExpedienteController extends Controller
 {
     public function index()
-    {
-        $cargosautoridades = \DB::table('gt_cargo_autoridades')
-                                ->join('gt_cargos', 'gt_cargos.id', '=', 'gt_cargo_autoridades.idcargo')
-                                ->join('gt_autoridades', 'gt_autoridades.id', '=', 'gt_cargo_autoridades.idautoridad')
-                                ->select('gt_cargo_autoridades.*', 'gt_cargos.nombre as cargo', 'gt_autoridades.nombre as autoridad')
-                                ->orderBy('gt_cargo_autoridades.id', 'desc')
-                                ->get();        
+    {     
         
-        return Inertia::render('CargosAutoridades/Index', compact('cargosautoridades'));
+        $colaciones = \DB::table('gt_colaciones')->orderBy('id', 'desc')->get();
+        $colacion_id = Colacion::select('id')->get();
+        $expedientes = \DB::table('gt_expediente')
+                        ->whereIn('id', function($query) use ($colacion_id){
+                            $query->select('idexpediente')
+                                ->from('gt_colacion_expedientes')
+                                ->where('idcolacion', 1);
+                        })
+                        ->get();
+        return Inertia::render('ColacionesExpedientes/Index', compact('colaciones', 'expedientes'));
     }
     
     public function create()
     {
-        $cargos = Cargo::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
-        $autoridades = Autoridad::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
+        $colaciones = \DB::table('gt_colaciones')->orderBy('id', 'desc')->get();
+        $expedientes = \DB::table('gt_expediente')->orderBy('id', 'desc')->get();
 
-        return Inertia::render('CargosAutoridades/Create', compact('cargos', 'autoridades'));
+        return Inertia::render('ColacionesExpedientes/Index', compact('colaciones', 'expedientes'));
     }
     
-    public function store(CargoAutoridadRequest $request)
+    public function store(ColacionExpedienteRequest $request)
     {
-        $cargoautoridad = new CargoAutoridad();
+        $colacionexpediente = new ColacionExpediente();
 
-        $cargoautoridad->idcargo = $request->idcargo;
-        $cargoautoridad->idautoridad = $request->idautoridad;
-        $cargoautoridad->fecha_inicio = $request->fecha_inicio;
-        $cargoautoridad->fecha_fin = $request->fecha_fin;
+        $colacionexpediente->idcolacion = $request->idcolacion;
+        $colacionexpediente->idxpediente = $request->idxpediente;
 
-        if ($cargoautoridad->save()) {
-            $result = ['successMessage' => 'Cargo-Autoridad creado con éxito'];
+        if ($colacionexpediente->save()) {
+            $result = ['successMessage' => 'Colación - Expediente creada con éxito'];
         } else {
-            $result = ['errorMessage' => 'No se pudo crear el Cargo-Autoridad'];
+            $result = ['errorMessage' => 'No se pudo crear la Colación - Expediente'];
         }
 
-        return redirect()->route('cargosautoridades.index')->with($result);
+        return redirect()->route('colacionesexpedientes.index')->with($result);
     }
     
     public function show(CargoAutoridad $cargoautoridad)
@@ -59,51 +63,49 @@ class ColacionExpedienteController extends Controller
         return Inertia::render('CargosAutoridades/Show', compact('cargoautoridad'));
     }
     
-    public function edit(CargoAutoridad $cargoautoridad)
+    public function edit(ColacionExpediente $colacionexpediente)
     {
-        $cargos = Cargo::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
-        $autoridades = Autoridad::select('id as value','nombre as text')->orderBy('nombre', 'asc')->get();
+        $colaciones = \DB::table('gt_colaciones')->orderBy('id', 'desc')->get();
+        $expedientes = \DB::table('gt_expediente')->orderBy('id', 'desc')->get();
         
-        return Inertia::render('CargosAutoridades/Edit', compact('cargoautoridad', 'cargos', 'autoridades'));
+        return Inertia::render('CargosAutoridades/Edit', compact('colacionexpediente', 'colaciones', 'expedientes'));
     }
     
-    public function update(CargoAutoridadRequest $request, CargoAutoridad $cargoautoridad)
+    public function update(ColacionExpedienteRequest $request, ColacionExpediente $colacionexpediente)
     {
-        $cargoautoridad->idcargo = $request->idcargo;
-        $cargoautoridad->idautoridad = $request->idautoridad;
-        $cargoautoridad->fecha_inicio = $request->fecha_inicio;
-        $cargoautoridad->fecha_fin = $request->fecha_fin;
+        $colacionexpediente->idcolacion = $request->idcolacion;
+        $colacionexpediente->idxpediente = $request->idxpediente;
 
-        if ($cargoautoridad->update()) {
-            $result = ['successMessage' => 'Cargo-Autoridad creado con éxito'];
+        if ($colacionexpediente->update()) {
+            $result = ['successMessage' => 'Colación - Expediente creada con éxito'];
         } else {
-            $result = ['errorMessage' => 'No se pudo crear el Cargo-Autoridad'];
+            $result = ['errorMessage' => 'No se pudo crear la Colación - Expediente'];
         }
 
-        return redirect()->route('cargosautoridades.index')->with($result);
+        return redirect()->route('colacionesexpedientes.index')->with($result);
     }
     
-    public function destroy(CargoAutoridad $cargoautoridad)
+    public function destroy(ColacionExpediente $colacionexpediente)
     {
-        if ($cargoautoridad->delete()) {
-            $result = ['successMessage' => 'Cargo-Autoridad creado con éxito'];
+        if ($colacionexpediente->delete()) {
+            $result = ['successMessage' => 'Colación - Expediente desactivado con éxito'];
         } else {
-            $result = ['errorMessage' => 'No se pudo crear el Cargo-Autoridad'];
+            $result = ['errorMessage' => 'No se pudo desactivar la Colación - Expediente'];
         }
 
         return redirect()->back()->with($result);
     }
 
-    public function restore($cargoautoridad_id) 
+    public function restore($colacionexpediente_id) 
     {                   
         try {
-            $cargoautoridad = CargoAutoridad::withTrashed()->findOrFail($cargoautoridad_id);
-            $cargoautoridad->restore();
-            $result = ['successMessage' => 'Cargo-Autoridad restaurado con éxito'];
+            $colacionexpediente = ColacionExpediente::withTrashed()->findOrFail($colacionexpediente_id);
+            $colacionexpediente->restore();
+            $result = ['successMessage' => 'Colación - Expediente restaurado con éxito'];
         }
         catch(\Exception $e) {
-            $result = ['errorMessage' => 'No se pudo restaurar el cargo-autoridad'];
-            \Log::warning('CargoAutoridadController@restore, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
+            $result = ['errorMessage' => 'No se pudo restaurar la Colación - Expediente'];
+            \Log::warning('ColacionExpedienteController@restore, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
         }        
 
         return redirect()->back()->with($result);
