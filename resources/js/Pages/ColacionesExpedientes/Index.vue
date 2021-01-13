@@ -3,14 +3,13 @@
         <template #icon_title>
             <i class="fa fa-box fa-fw"></i>
         </template>
-        <template #title>Cargo-Autoridad</template>
-
+        <template #title>Colacion - Expediente</template>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Lista de Cargos-Autoridades</h3>
+                <h3 class="card-title">Lista de Colaciones - Expedientes</h3>
                 <jet-nav-link
                     class="btn btn-success float-right"
-                    :href="`${api_url}/cargosautoridades/create`"
+                    :href="`${api_url}/colacionesexpedientes/create`"
                     >Crear</jet-nav-link
                 >
             </div>
@@ -25,7 +24,7 @@
                     small
                     responsive
                     stacked="md"
-                    :items="cargosautoridades"
+                    :items="colaciones"
                     :fields="fields"
                     empty-text="No hay registros para mostrar"
                 >
@@ -41,14 +40,14 @@
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-primary btn-sm"
-                            :href="`${api_url}/cargosautoridades/${row.item.id}`"
+                            :href="`${api_url}/colacionesexpedientes/${row.item.id}`"
                             type="button"
                             ><b-icon icon="eye"></b-icon
                         ></jet-nav-link>
                         <jet-nav-link
                             v-if="row.item.deleted_at == null"
                             class="btn btn-warning btn-sm"
-                            :href="`${api_url}/cargosautoridades/${row.item.id}/edit`"
+                            :href="`${api_url}/colacionesexpedientes/${row.item.id}/edit`"
                             type="button"
                             ><b-icon icon="pencil-square"></b-icon
                         ></jet-nav-link>
@@ -70,6 +69,26 @@
                         >
                             <b-icon icon="check"></b-icon>
                         </b-button>
+                        <b-button size="sm" @click="row.toggleDetails" class="mr-2">
+                        {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
+                        </b-button>
+                    </template>
+                    <template #row-details>
+                        <b-card>
+                            <b-table
+                                show-empty
+                                striped
+                                hover
+                                bordered
+                                small
+                                responsive
+                                stacked="md"
+                                :items="expedientes"
+                                :fields="fields2"
+                                empty-text="No hay registros para mostrar"
+                            >
+                            </b-table>
+                        </b-card>
                     </template>
                 </b-table>
             </div>
@@ -83,8 +102,8 @@ import JetNavLink from "./../../Jetstream/NavLink";
 import FlashAlert from "./../../components/FlashAlert";
 
 export default {
-    name: "cargosautoridades.index",
-    props: ["cargosautoridades"],
+    name: "colacionesexpedientes.index",
+    props: ["colaciones","expedientes"],
     components: {
         AppLayout,
         JetNavLink,
@@ -94,26 +113,22 @@ export default {
         return {
             api_url: this.$root.api_url,
             fields: [
-                {
-                    key: "id",
-                    label: "ID",
-                    sortable: true,
-                    class: "text-center"
-                },
-                { key: "cargo", label: "Cargo", sortable: true },
-                { key: "autoridad", label: "Autoridad", sortable: true },
-                {
-                    key: "fecha_inicio",
-                    label: "Fecha Inicio",
-                    sortable: true,
-                    class: "text-center"
-                },
-                {
-                    key: "fecha_fin",
-                    label: "Fecha Fin",
-                    sortable: true,
-                    class: "text-center"
-                },
+                { key: "id", label: "ID", sortable: true, class: "text-center" },
+                { key: "fecha", label: "Fecha", sortable: true },
+                { key: "horainicio", label: "Hora de Inicio", sortable: true },
+                { key: "horafin", label: "Hora de Fin", sortable: true, class: "text-center" },
+                { key: "cantidad", label: "Cantidad de Colantes", sortable: true, class: "text-center" },
+                { key: "maximo", label: "Maxima Cantidad de Colantes", sortable: true, class: "text-center" },
+                { key: "condicion", label: "Condición", class: "text-center" },
+                { key: "acciones", label: "Acciones", class: "text-center" }
+            ],
+            fields2:[
+                { key: "id", label: "ID", sortable: true, class: "text-center" },
+                { key: "nues", label: "Escuela", sortable: true },
+                { key: "espe", label: "Especialidad", sortable: true },
+                { key: "codigo", label: "Codigo", sortable: true, class: "text-center" },
+                { key: "fecha_sesion_jurado", label: "Fecha Sesion Jurado", sortable: true, class: "text-center" },
+                { key: "fecha_sustentacion", label: "Fecha Sustentacion", sortable: true, class: "text-center" },
                 { key: "condicion", label: "Condición", class: "text-center" },
                 { key: "acciones", label: "Acciones", class: "text-center" }
             ],
@@ -121,24 +136,24 @@ export default {
         };
     },
     methods: {
-        eliminar(cargoautoridad) {
+        eliminar(colacionexpediente) {
             if (
                 !confirm(
-                    "Estas seguro de querer eliminar esta relación de cargo-autoridad?"
+                    "Estas seguro de querer eliminar esta relación de Colacion - Expediente?"
                 )
             )
                 return;
-            this.$inertia.delete(`${this.api_url}/cargosautoridades/${cargoautoridad.id}`);
+            this.$inertia.delete(`${this.api_url}/colacionesexpedientes/${colacionexpediente.id}`);
         },
-        restaurar(cargoautoridad) {
+        restaurar(colacionexpediente) {
             if (
                 !confirm(
-                    "Estas seguro de querer restaurar esta relación de cargo-autoridad?"
+                    "Estas seguro de querer restaurar esta relación de Colacion - Expediente?"
                 )
             )
                 return;
             this.$inertia.post(
-                `${this.api_url}/cargosautoridades/${cargoautoridad.id}/restore`
+                `${this.api_url}/colacionesexpedientes/${colacionexpediente.id}/restore`
             );
         },
         countDownChanged(dismissCountDown) {

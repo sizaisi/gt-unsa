@@ -3,13 +3,60 @@
         <template #icon_title>
             <i class="fa fa-box fa-fw"></i>
         </template>
-        <template #title>Cargos-Autoridades</template>
+        <template #title>Colaciones - Expedientes</template>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Nuevo Cargo-Autoridad</h3>
+                <h3 class="card-title">Nuevo Colaciones - Expedientes</h3>
             </div>
             <div class="card-body">
                 <b-form @submit.prevent="registrar">
+                    <div class="card-body">
+                        <hr class="bg-secondary" />
+                        <flash-alert />
+                        <b-form-group
+                        label="Selection mode:"
+                        label-for="table-select-mode-select"
+                        label-cols-md="4"
+                        >
+                        <b-form-select
+                            id="table-select-mode-select"
+                            v-model="selectMode"
+                            :options="modes"
+                            class="mb-3"
+                        ></b-form-select>
+                        </b-form-group>
+                        <b-table
+                        :items="expedientes"
+                        :fields="fields"
+                        :select-mode="multi"
+                        responsive="sm"
+                        ref="selectableTable"
+                        selectable
+                        @row-selected="onRowSelected"
+                        >
+                        Example scoped slot for select state illustrative purposes
+                        <template #cell(selected)="{ rowSelected }">
+                            <template v-if="rowSelected">
+                            <span aria-hidden="true">&check;</span>
+                            <span class="sr-only">Selected</span>
+                            </template>
+                            <template v-else>
+                            <span aria-hidden="true">&nbsp;</span>
+                            <span class="sr-only">Not selected</span>
+                            </template>
+                        </template>
+                        </b-table>
+                        <p>
+                        <b-button size="sm" @click="selectAllRows">Select all</b-button>
+                        <b-button size="sm" @click="clearSelected">Clear selected</b-button>
+                        <b-button size="sm" @click="selectThirdRow">Select 3rd row</b-button>
+                        <b-button size="sm" @click="unselectThirdRow">Unselect 3rd row</b-button>
+                        </p>
+                        <p>
+                        Selected Rows:<br>
+                        {{ selected }}
+                        </p>
+                    </div>
                     <b-form-group
                         id="input-group-2"
                         label="Cargo:"
@@ -101,25 +148,23 @@
 import AppLayout from "./../../Layouts/AppLayout";
 
 export default {
-    name: "cargosautoridades.create",
-    props: ["cargos", "autoridades"],
+    name: "colacionesexpedientes.create",
+    props: ["colaciones", "expedientes"],
     components: {
         AppLayout
     },
     data() {
         return {
             api_url: this.$root.api_url,
-            cargoautoridad: {
-                idcargo: null,
-                idautoridad: null,
-                fecha_inicio: "",
-                fecha_fin: ""
+            colacionexpediente: {
+                idcolacion: null,
+                idexpediente: null,
             }
         };
     },
     methods: {
         registrar() {
-            this.$inertia.post(`${this.api_url}/cargosautoridades`, this.cargoautoridad);
+            this.$inertia.post(`${this.api_url}/colacionesexpedientes`, this.colacionexpediente);
         }
     }
 };
