@@ -115,7 +115,7 @@
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <img
-          src="/../img/user2-160x160.jpg"
+          :src="`${api_url}/img/user2-160x160.jpg`"
           class="img-circle img-sm"
           alt="User Image"
         />
