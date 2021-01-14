@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="../../dashboard" class="brand-link">
       <img
-        src="/../img/logounsablanco.png"
+        :src="`${api_url}/img/logounsablanco.png`"
         alt="AdminLTE Logo"
         class="brand-image elevation-3"
         style="opacity: 0.8"

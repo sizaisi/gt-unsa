@@ -5,9 +5,13 @@
     </template>
     <template #title>Inicio</template>
 
-
     <div class="card">
-      <b-img-lazy v-bind="{width: 800, height: 1000}" src="/../img/dashboardsisgrad.png" center alt="Center image"></b-img-lazy>
+      <b-img-lazy
+        v-bind="{ width: 800, height: 1000 }"
+        :src="`${api_url}/img/dashboardsisgrad.png`"
+        center
+        alt="Center image"
+      ></b-img-lazy>
       <!--<div class="card-header">
         <h3 class="card-title">Title</h3>
 
@@ -46,6 +50,11 @@ export default {
   components: {
     AppLayout,
     Welcome,
+  },
+  data() {
+    return {
+      api_url: this.$root.api_url,
+    };
   },
 };
 </script>
