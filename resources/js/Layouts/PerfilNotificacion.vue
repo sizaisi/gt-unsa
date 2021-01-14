@@ -146,10 +146,15 @@ export default {
   components: {
     JetResponsiveNavLink,
   },
+  data() {
+    return {
+      api_url: this.$root.api_url,
+    };
+  },
   methods: {
     logout() {
-      axios.post("/logout").then((response) => {
-        window.location = "/login";
+      axios.post(`${this.api_url}/logout`).then((response) => {
+        window.location = this.api_url + "/login";
       });
     },
   },
