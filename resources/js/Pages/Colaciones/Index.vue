@@ -108,8 +108,8 @@ export default {
                 { key: "horainicio", label: "Hora de Inicio", sortable: true },
                 { key: "horafin", label: "Hora de fin", sortable: true },
                 { key: "cantidad", label: "cantidad de colados", sortable: true },
-                { key: "maximo", label: "Cantidad máxima por colación", sortable: true },
-                { key: "condicion", label: "Condición", class: "text-center" },
+                { key: "maximo", label: "Cantidad mÃ¡xima por colaciÃ³n", sortable: true },
+                { key: "condicion", label: "CondiciÃ³n", class: "text-center" },
                 { key: "acciones", label: "Acciones", class: "text-center" }
             ],
             dismissCountDown: 5

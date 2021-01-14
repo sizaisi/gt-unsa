@@ -22,7 +22,7 @@
                         >
                             <template v-slot:first>
                                 <option :value="null" disabled>
-                                    -- Por favor seleccione una opción --
+                                    -- Por favor seleccione una opciÃ³n --
                                 </option>
                             </template>
                         </b-form-select>
@@ -42,7 +42,7 @@
                         >
                             <template v-slot:first>
                                 <option :value="null" disabled>
-                                    -- Por favor seleccione una opción --
+                                    -- Por favor seleccione una opciÃ³n --
                                 </option>
                             </template>
                         </b-form-select>

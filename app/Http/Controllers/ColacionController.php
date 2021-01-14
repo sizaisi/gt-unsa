@@ -31,7 +31,7 @@ class ColacionController extends Controller
         $colacion->maximo = $request->maximo;
 
         if ($colacion->save()) {
-            $result = ['successMessage' => 'Colación creada con éxito'];
+            $result = ['successMessage' => 'Colación creada con Éxito'];
         } else {
             $result = ['errorMessage' => 'No se pudo crear la colación'];
         }
@@ -58,7 +58,7 @@ class ColacionController extends Controller
         $colacion->maximo = $request->maximo;
 
         if ($colacion->update()) {
-            $result = ['successMessage' => 'Colación actualizada con éxito'];
+            $result = ['successMessage' => 'Colación actualizada con Éxito'];
         } else {
             $result = ['errorMessage' => 'No se pudo actualizar la colación'];
         }
@@ -69,7 +69,7 @@ class ColacionController extends Controller
     public function destroy(Colacion $colacion)
     {
         if ($colacion->delete()) {
-            $result = ['successMessage' => 'Colación eliminada con éxito'];
+            $result = ['successMessage' => 'Colación eliminada con Éxito'];
         } else {
             $result = ['errorMessage' => 'No se pudo eliminar la colación'];
         }
@@ -82,7 +82,7 @@ class ColacionController extends Controller
         try {
             $colacion = Colacion::withTrashed()->findOrFail($colacion_id);
             $colacion->restore();
-            $result = ['successMessage' => 'Colación restaurado con éxito'];
+            $result = ['successMessage' => 'Colación restaurado con Éxito'];
         }
         catch(\Exception $e) {
             $result = ['errorMessage' => 'No se pudo restaurar la colación'];

@@ -12,18 +12,22 @@ use App\Http\Requests\ColacionExpedienteRequest;
 class ColacionExpedienteController extends Controller
 {
     public function index()
-    {     
-        
-        $colaciones = \DB::table('gt_colaciones')->orderBy('id', 'desc')->get();
-        $colacion_id = Colacion::select('id')->get();
-        foreach($colacion_id as $ep=>$det)
-            {
-                $expedientes = \DB::table('gt_expediente')
-                        ->where('idcolacion', $det['id'])
-                        ->get();
-            }  
+    {   
+        $colaciones = \DB::table('gt_colaciones')->orderBy('id', 'desc')->get();                
 
-        return Inertia::render('ColacionesExpedientes/Index', compact('colaciones', 'expedientes'));
+        $colaciones = json_decode($colaciones, true);        
+
+        foreach($colaciones as $index=>$colacion) {                        
+            $expedientes = \DB::table('gt_expediente')
+                        ->where('idcolacion', $colacion['id'])
+                        ->orderBy('id', 'desc')->get();
+
+            $colaciones[$index]['array_expediente'] = $expedientes;
+        }     
+        
+        $colaciones = json_encode($colaciones);                    
+
+        return Inertia::render('ColacionesExpedientes/Index', compact('colaciones'));
     }
     
     public function create()
@@ -57,31 +61,28 @@ class ColacionExpedienteController extends Controller
         $colacionexpediente->idexpediente = $request->idexpediente;
 
         if ($colacionexpediente->update()) {
-            $result = ['successMessage' => 'Colación - Expediente creada con éxito'];
+            $result = ['successMessage' => 'ColaciÃ³n - Expediente creada con Ã©xito'];
         } else {
-            $result = ['errorMessage' => 'No se pudo crear la Colación - Expediente'];
+            $result = ['errorMessage' => 'No se pudo crear la ColaciÃ³n - Expediente'];
         }
 
         return redirect()->route('colacionesexpedientes.index')->with($result);
     }
 
-    public function updateexpedientes(ColacionExpedienteRequest $request, $idcolacion)
-    {
-        $expedientes->idcolacion = $idcolacion;
+    public function updateexpedientes(ColacionExpedienteRequest $request)
+    {          
         
-        $expedientes->idexpediente = $request->idexpediente;
+        $idcolacion = $request->idcolacion;        
+        $array_expedientes = $request->idexpediente;
 
-        foreach($expediente as $ep=>$det)
-            {
-                $expedientes = \DB::table('gt_expediente')
-                        ->where('id', $det['id']);
-            } 
+        foreach($array_expedientes as $index=>$valor)
+        {           
+            \DB::table('gt_expediente')
+                ->where('id', '=', $valor)
+                ->update(['idcolacion' => $idcolacion]);
+        } 
 
-        if ($expedientes->update()) {
-            $result = ['successMessage' => 'Autoridad actualizada con éxito'];
-        } else {
-            $result = ['errorMessage' => 'No se pudo actualizar la autoridad'];
-        }
+        $result = ['successMessage' => 'Expedientes actualizados con Éxito'];
 
         return redirect()->route('colacionesexpedientes.index')->with($result);
     }
@@ -89,9 +90,9 @@ class ColacionExpedienteController extends Controller
     public function destroy(ColacionExpediente $colacionexpediente)
     {
         if ($colacionexpediente->delete()) {
-            $result = ['successMessage' => 'Colación - Expediente desactivado con éxito'];
+            $result = ['successMessage' => 'ColaciÃ³n - Expediente desactivado con Ã©xito'];
         } else {
-            $result = ['errorMessage' => 'No se pudo desactivar la Colación - Expediente'];
+            $result = ['errorMessage' => 'No se pudo desactivar la ColaciÃ³n - Expediente'];
         }
 
         return redirect()->back()->with($result);
@@ -102,10 +103,10 @@ class ColacionExpedienteController extends Controller
         try {
             $colacionexpediente = ColacionExpediente::withTrashed()->findOrFail($colacionexpediente_id);
             $colacionexpediente->restore();
-            $result = ['successMessage' => 'Colación - Expediente restaurado con éxito'];
+            $result = ['successMessage' => 'ColaciÃ³n - Expediente restaurado con Ã©xito'];
         }
         catch(\Exception $e) {
-            $result = ['errorMessage' => 'No se pudo restaurar la Colación - Expediente'];
+            $result = ['errorMessage' => 'No se pudo restaurar la ColaciÃ³n - Expediente'];
             \Log::warning('ColacionExpedienteController@restore, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
         }        
 

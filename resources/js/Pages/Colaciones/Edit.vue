@@ -6,7 +6,7 @@
         <template #title>Colaciones</template>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Editar Colación</h3>
+                <h3 class="card-title">Editar ColaciÃ³n</h3>
             </div>
             <div class="card-body">
                 <b-form @submit.prevent="actualizar">
@@ -26,7 +26,7 @@
                         <b-form-input
                         id="input-3"
                         v-model="colacion.horainicio"
-                        placeholder="Hora de Inicio de la Colación"
+                        placeholder="Hora de Inicio de la ColaciÃ³n"
                         autocomplete="off"
                         type="time"
                         ></b-form-input>
@@ -38,7 +38,7 @@
                         <b-form-input
                         id="input-3"
                         v-model="colacion.horafin"
-                        placeholder="Hora de Fin de la Colación"
+                        placeholder="Hora de Fin de la ColaciÃ³n"
                         autocomplete="off"
                         type="time"
                         ></b-form-input>
@@ -57,11 +57,11 @@
                         {{ $page.errors.cantidad[0] }}
                         </div>
                     </b-form-group>
-                    <b-form-group id="input-group-3" label="Maxima capacidad de colación:" label-for="input-3">
+                    <b-form-group id="input-group-3" label="Maxima capacidad de colaciÃ³n:" label-for="input-3">
                         <b-form-input
                         id="input-3"
                         v-model="colacion.maximo"
-                        placeholder="Maxima capacidad de colación"
+                        placeholder="Maxima capacidad de colaciÃ³n"
                         autocomplete="off"
                         ></b-form-input>
                         <div v-if="$page.errors.maximo" class="text-danger">

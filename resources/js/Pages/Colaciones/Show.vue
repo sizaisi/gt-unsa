@@ -38,7 +38,7 @@
               readonly
               ></b-form-input>
           </b-form-group>
-          <b-form-group id="input-group-3" label="Maxima capacidad de colación:" label-for="input-3">
+          <b-form-group id="input-group-3" label="Maxima capacidad de colaciÃ³n:" label-for="input-3">
               <b-form-input
               id="input-3"
               v-model="colacion.maximo"

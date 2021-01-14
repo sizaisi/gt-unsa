@@ -79,11 +79,11 @@
                             <b-row>
                                 <b-col sm="3" class="text-sm-right"><b>Codigo Expediente:</b></b-col>
                                 <b-col>{{ row.item.codigo }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Fecha de Sesión de Jurado:</b></b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Fecha de SesiÃ³n de Jurado:</b></b-col>
                                 <b-col>{{ row.item.fecha_sesion_jurado }}</b-col>
                             </b-row>
                             <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Grado - Modalidad de obtención:</b></b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Grado - Modalidad de obtenciÃ³n:</b></b-col>
                                 <b-col>{{ row.item.modalidadobtencion }}</b-col>
                                 <b-col sm="3" class="text-sm-right"><b>Procedimiento actual del Expediente:</b></b-col>
                                 <b-col>{{ row.item.procedimiento }}</b-col>
@@ -96,12 +96,12 @@
                             </b-row>
                             <b-row>
                                 <b-col sm="3" class="text-sm-right"><b>Fecha de Sustentación:</b></b-col>
-                                <b-col>{{ row.item.fecha_sustentación }}</b-col>
+                                <b-col>{{ row.item.fecha_sustentacion }}</b-col>
                                 <b-col sm="3" class="text-sm-right"><b>Link de Repositorio:</b></b-col>
                                 <b-col>{{ row.item.url_repo }}</b-col>
                             </b-row>
                             <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Título Tesis:</b></b-col>
+                                <b-col sm="3" class="text-sm-right"><b>TÃ­tulo Tesis:</b></b-col>
                                 <b-col>{{ row.item.titulo }}</b-col>
                                 <b-col sm="3" class="text-sm-right"><b>Hora de Sustentación:</b></b-col>
                                 <b-col>{{ row.item.hora_sustentacion }}</b-col>
@@ -143,7 +143,7 @@
                                 <b-col>{{ row.item.procedencia }}</b-col>
                             </b-row>
                             <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Número Créditos:</b></b-col>
+                                <b-col sm="3" class="text-sm-right"><b>NÃºmero Créditos:</b></b-col>
                                 <b-col>{{ row.item.creditos }}</b-col>
                                 <b-col sm="3" class="text-sm-right"><b>Modalidad de Estudios:</b></b-col>
                                 <b-col>{{ row.item.modalidadestudios }}</b-col>
@@ -185,10 +185,10 @@ export default {
             fields: [
                 { key: "codigo", label: "Codigo Expediente", sortable: true },
                 { key: "nombre", label: "Nombre Graduando", sortable: true },
-                { key: "fecha_sesion_jurado", label: "Fecha sesión de jurado", sortable: true },
-                { key: "fecha_sustentacion", label: "Fecha sustentación", sortable: true },
-                { key: "hora_sustentacion", label: "Hora Sustentación", sortable: true },
-                { key: "condicion", label: "Condición", class: "text-center" },
+                { key: "fecha_sesion_jurado", label: "Fecha sesiÃ³n de jurado", sortable: true },
+                { key: "fecha_sustentacion", label: "Fecha sustentaciÃ³n", sortable: true },
+                { key: "hora_sustentacion", label: "Hora SustentaciÃ³n", sortable: true },
+                { key: "condicion", label: "CondiciÃ³n", class: "text-center" },
                 { key: "acciones", label: "Acciones", class: "text-center" }
             ],
             dismissCountDown: 5
@@ -198,7 +198,7 @@ export default {
         eliminar(expediente) {
             if (
                 !confirm(
-                    "Estas seguro de querer eliminar esta relación de cargo-autoridad?"
+                    "Estas seguro de querer eliminar esta relaciÃ³n de cargo-autoridad?"
                 )
             )
                 return;
@@ -207,7 +207,7 @@ export default {
         restaurar(expediente) {
             if (
                 !confirm(
-                    "Estas seguro de querer restaurar esta relación de cargo-autoridad?"
+                    "Estas seguro de querer restaurar esta relaciÃ³n de cargo-autoridad?"
                 )
             )
                 return;

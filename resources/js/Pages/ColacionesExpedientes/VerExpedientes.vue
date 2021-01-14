@@ -126,7 +126,7 @@ export default {
                 { key: "codigo", label: "Codigo", sortable: true, class: "text-center" },
                 { key: "fecha_sesion_jurado", label: "Fecha Sesion Jurado", sortable: true, class: "text-center" },
                 { key: "fecha_sustentacion", label: "Fecha Sustentacion", sortable: true, class: "text-center" },
-                { key: "condicion", label: "Condición", class: "text-center" },
+                { key: "condicion", label: "CondiciÃ³n", class: "text-center" },
                 { key: "acciones", label: "Acciones", class: "text-center" }
             ],
             dismissCountDown: 5
@@ -136,7 +136,7 @@ export default {
         eliminar(colacionexpediente) {
             if (
                 !confirm(
-                    "Estas seguro de querer eliminar esta relación de Colacion - Expediente?"
+                    "Estas seguro de querer eliminar esta relaciÃ³n de Colacion - Expediente?"
                 )
             )
                 return;
@@ -145,7 +145,7 @@ export default {
         restaurar(colacionexpediente) {
             if (
                 !confirm(
-                    "Estas seguro de querer restaurar esta relación de Colacion - Expediente?"
+                    "Estas seguro de querer restaurar esta relaciÃ³n de Colacion - Expediente?"
                 )
             )
                 return;
