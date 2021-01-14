@@ -27,7 +27,7 @@ export default {
   name: "flash-alert",
   data() {
     return {
-      dismissCountDown: 5,
+      dismissCountDown: 3,
     };
   },
   methods: {
