@@ -33,7 +33,9 @@
       <div class="card-body">
         <b-row>
           <b-col lg="2">
-            <jet-nav-link class="btn btn-success" :href="`${api_url}/usuarios/create`"
+            <jet-nav-link
+              class="btn btn-success"
+              :href="`${api_url}/usuarios/create`"
               >Nuevo Usuario</jet-nav-link
             >
           </b-col>
@@ -103,7 +105,7 @@
           empty-filtered-text="No hay registros que coincidan con su búsqueda."
         >
           <template v-slot:cell(acciones)="row">
-            <b-button variant="primary" size="sm" title="Mostrar área">
+            <b-button variant="info" size="sm" title="Mostrar área">
               <b-icon icon="eye"></b-icon>
             </b-button>
             <b-button variant="warning" size="sm" title="Editar área">
