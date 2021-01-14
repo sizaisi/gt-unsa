@@ -13,7 +13,7 @@ class ColacionExpedienteRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,8 +24,6 @@ class ColacionExpedienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'idcolacion' => 'required',
-            'idexpediente' => 'required',
         ];
     }
 }

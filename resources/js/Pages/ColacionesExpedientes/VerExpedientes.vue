@@ -24,7 +24,7 @@
                     small
                     responsive
                     stacked="md"
-                    :items="colaciones"
+                    :items="expedientes"
                     :fields="fields"
                     empty-text="No hay registros para mostrar"
                 >
@@ -109,8 +109,8 @@ import JetNavLink from "./../../Jetstream/NavLink";
 import FlashAlert from "./../../components/FlashAlert";
 
 export default {
-    name: "colacionesexpedientes.index",
-    props: ["colaciones","expedientes"],
+    name: "colacionesexpedientes.verexpedientes",
+    props: ["expedientes"],
     components: {
         AppLayout,
         JetNavLink,
@@ -119,17 +119,7 @@ export default {
     data() {
         return {
             api_url: this.$root.api_url,
-            fields: [
-                { key: "id", label: "ID", sortable: true, class: "text-center" },
-                { key: "fecha", label: "Fecha", sortable: true },
-                { key: "horainicio", label: "Hora de Inicio", sortable: true },
-                { key: "horafin", label: "Hora de Fin", sortable: true, class: "text-center" },
-                { key: "cantidad", label: "Cantidad de Colantes", sortable: true, class: "text-center" },
-                { key: "maximo", label: "Maxima Cantidad de Colantes", sortable: true, class: "text-center" },
-                { key: "condicion", label: "Condición", class: "text-center" },
-                { key: "acciones", label: "Acciones", class: "text-center" }
-            ],
-            fields2:[
+            fields:[
                 { key: "id", label: "ID", sortable: true, class: "text-center" },
                 { key: "nues", label: "Escuela", sortable: true },
                 { key: "espe", label: "Especialidad", sortable: true },

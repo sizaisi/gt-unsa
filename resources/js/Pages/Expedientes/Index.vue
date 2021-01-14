@@ -16,8 +16,6 @@
             <div class="card-body">
                 <hr class="bg-secondary" />
                 <flash-alert />
-                <b-button size="sm" @click="selectAllRows">Seccionar Todos</b-button>
-                <b-button size="sm" @click="clearSelected">Deseleccionar Todos</b-button>
                 <b-table
                     show-empty
                     striped
@@ -28,11 +26,7 @@
                     :items="expedientes"
                     :fields="fields"
                     empty-text="No hay registros para mostrar"
-                    :select-mode="multi"
                     responsive="sm"
-                    ref="selectableTable"
-                    selectable
-                    @row-selected="onRowSelected"
                 >
                     <template v-slot:cell(condicion)="row">
                         <b-badge
@@ -75,12 +69,98 @@
                         >
                             <b-icon icon="check"></b-icon>
                         </b-button>
+                        <b-button size="sm" @click="row.toggleDetails" class="mr-2">
+                            {{ row.detailsShowing ? 'Ocultar' : 'Mostrar'}} Detalles 
+                        </b-button>
+                    </template>
+                    <template #row-details="row">
+                        <b-card>
+
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Codigo Expediente:</b></b-col>
+                                <b-col>{{ row.item.codigo }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Fecha de Sesión de Jurado:</b></b-col>
+                                <b-col>{{ row.item.fecha_sesion_jurado }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Grado - Modalidad de obtención:</b></b-col>
+                                <b-col>{{ row.item.modalidadobtencion }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Procedimiento actual del Expediente:</b></b-col>
+                                <b-col>{{ row.item.procedimiento }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Rol Actual del Expediente:</b></b-col>
+                                <b-col>{{ row.item.rol }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Escuela del Graduando:</b></b-col>
+                                <b-col>{{ row.item.escuela }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Fecha de Sustentación:</b></b-col>
+                                <b-col>{{ row.item.fecha_sustentación }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Link de Repositorio:</b></b-col>
+                                <b-col>{{ row.item.url_repo }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Título Tesis:</b></b-col>
+                                <b-col>{{ row.item.titulo }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Hora de Sustentación:</b></b-col>
+                                <b-col>{{ row.item.hora_sustentacion }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Estado de Expediente:</b></b-col>
+                                <b-col>{{ row.item.estado }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Fecha de Colación:</b></b-col>
+                                <b-col>{{ row.item.fecha_colacion }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>CUI:</b></b-col>
+                                <b-col>{{ row.item.cui }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Fecha de Sesión de Jurado:</b></b-col>
+                                <b-col>{{ row.item.fecha_sesion_jurado }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Correo Graduando:</b></b-col>
+                                <b-col>{{ row.item.email }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Nombre Graduando:</b></b-col>
+                                <b-col>{{ row.item.nombre }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Celular Graduando:</b></b-col>
+                                <b-col>{{ row.item.celular }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Dirección Graduando:</b></b-col>
+                                <b-col>{{ row.item.direccion }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Fecha Inicio de Trámite:</b></b-col>
+                                <b-col>{{ row.item.fing }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Fecha de Primera Matricula:</b></b-col>
+                                <b-col>{{ row.item.primeramatricula }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Fecha Egreso:</b></b-col>
+                                <b-col>{{ row.item.fecha_egreso }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Procedencia Bachiller:</b></b-col>
+                                <b-col>{{ row.item.procedencia }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Número Créditos:</b></b-col>
+                                <b-col>{{ row.item.creditos }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Modalidad de Estudios:</b></b-col>
+                                <b-col>{{ row.item.modalidadestudios }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Fecha de Inicio Acreditación de Escuela:</b></b-col>
+                                <b-col>{{ row.item.acreditacioninicio }}</b-col>
+                                <b-col sm="3" class="text-sm-right"><b>Fecha de Fin Acreditación de Escuela:</b></b-col>
+                                <b-col>{{ row.item.acreditacionfin }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col sm="3" class="text-sm-right"><b>Modalidad de Sustentación:</b></b-col>
+                                <b-col>{{ row.item.modalidadsustentacion }}</b-col>
+                            </b-row>
+                        </b-card>
                     </template>
                 </b-table>
-                <p>
-                        Selected Rows:<br>
-                        {{ selected }}
-                        </p>
             </div>
         </div>
     </app-layout>
@@ -101,52 +181,13 @@ export default {
     },
     data() {
         return {
-            modes: ['multi', 'single', 'range'],
-            fields: ['selected', 'isActive', 'age', 'first_name', 'last_name'],
-            items: [
-            { isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-            { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-            { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-            { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }
-            ],
-            selectMode: 'multi',
-            selected: [],
             api_url: this.$root.api_url,
             fields: [
-                {
-                    key: "id",
-                    label: "ID",
-                    sortable: true,
-                    class: "text-center"
-                },
-                {
-                    key: "selected",
-                    label: "Selected",
-                    sortable: true,
-                    class: "text-center"
-                },
-                { key: "nues", label: "Codigo", sortable: true },
-                { key: "espe", label: "Especialidad", sortable: true },
-                { key: "codigo", label: "Codigo", sortable: true },
-                { key: "titulo", label: "Título", sortable: true },
-                { key: "url_repo", label: "Repositorio", sortable: true },
+                { key: "codigo", label: "Codigo Expediente", sortable: true },
+                { key: "nombre", label: "Nombre Graduando", sortable: true },
                 { key: "fecha_sesion_jurado", label: "Fecha sesión de jurado", sortable: true },
                 { key: "fecha_sustentacion", label: "Fecha sustentación", sortable: true },
                 { key: "hora_sustentacion", label: "Hora Sustentación", sortable: true },
-                { key: "fecha", label: "Fecha Fecha", sortable: true },
-                { key: "espe", label: "Especialidad", sortable: true },
-                {
-                    key: "fecha_inicio",
-                    label: "Fecha Inicio",
-                    sortable: true,
-                    class: "text-center"
-                },
-                {
-                    key: "fecha_fin",
-                    label: "Fecha Fin",
-                    sortable: true,
-                    class: "text-center"
-                },
                 { key: "condicion", label: "Condición", class: "text-center" },
                 { key: "acciones", label: "Acciones", class: "text-center" }
             ],
@@ -177,23 +218,6 @@ export default {
         countDownChanged(dismissCountDown) {
             this.dismissCountDown = dismissCountDown;
         },
-        onRowSelected(items) {
-        this.selected = items
-        },
-        selectAllRows() {
-            this.$refs.selectableTable.selectAllRows()
-        },
-        clearSelected() {
-            this.$refs.selectableTable.clearSelected()
-        },
-        selectThirdRow() {
-            // Rows are indexed from 0, so the third row is index 2
-            this.$refs.selectableTable.selectRow(2)
-        },
-        unselectThirdRow() {
-            // Rows are indexed from 0, so the third row is index 2
-            this.$refs.selectableTable.unselectRow(2)
-        }
     }
 };
 </script>

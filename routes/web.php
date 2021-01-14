@@ -137,7 +137,9 @@ Route::get('/colacionesexpedientes', [ColacionExpedienteController::class, 'inde
 Route::get('/colacionesexpedientes/create', [ColacionExpedienteController::class, 'create'])->name('colacionesexpedientes.create');
 Route::post('/colacionesexpedientes', [ColacionExpedienteController::class, 'store'])->name('colacionesexpedientes.store');
 Route::get('/colacionesexpedientes/{colacionexpediente}', [ColacionExpedienteController::class, 'show'])->name('colacionesexpedientes.show');
+Route::get('/verexpedientes/{idcolacion}', [ColacionExpedienteController::class, 'verexpedientes'])->name('colacionesexpedientes.verexpedientes');
 Route::get('/colacionesexpedientes/{colacionexpediente}/edit', [ColacionExpedienteController::class, 'edit'])->name('colacionesexpedientes.edit');
 Route::post('/colacionesexpedientes/{colacionexpediente}', [ColacionExpedienteController::class, 'update'])->name('colacionesexpedientes.update');
+Route::post('/updateexpedientes/{idcolacion}', [ColacionExpedienteController::class, 'updateexpedientes'])->name('colacionesexpedientes.updateexpedientes');
 Route::delete('/colacionesexpedientes/{colacionexpediente}', [ColacionExpedienteController::class, 'destroy'])->name('colacionesexpedientes.destroy');
 Route::post('/colacionesexpedientes/{colacionexpediente}/restore', [ColacionExpedienteController::class, 'restore'])->name('colacionesexpedientes.restore');
