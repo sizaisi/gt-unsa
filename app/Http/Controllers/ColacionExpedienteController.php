@@ -33,7 +33,10 @@ class ColacionExpedienteController extends Controller
     public function create()
     {
         $colaciones = Colacion::select('id as value','fecha as text')->orderBy('fecha', 'desc')->get();
-        $expedientes = Expediente::all();
+        $expedientes = \DB::table('gt_expediente')
+                        ->where('idcolacion',null)
+                        ->orwhere('idcolacion','0')
+                        ->orderBy('id', 'desc')->get();
 
         return Inertia::render('ColacionesExpedientes/Create', compact('colaciones', 'expedientes'));
     }
@@ -61,9 +64,9 @@ class ColacionExpedienteController extends Controller
         $colacionexpediente->idexpediente = $request->idexpediente;
 
         if ($colacionexpediente->update()) {
-            $result = ['successMessage' => 'ColaciÃ³n - Expediente creada con Ã©xito'];
+            $result = ['successMessage' => 'Colación - Expediente creado con xito'];
         } else {
-            $result = ['errorMessage' => 'No se pudo crear la ColaciÃ³n - Expediente'];
+            $result = ['errorMessage' => 'No se pudo crear la Colación - Expediente'];
         }
 
         return redirect()->route('colacionesexpedientes.index')->with($result);
@@ -82,7 +85,7 @@ class ColacionExpedienteController extends Controller
                 ->update(['idcolacion' => $idcolacion]);
         } 
 
-        $result = ['successMessage' => 'Expedientes actualizados con Éxito'];
+        $result = ['successMessage' => 'Colaciones - Expedientes actualizados con Éxito'];
 
         return redirect()->route('colacionesexpedientes.index')->with($result);
     }
@@ -90,9 +93,9 @@ class ColacionExpedienteController extends Controller
     public function destroy(ColacionExpediente $colacionexpediente)
     {
         if ($colacionexpediente->delete()) {
-            $result = ['successMessage' => 'ColaciÃ³n - Expediente desactivado con Ã©xito'];
+            $result = ['successMessage' => 'Colación - Expediente desactivado con Ã©xito'];
         } else {
-            $result = ['errorMessage' => 'No se pudo desactivar la ColaciÃ³n - Expediente'];
+            $result = ['errorMessage' => 'No se pudo desactivar la Colación - Expediente'];
         }
 
         return redirect()->back()->with($result);
@@ -103,10 +106,10 @@ class ColacionExpedienteController extends Controller
         try {
             $colacionexpediente = ColacionExpediente::withTrashed()->findOrFail($colacionexpediente_id);
             $colacionexpediente->restore();
-            $result = ['successMessage' => 'ColaciÃ³n - Expediente restaurado con Ã©xito'];
+            $result = ['successMessage' => 'Colación - Expediente restaurado con Éxito'];
         }
         catch(\Exception $e) {
-            $result = ['errorMessage' => 'No se pudo restaurar la ColaciÃ³n - Expediente'];
+            $result = ['errorMessage' => 'No se pudo restaurar la Colación - Expediente'];
             \Log::warning('ColacionExpedienteController@restore, Detalle: "'.$e->getMessage().'" on file '.$e->getFile().':'.$e->getLine());           
         }        
 

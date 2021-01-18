@@ -3,7 +3,7 @@
     <template #icon_title>
       <i class="fa fa-box fa-fw"></i>
     </template>
-    <template #title>Colacion - Expediente</template>
+    <template #title>Colación - Expediente</template>
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">Lista de Colaciones - Expedientes</h3>
@@ -35,13 +35,6 @@
             <b-badge v-else variant="secondary">Inactivo</b-badge>
           </template>
           <template v-slot:cell(acciones)="row">
-            <jet-nav-link
-              v-if="row.item.deleted_at == null"
-              class="btn btn-primary btn-sm"
-              :href="`${api_url}/verexpedientes/${row.item.id}`"
-              type="button"
-              ><b-icon icon="eye"></b-icon
-            ></jet-nav-link>
             <jet-nav-link
               v-if="row.item.deleted_at == null"
               class="btn btn-primary btn-sm"
@@ -135,11 +128,11 @@ export default {
         },
         {
           key: "maximo",
-          label: "Maxima Cantidad de Colantes",
+          label: "Máxima Cantidad de Colantes",
           sortable: true,
           class: "text-center",
         },
-        { key: "condicion", label: "CondiciÃ³n", class: "text-center" },
+        { key: "condicion", label: "Condición", class: "text-center" },
         { key: "acciones", label: "Acciones", class: "text-center" },
       ],
       fields2: [
@@ -148,23 +141,23 @@ export default {
         { key: "espe", label: "Especialidad", sortable: true },
         {
           key: "codigo",
-          label: "Codigo",
+          label: "Código",
           sortable: true,
           class: "text-center",
         },
         {
           key: "fecha_sesion_jurado",
-          label: "Fecha Sesion Jurado",
+          label: "Fecha Sesión Jurado",
           sortable: true,
           class: "text-center",
         },
         {
           key: "fecha_sustentacion",
-          label: "Fecha Sustentacion",
+          label: "Fecha Sustentación",
           sortable: true,
           class: "text-center",
         },
-        { key: "condicion", label: "CondiciÃ³n", class: "text-center" },
+        { key: "condicion", label: "Condición", class: "text-center" },
         { key: "acciones", label: "Acciones", class: "text-center" },
       ],
       dismissCountDown: 5,
@@ -178,7 +171,7 @@ export default {
     eliminar(colacionexpediente) {
       if (
         !confirm(
-          "Estas seguro de querer eliminar esta relaciÃ³n de Colacion - Expediente?"
+          "Estas seguro de querer eliminar esta relación de Colación - Expediente?"
         )
       )
         return;
@@ -189,7 +182,7 @@ export default {
     restaurar(colacionexpediente) {
       if (
         !confirm(
-          "Estas seguro de querer restaurar esta relaciÃ³n de Colacion - Expediente?"
+          "Estas seguro de querer restaurar esta relación de Colación - Expediente?"
         )
       )
         return;

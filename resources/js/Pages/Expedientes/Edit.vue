@@ -3,89 +3,46 @@
         <template #icon_title>
             <i class="fa fa-box fa-fw"></i>
         </template>
-        <template #title>Cargos-Autoridades</template>
+        <template #title>Expedientes</template>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Editar Cargo-Autoridad</h3>
+                <h3 class="card-title">Editar Expediente</h3>
             </div>
             <div class="card-body">
                 <b-form @submit.prevent="actualizar">
                     <b-form-group
-                        id="input-group-2"
-                        label="Cargo:"
-                        label-for="input-2"
-                    >
-                        <b-form-select
-                            v-model="cargoautoridad.idcargo"
-                            :options="cargos"
-                            id="input-2"
-                        >
-                            <template v-slot:first>
-                                <option :value="null" disabled>
-                                    -- Por favor seleccione una opciÃ³n --
-                                </option>
-                            </template>
-                        </b-form-select>
-                        <div v-if="$page.errors.idcargo" class="text-danger">
-                            {{ $page.errors.idcargo[0] }}
-                        </div>
-                    </b-form-group>
-                    <b-form-group
-                        id="input-group-3"
-                        label="Autoridad:"
-                        label-for="input-3"
-                    >
-                        <b-form-select
-                            v-model="cargoautoridad.idautoridad"
-                            :options="autoridades"
-                            id="input-3"
-                        >
-                            <template v-slot:first>
-                                <option :value="null" disabled>
-                                    -- Por favor seleccione una opciÃ³n --
-                                </option>
-                            </template>
-                        </b-form-select>
-                        <div
-                            v-if="$page.errors.idautoridad"
-                            class="text-danger"
-                        >
-                            {{ $page.errors.idautoridad[0] }}
-                        </div>
-                    </b-form-group>
-                    <b-form-group
                         id="input-group-4"
-                        label="Fecha de Inicio:"
+                        label="Fecha1:"
                         label-for="input-4"
                     >
                         <b-form-input
                             id="input-4"
-                            v-model="cargoautoridad.fecha_inicio"
+                            v-model="expediente.fecha1"
                             placeholder="Ingrese Fecha"
                             autocomplete="off"
                             type="date"
                         ></b-form-input>
                         <div
-                            v-if="$page.errors.fecha_inicio"
+                            v-if="$page.errors.fecha1"
                             class="text-danger"
                         >
-                            {{ $page.errors.fecha_inicio[0] }}
+                            {{ $page.errors.fecha1[0] }}
                         </div>
                     </b-form-group>
                     <b-form-group
                         id="input-group-5"
-                        label="Fecha de Fin:"
+                        label="Fecha2:"
                         label-for="input-5"
                     >
                         <b-form-input
                             id="input-5"
-                            v-model="cargoautoridad.fecha_fin"
+                            v-model="expediente.fecha2"
                             placeholder="Ingrese Fecha"
                             autocomplete="off"
                             type="date"
                         ></b-form-input>
-                        <div v-if="$page.errors.fecha_fin" class="text-danger">
-                            {{ $page.errors.fecha_fin[0] }}
+                        <div v-if="$page.errors.fecha2" class="text-danger">
+                            {{ $page.errors.fecha2[0] }}
                         </div>
                     </b-form-group>
                     <b-button type="submit" variant="success"
@@ -101,8 +58,8 @@
 import AppLayout from "./../../Layouts/AppLayout";
 
 export default {
-    name: "cargosautoridades.edit",
-    props: ["cargoautoridad", "cargos", "autoridades"],
+    name: "expedientes.edit",
+    props: ["expediente"],
     components: {
         AppLayout
     },
@@ -113,10 +70,7 @@ export default {
     },
     methods: {
         actualizar() {
-            this.$inertia.post(
-                `${this.api_url}/cargosautoridades/${this.cargoautoridad.id}`,
-                this.cargoautoridad
-            );
+            this.$inertia.post(`${this.api_url}/expedientes/${this.expediente.id}`, this.expediente);
         }
     }
 };

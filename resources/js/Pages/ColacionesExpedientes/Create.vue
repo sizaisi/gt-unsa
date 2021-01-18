@@ -6,14 +6,14 @@
     <template #title>Colaciones Expedientes</template>
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Nueva ColaciÃ³n - Expediente</h3>
+        <h3 class="card-title">Nueva Colación - Expediente</h3>
       </div>
       <div class="card-body">
         <b-form @submit.prevent="updateexpedientes">
           <div>
             <b-form-group
               id="input-group-2"
-              label="ColaciÃ³n:"
+              label="Colación:"
               label-for="input-2"
             >
               <b-form-select
@@ -23,7 +23,7 @@
               >
                 <template v-slot:first>
                   <option :value="null" disabled>
-                    -- Por favor seleccione una opciÃ³n --
+                    -- Por favor seleccione una opción --
                   </option>
                 </template>
               </b-form-select>
@@ -32,7 +32,7 @@
               </div>
             </b-form-group>
             <p>
-              <b-button size="sm" @click="selectAllRows">Todos</b-button>
+              <b-button size="sm" @click="selectAllRows">Seleccionar Todos</b-button>
               <b-button size="sm" @click="clearSelected">Ninguno</b-button>
             </p>
             <b-table
@@ -58,7 +58,7 @@
             </b-table>
 
             <p>
-              Selected Rows:<br />
+              ID Expedientes Seleccionados:<br />
               {{ colacionexpediente.idexpediente }}
             </p>
           </div>

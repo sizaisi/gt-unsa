@@ -27,9 +27,50 @@ class ExpedienteController extends Controller
 
         return Inertia::render('Expedientes/Index', compact('expedientes'));
     }    
-    
+
     public function show(Expediente $expediente)
     {
-        return Inertia::render('Expedientes/Show', compact('expediente'));
+        $expedientes = \DB::table('gt_recurso')
+            ->leftjoin('gt_archivo', 'gt_archivo.idrecurso', '=', 'gt_recurso.id')
+            ->select('gt_recurso.id AS idrecurso', 'gt_archivo.nombre_asignado', 'gt_archivo.nombre_archivo', 'gt_archivo.mime')
+            ->where('gt_recurso.idexpediente', $expediente->id)             
+            ->get(); 
+            //dd($expedientes);
+        return Inertia::render('Expedientes/Show', compact('expedientes'));
+    }
+
+    function generateRandomString($length = 10) {
+        return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+    }
+
+    public function mostrar($idrecurso)
+    {
+        
+        $archivo = \DB::table('gt_archivo')
+                        ->select('nombre_asignado','mime', 'data')
+                        ->where('idrecurso', $idrecurso)
+                        ->first();       
+        $nombre_asignado = $archivo->nombre_asignado;
+        $mime = $archivo->mime;
+        $data = $archivo->data;       
+        
+        switch ($mime) {
+            case 'application/pdf':
+                $extension = '.pdf';
+                break;
+            case 'image/png':
+                $extension = '.png';
+                break;
+            case 'image/jpeg':
+                $extension = '.jpg';
+                break;
+        }	
+
+        $data = base64_decode($data);
+
+        return response($data, 200, [
+            'Content-Type' => $mime,
+            'Content-Disposition' => 'inline; filename="' . $nombre_asignado . $extension . '"',
+        ]);
     }
 }
