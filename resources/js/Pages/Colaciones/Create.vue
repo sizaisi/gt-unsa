@@ -46,17 +46,6 @@
               {{ $page.errors.horafin[0] }}
             </div>
           </b-form-group>
-          <b-form-group id="input-group-3" label="Cantidad de colantes:" label-for="input-3">
-            <b-form-input
-              id="input-3"
-              v-model="colacion.cantidad"
-              placeholder="Cantidad de Colantes"
-              autocomplete="off"
-            ></b-form-input>
-            <div v-if="$page.errors.cantidad" class="text-danger">
-              {{ $page.errors.cantidad[0] }}
-            </div>
-          </b-form-group>
           <b-form-group id="input-group-3" label="Maxima capacidad de colación:" label-for="input-3">
             <b-form-input
               id="input-3"

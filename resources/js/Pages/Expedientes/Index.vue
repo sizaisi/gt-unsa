@@ -44,13 +44,15 @@
                             type="button"
                             ><b-icon icon="eye"></b-icon
                         ></jet-nav-link>
-                        <jet-nav-link
+                        <b-button
                             v-if="row.item.deleted_at == null"
-                            class="btn btn-warning btn-sm"
-                            :href="`${api_url}/expedientes/${row.item.id}/edit`"
-                            type="button"
-                            ><b-icon icon="pencil-square"></b-icon
-                        ></jet-nav-link>
+                            variant="success"
+                            size="sm"
+                            title="Revisado"
+                            @click="revisado(row.item)"
+                        >
+                            <b-icon icon="check"></b-icon>
+                        </b-button>
                         <b-button
                             v-if="row.item.deleted_at == null"
                             variant="danger"
@@ -70,94 +72,161 @@
                             <b-icon icon="check"></b-icon>
                         </b-button>
                         <b-button size="sm" @click="row.toggleDetails" class="mr-2">
-                            {{ row.detailsShowing ? 'Ocultar' : 'Mostrar'}} Detalles 
+                            <!--{{ row.detailsShowing ? 'Ocultar' : 'Mostrar'}} -->
+                            Detalles
                         </b-button>
                     </template>
                     <template #row-details="row">
                         <b-card>
-
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Codigo Expediente:</b></b-col>
-                                <b-col>{{ row.item.codigo }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Fecha de SesiÃ³n de Jurado:</b></b-col>
-                                <b-col>{{ row.item.fecha_sesion_jurado }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Grado - Modalidad de obtenciÃ³n:</b></b-col>
-                                <b-col>{{ row.item.modalidadobtencion }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Procedimiento actual del Expediente:</b></b-col>
-                                <b-col>{{ row.item.procedimiento }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Rol Actual del Expediente:</b></b-col>
-                                <b-col>{{ row.item.rol }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Escuela del Graduando:</b></b-col>
-                                <b-col>{{ row.item.escuela }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Fecha de Sustentación:</b></b-col>
-                                <b-col>{{ row.item.fecha_sustentacion }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Link de Repositorio:</b></b-col>
-                                <b-col>{{ row.item.url_repo }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>TÃ­tulo Tesis:</b></b-col>
-                                <b-col>{{ row.item.titulo }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Hora de Sustentación:</b></b-col>
-                                <b-col>{{ row.item.hora_sustentacion }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Estado de Expediente:</b></b-col>
-                                <b-col>{{ row.item.estado }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Fecha de Colación:</b></b-col>
-                                <b-col>{{ row.item.fecha_colacion }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>CUI:</b></b-col>
-                                <b-col>{{ row.item.cui }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Fecha de Sesión de Jurado:</b></b-col>
-                                <b-col>{{ row.item.fecha_sesion_jurado }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Correo Graduando:</b></b-col>
-                                <b-col>{{ row.item.email }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Nombre Graduando:</b></b-col>
-                                <b-col>{{ row.item.nombre }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Celular Graduando:</b></b-col>
-                                <b-col>{{ row.item.celular }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Dirección Graduando:</b></b-col>
-                                <b-col>{{ row.item.direccion }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Fecha Inicio de Trámite:</b></b-col>
-                                <b-col>{{ row.item.fing }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Fecha de Primera Matricula:</b></b-col>
-                                <b-col>{{ row.item.primeramatricula }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Fecha Egreso:</b></b-col>
-                                <b-col>{{ row.item.fecha_egreso }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Procedencia Bachiller:</b></b-col>
-                                <b-col>{{ row.item.procedencia }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>NÃºmero Créditos:</b></b-col>
-                                <b-col>{{ row.item.creditos }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Modalidad de Estudios:</b></b-col>
-                                <b-col>{{ row.item.modalidadestudios }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Fecha de Inicio Acreditación de Escuela:</b></b-col>
-                                <b-col>{{ row.item.acreditacioninicio }}</b-col>
-                                <b-col sm="3" class="text-sm-right"><b>Fecha de Fin Acreditación de Escuela:</b></b-col>
-                                <b-col>{{ row.item.acreditacionfin }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col sm="3" class="text-sm-right"><b>Modalidad de Sustentación:</b></b-col>
-                                <b-col>{{ row.item.modalidadsustentacion }}</b-col>
-                            </b-row>
+                            <fieldset>
+                                <legend><center>INFORMACIÓN DE LA UNIVERSIDAD</center></legend>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Codigo de la Universidad:</b></b-col>
+                                    <b-col>091</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Razón social de la Universidad:</b></b-col>
+                                    <b-col>UNIVERSIDAD NACIONAL DE SAN AGUSTIN</b-col>
+                                </b-row>
+                            </fieldset>
+                            <fieldset>
+                                <legend><center>INFORMACIÓN PERSONAL</center></legend>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Apellido Paterno:</b></b-col>
+                                    <b-col>{{ row.item.apepat }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Apellido Materno:</b></b-col>
+                                    <b-col>{{ row.item.apemat }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Nombre Graduando:</b></b-col>
+                                    <b-col>{{ row.item.nombregrad }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Sexo Graduando:</b></b-col>
+                                    <b-col>{{ row.item.sexo }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Tipo Documento:</b></b-col>
+                                    <b-col>{{ row.item.tipo_doc }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Número de Documento:</b></b-col>
+                                    <b-col>{{ row.item.docu_num }}</b-col>
+                                </b-row>
+                            </fieldset>
+                            <fieldset>
+                                <legend><center>INFORMACIÓN ACADÉMICA</center></legend>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Fecha de Primera Matrícula:</b></b-col>
+                                    <b-col>{{ row.item.fecmat }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Nombre de la Facultad:</b></b-col>
+                                    <b-col>{{ row.item.facultad }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Carrera/Escuela/Programa:</b></b-col>
+                                    <b-col>{{ row.item.escuela }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Fecha de Egreso:</b></b-col>
+                                    <b-col>{{ row.item.fecegr }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Número de Créditos:</b></b-col>
+                                    <b-col>{{ row.item.creditos }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Nombre de Programa de Estudios:</b></b-col>
+                                    <b-col>{{ row.item.nompro }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Modalidad de Estudios:</b></b-col>
+                                    <b-col>{{ row.item.modest }}</b-col>
+                                </b-row>
+                            </fieldset>
+                            <fieldset>
+                                <legend><center>INFORMACIÓN DEL EXPEDIENTE</center></legend>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Código del Expediente:</b></b-col>
+                                    <b-col>{{ row.item.codigo }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>URL del Trabajo de Investigación:</b></b-col>
+                                    <b-col>{{ row.item.url }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Procedencia del Bachiller:</b></b-col>
+                                    <b-col>{{ row.item.probac }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Grado Académico o Título Profesional:</b></b-col>
+                                    <b-col>{{ row.item.gratit }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Nombre completo del Trabajo de Investigación / Tesis / Trabajo de Suficiencia Profesional / Trabajo Académico:</b></b-col>
+                                    <b-col>{{ row.item.titulo }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Modalidad de Obtención del Grado o Título:</b></b-col>
+                                    <b-col>{{ row.item.modalidad }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Fecha de Solicitud del Inicio del Trámite:</b></b-col>
+                                    <b-col>{{ row.item.fectra }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Fecha de Sustentación / Aprobación del Grado o Título:</b></b-col>
+                                    <b-col>{{ row.item.fecsus }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Originalidad de la Investigación:</b></b-col>
+                                    <b-col>{{ row.item.oriinv }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Abreviatura Grado / título:</b></b-col>
+                                    <b-col>{{ row.item.abrtit }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Número de Resolución:</b></b-col>
+                                    <b-col>{{ row.item.numres }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Fecha de Resolución de Consejo Universitario:</b></b-col>
+                                    <b-col>{{ row.item.fecrescon }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Fecha Diploma Original:</b></b-col>
+                                    <b-col>{{ row.item.fecdip }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Número Diploma:</b></b-col>
+                                    <b-col>{{ row.item.numdip }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Tipo de Emisión del Diploma:</b></b-col>
+                                    <b-col>{{ row.item.fecdip }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Libro:</b></b-col>
+                                    <b-col>{{ row.item.lib }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Folio:</b></b-col>
+                                    <b-col>{{ row.item.fol }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Registro:</b></b-col>
+                                    <b-col>{{ row.item.reg }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Cargo1:</b></b-col>
+                                    <b-col>{{ row.item.car1 }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Autoridad1:</b></b-col>
+                                    <b-col>{{ row.item.aut1 }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Cargo2:</b></b-col>
+                                    <b-col>{{ row.item.car2 }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Autoridad2:</b></b-col>
+                                    <b-col>{{ row.item.aut2 }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Cargo3:</b></b-col>
+                                    <b-col>{{ row.item.car3 }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Autoridad3:</b></b-col>
+                                    <b-col>{{ row.item.aut3 }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Oficio:</b></b-col>
+                                    <b-col>{{ row.item.ofi }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Modalidad de Sustentación de la Tesis:</b></b-col>
+                                    <b-col>{{ row.item.modsus }}</b-col>
+                                </b-row>
+                            </fieldset>
+                            <fieldset>
+                                <legend><center>INFORMACIÓN DE ACREDITACIÓN</center></legend>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Programa Acreditado ante SINEACE:</b></b-col>
+                                    <b-col>{{ row.item.proacr }}</b-col>
+                                    <b-col sm="3" class="text-sm-right"><b>Fecha de Inicio de la Acreditación del Programa Académico:</b></b-col>
+                                    <b-col>{{ row.item.feciniacr }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col sm="3" class="text-sm-right"><b>Fecha de Fin de la Acreditación del Programa Académico:</b></b-col>
+                                    <b-col>{{ row.item.fecfinacr }}</b-col>
+                                </b-row>
+                            </fieldset>
                         </b-card>
                     </template>
                 </b-table>
@@ -185,20 +254,21 @@ export default {
             fields: [
                 { key: "codigo", label: "Codigo Expediente", sortable: true },
                 { key: "nombre", label: "Nombre Graduando", sortable: true },
-                { key: "fecha_sesion_jurado", label: "Fecha sesiÃ³n de jurado", sortable: true },
-                { key: "fecha_sustentacion", label: "Fecha sustentaciÃ³n", sortable: true },
-                { key: "hora_sustentacion", label: "Hora SustentaciÃ³n", sortable: true },
-                { key: "condicion", label: "CondiciÃ³n", class: "text-center" },
+                { key: "fecha_sesion_jurado", label: "Fecha sesión de jurado", sortable: true },
+                { key: "fecha_sustentacion", label: "Fecha sustentación", sortable: true },
+                { key: "hora_sustentacion", label: "Hora Sustentación", sortable: true },
+                { key: "condicion", label: "Condición", class: "text-center" },
                 { key: "acciones", label: "Acciones", class: "text-center" }
             ],
-            dismissCountDown: 5
+            dismissCountDown: 5,
+
         };
     },
     methods: {
         eliminar(expediente) {
             if (
                 !confirm(
-                    "Estas seguro de querer eliminar esta relaciÃ³n de cargo-autoridad?"
+                    "Estas seguro de querer eliminar esta relación de cargo-autoridad?"
                 )
             )
                 return;
@@ -207,12 +277,23 @@ export default {
         restaurar(expediente) {
             if (
                 !confirm(
-                    "Estas seguro de querer restaurar esta relaciÃ³n de cargo-autoridad?"
+                    "Estas seguro de querer restaurar esta relación de cargo-autoridad?"
                 )
             )
                 return;
             this.$inertia.post(
                 `${this.api_url}/expedientes/${expediente.id}/restore`
+            );
+        },
+        revisado(expediente) {
+            if (
+                !confirm(
+                    "Estas seguro que el expediente fue revisado correctamente?"
+                )
+            )
+                return;
+            this.$inertia.post(
+                `${this.api_url}/expedientes/${expediente.id}/update`
             );
         },
         countDownChanged(dismissCountDown) {

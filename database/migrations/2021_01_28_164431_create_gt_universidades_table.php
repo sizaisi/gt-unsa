@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGtColacionesTable extends Migration
+class CreateGtUniversidadesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateGtColacionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('gt_colaciones', function (Blueprint $table) {
+        Schema::create('gt_universidades', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha');
-            $table->time('horainicio'); 
-            $table->time('horafin'); 
-            $table->string('cantidad', 45);
-            $table->string('maximo', 45);     
+            $table->string('cod_universidad', 45)->comment = 'codigo de universidad enviado por SUNEDU';
+            $table->string('razon_social', 250)->comment = 'razon social de la universidad';
+            $table->boolean('estado')->comment = '0 activo, 1 inactivo';     
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +30,6 @@ class CreateGtColacionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gt_colaciones');
+        Schema::dropIfExists('gt_universidades');
     }
 }
