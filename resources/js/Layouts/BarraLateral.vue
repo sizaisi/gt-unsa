@@ -23,7 +23,9 @@
           role="menu"
           data-accordion="false"
         >
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview"
+            :class="{ 'menu-open': path == 'usuarios' || path == 'universidades' }"
+          >
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-users-cog"></i>
                 <p>
@@ -36,7 +38,7 @@
                     <jet-nav-link
                       :href="`${api_url}/usuarios`"
                       type="link"
-                      :active="$page.currentRouteName == 'usuarios.index'"
+                      :active="path == 'usuarios'"
                       ><i class="nav-icon fas fa-users"></i> Usuarios</jet-nav-link
                     >
                 </li>
@@ -44,13 +46,15 @@
                     <jet-nav-link
                       :href="`${api_url}/universidades`"
                       type="link"
-                      :active="$page.currentRouteName == 'universidades.index'"
+                      :active="path == 'universidades'"
                       ><i class="nav-icon fas fa-users"></i> Universidades</jet-nav-link
                     >
                 </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview"
+            :class="{ 'menu-open': path == 'colaciones' || path == 'expedientes' || path == 'colacionesexpedientes' }"
+          >
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-graduation-cap"></i>
                 <p>
@@ -63,7 +67,7 @@
                 <jet-nav-link
                   :href="`${api_url}/colaciones`"
                   type="link"
-                  :active="$page.currentRouteName == 'colaciones.index'"
+                  :active="path == 'colaciones'"
                   ><i class="nav-icon fab fa-leanpub"></i> Colaciones
                 </jet-nav-link>
               </li>
@@ -71,7 +75,7 @@
                 <jet-nav-link
                   :href="`${api_url}/expedientes`"
                   type="link"
-                  :active="$page.currentRouteName == 'expedientes.index'"
+                  :active="path == 'expedientes'"
                   ><i class="nav-icon fas fa-check-double"></i> Revisión de
                   Expediente
                 </jet-nav-link>
@@ -80,14 +84,19 @@
                 <jet-nav-link
                   :href="`${api_url}/colacionesexpedientes`"
                   type="link"
-                  :active="$page.currentRouteName == 'colacionesexpedientes.index'"
+                  :active="path == 'colacionesexpedientes'"
                   ><i class="nav-icon fas fa-object-group"></i>
                   Colaciones-Expedientes
                 </jet-nav-link>
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview"
+            :class="{ 'menu-open': path == 'autoridades' || path == 'cargos' || 
+                                   path == 'roles' || path == 'cargosautoridades' ||  
+                                   path == 'tramites' || path == 'procedimientos' || path == 'rutas'  
+                    }"
+          >
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-tools"></i>
                 <p>
@@ -100,7 +109,7 @@
                 <jet-nav-link
                     :href="`${api_url}/autoridades`"
                     type="link"
-                    :active="$page.currentRouteName == 'autoridades.index'"
+                    :active="path == 'autoridades'"
                     ><i class="nav-icon fas fa-user-secret"></i> Autoridades
                 </jet-nav-link>
               </li>
@@ -108,7 +117,7 @@
                 <jet-nav-link
                     :href="`${api_url}/cargos`"
                     type="link"
-                    :active="$page.currentRouteName == 'cargos.index'"
+                    :active="path == 'cargos'"
                     ><i class="nav-icon fas fa-chalkboard-teacher"></i> Cargos
                 </jet-nav-link>
               </li>
@@ -116,7 +125,7 @@
                 <jet-nav-link
                   :href="`${api_url}/roles`"
                   type="link"
-                  :active="$page.currentRouteName == 'roles.index'"
+                  :active="path == 'roles'"
                   ><i class="nav-icon fas fa-user-tag"></i> Roles
                 </jet-nav-link>
               </li>
@@ -124,7 +133,7 @@
                 <jet-nav-link
                   :href="`${api_url}/cargosautoridades`"
                   type="link"
-                  :active="$page.currentRouteName == 'cargosautoridades.index'"
+                  :active="path == 'cargosautoridades'"
                   ><i class="nav-icon fas fa-crosshairs"></i>
                   Cargo-Autoridad
                 </jet-nav-link>
@@ -133,7 +142,7 @@
                 <jet-nav-link
                   :href="`${api_url}/cargosautoridades`"
                   type="link"
-                  :active="$page.currentRouteName == 'cargosautoridades.index'"
+                  :active="path == 'cargosautoridades'"
                   ><i class="nav-icon fas fa-crosshairs"></i>
                   Programas Acreditados
                 </jet-nav-link>
@@ -142,16 +151,16 @@
                 <jet-nav-link
                   :href="`${api_url}/cargosautoridades`"
                   type="link"
-                  :active="$page.currentRouteName == 'cargosautoridades.index'"
+                  :active="path == 'cargosautoridades'"
                   ><i class="nav-icon fas fa-crosshairs"></i>
                   Denominaciones
                 </jet-nav-link>
               </li>
               <li class="nav-item">
                 <jet-nav-link
-                  :href="`${api_url}/tramites/`"
+                  :href="`${api_url}/tramites`"
                   type="link"
-                  :active="$page.currentRouteName == 'tramites.index'"
+                  :active="path == 'tramites'"
                   ><i class="nav-icon fas fa-align-left"></i>
                   Trámites
                 </jet-nav-link>
@@ -160,7 +169,7 @@
                 <jet-nav-link
                   :href="`${api_url}/procedimientos`"
                   type="link"
-                  :active="$page.currentRouteName == 'procedimientos.index'"
+                  :active="path == 'procedimientos'"
                   ><i class="nav-icon fas fa-microchip"></i>
                   Procedimientos
                 </jet-nav-link>
@@ -169,7 +178,7 @@
                 <jet-nav-link
                   :href="`${api_url}/rutas`"
                   type="link"
-                  :active="$page.currentRouteName == 'rutas.index'"
+                  :active="path == 'rutas'"
                   ><i class="nav-icon fas fa-route"></i> Rutas
                 </jet-nav-link>
               </li>
@@ -194,5 +203,10 @@ export default {
       api_url: this.$root.api_url,
     };
   },
+  computed: {
+    path() {
+      return window.location.pathname.split('/')[1];
+    },
+  },  
 };
 </script>

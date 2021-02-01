@@ -15,6 +15,7 @@ use App\Http\Controllers\RutaController;
 use App\Http\Controllers\ColacionController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\ColacionExpedienteController;
+use App\Http\Controllers\UniversidadController;
 
 use App\Http\Controllers\UserController;
 
