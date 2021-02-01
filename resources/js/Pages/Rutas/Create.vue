@@ -119,6 +119,8 @@ export default {
         "cambiar",
         "aceptar",
         "aprobar",
+        "informar",
+        "cambiar",
         "devolver",
         "denegar",
         "observar",
