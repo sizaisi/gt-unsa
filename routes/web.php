@@ -129,9 +129,12 @@ Route::get('/expedientes/create', [ExpedienteController::class, 'create'])->name
 Route::post('/expedientes', [ExpedienteController::class, 'store'])->name('expedientes.store');
 Route::get('/expedientes/{expediente}', [ExpedienteController::class, 'show'])->name('expedientes.show');
 Route::get('/expedientes/{expediente}/edit', [ExpedienteController::class, 'edit'])->name('expedientes.edit');
-Route::post('/expedientes/{expediente}', [ExpedienteController::class, 'update'])->name('expedientes.update');
+Route::post('/expedientes/{expediente}/update', [ExpedienteController::class, 'update'])->name('expedientes.update');
 Route::delete('/expedientes/{expediente}', [ExpedienteController::class, 'destroy'])->name('expedientes.destroy');
 Route::post('/expedientes/{expediente}/restore', [ExpedienteController::class, 'restore'])->name('expedientes.restore');
+Route::post('/expedientes/registrar', [ExpedienteController::class, 'registrar'])->name('expedientes.registrar');
+Route::delete('/expedientes/eliminar', [ExpedienteController::class, 'eliminar'])->name('expedientes.eliminar');
+Route::get('/expedientes/mostrar/{idrecurso}', [ExpedienteController::class, 'mostrar'])->name('expedientes.mostrar');
 
 Route::get('/colacionesexpedientes', [ColacionExpedienteController::class, 'index'])->name('colacionesexpedientes.index');
 Route::get('/colacionesexpedientes/create', [ColacionExpedienteController::class, 'create'])->name('colacionesexpedientes.create');
@@ -140,6 +143,15 @@ Route::get('/colacionesexpedientes/{colacionexpediente}', [ColacionExpedienteCon
 Route::get('/verexpedientes/{idcolacion}', [ColacionExpedienteController::class, 'verexpedientes'])->name('colacionesexpedientes.verexpedientes');
 Route::get('/colacionesexpedientes/{colacionexpediente}/edit', [ColacionExpedienteController::class, 'edit'])->name('colacionesexpedientes.edit');
 Route::post('/colacionesexpedientes/{colacionexpediente}', [ColacionExpedienteController::class, 'update'])->name('colacionesexpedientes.update');
-Route::post('/updateexpedientes/{idcolacion}', [ColacionExpedienteController::class, 'updateexpedientes'])->name('colacionesexpedientes.updateexpedientes');
+Route::post('/updateexpedientes', [ColacionExpedienteController::class, 'updateexpedientes'])->name('colacionesexpedientes.updateexpedientes');
 Route::delete('/colacionesexpedientes/{colacionexpediente}', [ColacionExpedienteController::class, 'destroy'])->name('colacionesexpedientes.destroy');
 Route::post('/colacionesexpedientes/{colacionexpediente}/restore', [ColacionExpedienteController::class, 'restore'])->name('colacionesexpedientes.restore');
+
+Route::get('/universidades', [UniversidadController::class, 'index'])->name('universidades.index');
+Route::get('/universidades/create', [UniversidadController::class, 'create'])->name('universidades.create');
+Route::post('/universidades', [UniversidadController::class, 'store'])->name('universidades.store');
+Route::get('/universidades/{universidad}', [UniversidadController::class, 'show'])->name('universidades.show');
+Route::get('/universidades/{universidad}/edit', [UniversidadController::class, 'edit'])->name('universidades.edit');
+Route::post('/universidades/{universidad}', [UniversidadController::class, 'update'])->name('universidades.update');
+Route::delete('/universidades/{universidad}', [UniversidadController::class, 'destroy'])->name('universidades.destroy');
+Route::post('/universidades/{universidad}/restore', [UniversidadController::class, 'restore'])->name('universidades.restore');

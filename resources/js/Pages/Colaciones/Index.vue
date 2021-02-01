@@ -117,12 +117,12 @@ export default {
     },
     methods: {
         eliminar(colacion) {
-            if (!confirm("Estas seguro de querer eliminar esta colacion?"))
+            if (!confirm("Estas seguro de querer eliminar esta colación?"))
                 return;
             this.$inertia.delete(`${this.api_url}/colaciones/${colacion.id}`);
         },
         restaurar(colacion) {
-            if (!confirm("Estas seguro de querer restaurar esta colacion?"))
+            if (!confirm("Estas seguro de querer restaurar esta colación?"))
                 return;
             this.$inertia.post(`${this.api_url}/colaciones/${colacion.id}/restore`);
         },

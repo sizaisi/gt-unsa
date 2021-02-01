@@ -10,7 +10,7 @@
             </div>
             <div class="card-body">
                 <b-form @submit.prevent="actualizar">
-                    <b-form-group id="input-group-2" label="Fecha:" label-for="input-2">
+                    <b-form-group id="input-group-2" label="Fecha de la colación:" label-for="input-2">
                         <b-form-input
                         id="input-2"
                         v-model="colacion.fecha"
@@ -46,11 +46,11 @@
                         {{ $page.errors.horafin[0] }}
                         </div>
                     </b-form-group>
-                    <b-form-group id="input-group-3" label="Cantidad de colados:" label-for="input-3">
+                    <b-form-group id="input-group-3" label="Cantidad de colantes:" label-for="input-3">
                         <b-form-input
                         id="input-3"
                         v-model="colacion.cantidad"
-                        placeholder="Cantidad de Colados"
+                        placeholder="Cantidad de colantes"
                         autocomplete="off"
                         ></b-form-input>
                         <div v-if="$page.errors.cantidad" class="text-danger">

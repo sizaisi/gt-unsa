@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ColacionRequest extends FormRequest
+class ProgramaAcreditadoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class ColacionRequest extends FormRequest
     public function rules()
     {
         return [
-            'fecha' => 'required',
-            'horainicio' => 'required',
-            'maximo' => 'required',
+            'nues' => 'required|max:45',
+            'nombre_programa' => 'required|max:250',
+            'fecha_inicio_acreditacion' => 'required',
+            'fecha_fin_acreditacion' => 'required',
         ];
     }
 }

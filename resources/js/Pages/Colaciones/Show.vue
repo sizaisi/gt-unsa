@@ -6,11 +6,11 @@
     <template #title>Colaciones</template>
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Mostrar Colacion</h3>
+        <h3 class="card-title">Mostrar Colación</h3>
       </div>
       <div class="card-body">
         <b-form>
-          <b-form-group id="input-group-2" label="Fecha:" label-for="input-2">
+          <b-form-group id="input-group-2" label="Fecha de Colación:" label-for="input-2">
               <b-form-input
               id="input-2"
               v-model="colacion.fecha"
@@ -31,7 +31,7 @@
               readonly
               ></b-form-input>
           </b-form-group>
-          <b-form-group id="input-group-3" label="Cantidad de colados:" label-for="input-3">
+          <b-form-group id="input-group-3" label="Cantidad de colantes:" label-for="input-3">
               <b-form-input
               id="input-3"
               v-model="colacion.cantidad"
