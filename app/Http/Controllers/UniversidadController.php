@@ -14,7 +14,7 @@ class UniversidadController extends Controller
     {
         $universidades = Universidad::withTrashed()->latest()->get();
 
-        return Inertia::render('Universidad/Index', compact('universidades'));
+        return Inertia::render('Universidades/Index', compact('universidades'));
     }   
     
     public function create()

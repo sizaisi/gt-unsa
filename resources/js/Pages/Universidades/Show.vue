@@ -10,21 +10,27 @@
       </div>
       <div class="card-body">
         <b-form>
-          <b-form-group id="input-group-2" label="Nombre:" label-for="input-2">
+          <b-form-group id="input-group-2" label="Codigo de la Universidad:" label-for="input-2">
             <b-form-input
               id="input-2"
-              v-model="autoridad.nombre"
-              placeholder="Nombre de Autoridad"
+              v-model="universidad.cod_universidad"
+              placeholder="cod_universidad"
               readonly
             ></b-form-input>
+            <div v-if="$page.errors.cod_universidad" class="text-danger">
+              {{ $page.errors.cod_universidad[0] }}
+            </div>
           </b-form-group>
-          <b-form-group id="input-group-3" label="Grado:" label-for="input-3">
+          <b-form-group id="input-group-3" label="Razón Social:" label-for="input-3">
             <b-form-input
               id="input-3"
-              v-model="autoridad.grado"
-              placeholder="Grado de Autoridad"
+              v-model="universidad.razon_social"
+              placeholder="razón social"
               readonly
             ></b-form-input>
+            <div v-if="$page.errors.razon_social" class="text-danger">
+              {{ $page.errors.razon_social[0] }}
+            </div>
           </b-form-group>
         </b-form>
       </div>
@@ -36,8 +42,8 @@
 import AppLayout from "./../../Layouts/AppLayout";
 
 export default {
-  name: "autoridades.show",
-  props: ["autoridad"],
+  name: "universidades.show",
+  props: ["universidad"],
   components: {
     AppLayout,
   },
