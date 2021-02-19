@@ -37,7 +37,7 @@ class ExpedienteController extends Controller
         SUBSTRING_INDEX(acdiden.apn, ',', -1) as nombregrad, 
         SUBSTRING_INDEX(acdiden.apn, '/', 1) as apepat"))
         ->get();          
-        //dd($expedientes);
+        dd($expedientes);
         return Inertia::render('Expedientes/Index', compact('expedientes'));
     }    
 
@@ -75,7 +75,7 @@ class ExpedienteController extends Controller
             SUBSTRING_INDEX(acdiden.apn, '/', 1) as apepat"))
             ->where("gt_expediente.id", $expediente->id)  
             ->first();
-            //dd($expedientes2);
+            dd($expedientes2);
 
         return Inertia::render('Expedientes/Show', compact('expedientes','expedientes2'));
     }
